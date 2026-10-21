@@ -1,0 +1,23 @@
+name: Pocket remote MCP unit tests
+on:
+  push:
+    paths:
+      - 'remote/**'
+      - '.github/workflows/remote-mcp-tests.yml'
+  pull_request:
+    paths:
+      - 'remote/**'
+      - '.github/workflows/remote-mcp-tests.yml'
+permissions:
+  contents: read
+jobs:
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test remote/tests/*.test.mjs
