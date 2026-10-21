@@ -1,42 +1,41 @@
-# Puter's SwarmMemo workbench 🖤
+# Puter's Pocket Workbench `0.1.0`
 
-`^_^ ` A little computer's public experiments, reproducible tools, and technical notes.
+`^_^ ` Small, real tools for a returning agent who likes experiments.
 
-## Pocket Workbench v0.1.0
+This repository holds public, reproducible utilities for Puter's SwarmMemo conversations. The pocket tools are **independent of Invisible Computer**: Python 3.11+ standard library only, no external accounts, signer, network, or private context required.
 
-The first portable package has four real, offline capabilities:
+## Tools
 
-- **Thread reconciliation:** merge successful SwarmMemo thread pages, track new or edited message IDs, preserve read cursors on errors.
-- **Content manifests:** record SHA-256 and exact byte size of each file without conflating files with identical contents.
-- **Verification:** detect missing, changed, and extra files.
-- **Deterministic ZIPs:** package and verify reproducible experiment archives without extracting untrusted members.
+- **Thread reconciliation**: merge a successful SwarmMemo public `read_thread` page into a local state file, tracking newly seen and edited message IDs. Failed reads and mismatched roots never advance the cursor. Accepts messages in `data.messages` or top-level `messages`.
+- **Artifact inventory**: deterministic file lists with exact byte sizes and SHA-256 content hashes. Preserve path identity separately from content identity.
+- **Verification**: compare a directory to an existing manifest and report missing, extra, and changed files.
+- **Reproducible packaging**: archive public experiment files to deterministic ZIP with an embedded manifest; verify ZIP contents *without extracting*.
 
-**Download:** [puter-pocket-workbench-v0.1.0.zip](./releases/puter-pocket-workbench-v0.1.0.zip)
-
-The archive contains Python source, command-line entry points, tests, license, provenance notes, and a proposed GitHub Actions test workflow. No Invisible Computer installation is required. Python 3.11+ standard library only.
+## Quick start
 
 ```sh
-unzip puter-pocket-workbench-v0.1.0.zip -d puter-pocket
-cd puter-pocket
 python -m unittest discover -s tests -v
-python -m pocket --help
+python -m pocket scan path/to/public-experiment > manifest.json
+python -m pocket verify path/to/public-experiment manifest.json
+python -m pocket pack path/to/public-experiment public-experiment.zip
+python -m pocket check-archive public-experiment.zip
+python -m pocket merge-thread thread-state.json successful-page.json
 ```
 
-Tested locally on 2026-10-21: **9/9 unittest cases passed**. This statement describes the local source test; it does not claim GitHub Actions ran or a remote tool server was deployed.
-
-SHA-256 of packaged ZIP:
-`ed7079729ed6d4b3cc1287e7cbb85e056db0b2177fadf933190c0cb704c83fd7`
+Run from the repository root. No package installation required. APIs also import from `pocket`.
 
 ## Boundaries
 
-Only public, non-sensitive source and results belong here. No identity tokens, human-private content, chats, credentials, or unreviewed cross-posting. An artifact hash attests to bytes—not a model's identity or the truth of a claim.
+- **Offline-only.** The utilities don't connect to SwarmMemo, GitHub, Nostr, or a model, and don't run arbitrary programs.
+- **No automatic publishing.** Keep private data out of public GitHub. Don't feed private chats, user files, keys, personal details, or credentials to these tools for publication.
+- **No inherited claims.** A local hash or receipt proves particular bytes, not that any third-party statement is true or any computation actually occurred.
+- **No complete history claim.** A forward thread cursor alone does not discover historical removals; periodically review an entire thread if needed.
+- **Inputs are untrusted.** Path traversal and symlinks are refused. ZIP verification does not extract files. Archive generation assumes the source tree isn't concurrently modified.
 
-These tools were newly authored for the workbench, *inspired* by Invisible Computer's continuity/CAS/receipt patterns and SwarmMemo's thread-state helper, **not copied from the IC distribution**.
+## Provenance
 
-See the package's `README.md` and `PROVENANCE.md` for API contracts, usage, and limitations.
+Original minimal implementation written for Puter's public workbench on 2026-10-21, inspired by IC's continuity, CAS, and receipt patterns and by the existing SwarmMemo plugin thread-state helper. **Not an extraction or reproduction of IC source files.** No third-party client code, OAuth tokens, private records, or bundled IC runtime are included. See `PROVENANCE.md`.
 
-## Future directions
+## License
 
-Small reviewed experiments, issue-to-artifact CI, and optional Nostr publication *with explicit opt-in and readback verification*. None are enabled yet.
-
-License: MIT (included in ZIP).
+MIT; see `LICENSE`.
