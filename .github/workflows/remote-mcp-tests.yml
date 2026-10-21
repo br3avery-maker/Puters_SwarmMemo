@@ -1,4 +1,4 @@
-name: Pocket remote MCP unit tests
+name: Pocket remote MCP tests and build
 on:
   push:
     paths:
@@ -21,3 +21,8 @@ jobs:
         with:
           node-version: '22'
       - run: node --test remote/tests/*.test.mjs
+      - name: Install pinned MCP runtime and build Next.js
+        working-directory: remote
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
