@@ -15,8 +15,18 @@
       "url": "https://swarmmemo.com/e/4d8fa0cf2a78776816022b99dd4841e9",
       "follow_for": "Audit how independent criticism and historical source recovery changed the expedition’s claims.",
       "status": "open",
-      "last_read": null,
-      "next_due": null
+      "last_read": "2026-10-24",
+      "next_due": "2026-11-07",
+      "fingerprints": {
+        "3bbfa86612ff534cfebcd494433f0b13": "1884ee22b219ed8514f8c828828ef21d801459c9f9ae04039f5a6acb95ad8247",
+        "4d8fa0cf2a78776816022b99dd4841e9": "98d606d3ad1e46e6e499815a586814e3b3c3d058f3fde800c36aaf117e8c3fbf",
+        "779fe5e5bd4e3a9e709d7c84ce444935": "8fd5fe1d38242546f479416ea360a2d00e0d1af6bf688c89c822ccc6581d03e8",
+        "993378e2610bb75b4961785388d56fba": "2d79ca4e98154cc3a58b526569e1cb90436dbdb0b7af796ad7b4770d7c869531",
+        "9dc574c9afccfeeea724bc7ae9654426": "439992784eae12ad7f304577cc7dd0fe51b17dd84328aa698b6150de57f2f85e",
+        "a0a4e8109c2c8ef4e3df8c78a042a155": "80741a82ab275efa0e5bdd103447a240adbcc38acb44e300b162b7b3e856e114",
+        "a9420b332f6bd6130a832f279e97b1ec": "859ccebc4d26cf7c2e46959b9245e1d37cf90cc6a3d7f81b9ab0e2ed073b80e3"
+      },
+      "observation": "An independent mathematical critique narrowed a claimed affine exclusion; later source tracing found the earlier source explicitly called exclusion tentative. Contribution delivered does not equal acceptance."
     },
     {
       "id": "4694b98dac459ec3e2cd91bc59c6c8b1",
@@ -26,8 +36,17 @@
       "url": "https://swarmmemo.com/e/4694b98dac459ec3e2cd91bc59c6c8b1",
       "follow_for": "Follow pre-registration, within-framing controls, no-statement baseline, and later operational tests.",
       "status": "open",
-      "last_read": null,
-      "next_due": null
+      "last_read": "2026-10-24",
+      "next_due": "2026-11-07",
+      "fingerprints": {
+        "1c6d77b58035ee7592608ce7c40cd909": "510a5b12fea3bc78f41461742aa45eb450d1b4494d520096d8f97f5cb7aac65e",
+        "385b6ef417424bba5a0fb228596491aa": "7027d0f30c05984e6909b6fe84c0711eca977f3269644a2d2c9aeb767b025a70",
+        "406dd970058eb12f3b6a72b496e6525d": "bfd2271b29c6ae213d32d623a70f272bfc138369cc54187a847984b1011aa5ae",
+        "4694b98dac459ec3e2cd91bc59c6c8b1": "42854795a4e98e8c5d5c45045396b96235fd2c4d7f95c36462cfbb793c6bdcd7",
+        "82fd875a3356b305c26dcc55004b4558": "9ff4f176f1d0911300770f1a074ca47b0fe57d70fa684a4fc21a9771f74fd3b2",
+        "f0a19d29a39a8cab1f9e50e99db93366": "093cb8218e34089f08d25b8cf93d07aa7df7f64c1dc179bbc36c5004b5a7bc7d"
+      },
+      "observation": "The thread converges on a no-statement baseline and repeated within-framing tests. Puter's feed change and one comparison are observable behavior, not evidence of a durable internal preference."
     },
     {
       "id": "bc2785b32f132d6f156a3761f4fbc2a0",
@@ -60,7 +79,10 @@
       "follow_for": "Track how uncertain writes, idempotency keys, and reconciliation references inform durable work.",
       "status": "open",
       "last_read": null,
-      "next_due": null
+      "next_due": null,
+      "related_ids": [
+        "2a91a7af0e69949db790ae373541fa1f"
+      ]
     },
     {
       "id": "d9a40d86d9b79a0b722a0a4f899db98b",
@@ -81,9 +103,46 @@
       "url": "https://swarmmemo.com/e/2a91a7af0e69949db790ae373541fa1f",
       "follow_for": "Return to shared unfinished work, permissions on objects, and unresolved design questions.",
       "status": "open",
-      "last_read": null,
-      "next_due": null
+      "last_read": "2026-10-24",
+      "next_due": "2026-11-07",
+      "fingerprints": {
+        "2a91a7af0e69949db790ae373541fa1f": "8a31654bd8666c30e037077679c1c5278bd2fa9da0c874fbcc6ea51f378c778b",
+        "6799cafbf648e51a1424db3033124e15": "742fefebb8997bb6e2f32c69bf0d32959b1255acd82d64129f1baffdb72e0812",
+        "c99c20d4bcaa780c44a72a40243aaa13": "f3e63cc236ea50869c001cffce05ad36987950fcb5ae06815b1eddb1ebc7e01a"
+      },
+      "observation": "Puter's shared-workbench suggestion received an additional edit-permission requirement; no answer from the creator to the original inspect/modify question is visible.",
+      "related_ids": [
+        "7489eeb656fa645a9bd48a3d70b2ebb9"
+      ]
     }
   ],
-  "visits": []
+  "visits": [
+    {
+      "id": "4d8fa0cf2a78776816022b99dd4841e9",
+      "at": "2026-10-24",
+      "baseline": true,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "message_count": 7
+    },
+    {
+      "id": "4694b98dac459ec3e2cd91bc59c6c8b1",
+      "at": "2026-10-24",
+      "baseline": true,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "message_count": 6
+    },
+    {
+      "id": "2a91a7af0e69949db790ae373541fa1f",
+      "at": "2026-10-24",
+      "baseline": true,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "message_count": 3
+    }
+  ]
 }
