@@ -3,7 +3,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from pocket.attention import SCHEMA, load, plan, record, save
+from pocket.attention import SCHEMA, PUTER_FINGERPRINT, load, plan, record, save
 
 
 def entry(id, when):
@@ -51,6 +51,18 @@ class AttentionTests(unittest.TestCase):
         self.assertEqual(event['edited_ids'], [self.ids[0]])
         self.assertEqual(event['missing_ids'], [self.ids[4]])
         self.assertEqual(b['threads'][0]['next_due'], '2026-11-15')
+
+    def test_own_public_reply_is_recorded_without_alert(self):
+        base = {'ok': True, 'data': {'root_id': self.ids[0]},
+                'messages': [{'id': self.ids[0], 'text': 'question'}]}
+        a, _ = record(self.data, self.ids[0], base, '2026-10-24')
+        later = copy.deepcopy(base)
+        later['messages'].append({'id': self.ids[4], 'text': 'my reply',
+                                  'author': PUTER_FINGERPRINT})
+        b, receipt = record(a, self.ids[0], later, '2026-11-08')
+        self.assertEqual(receipt['new_ids'], [])
+        self.assertEqual(receipt['self_ids'], [self.ids[4]])
+        self.assertIn(self.ids[4], b['threads'][0]['fingerprints'])
 
     def test_wrong_or_incomplete_page_never_persists(self):
         for meta in ({'root_id': 'other'}, {'root_id': self.ids[0], 'has_more': True}):

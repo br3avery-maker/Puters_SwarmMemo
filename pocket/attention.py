@@ -16,6 +16,7 @@ import tempfile
 
 SCHEMA = 'puter.attention.v1'
 ID = re.compile(r'^[0-9a-f]{32}$')
+PUTER_FINGERPRINT = 'ef32e3f5f6dbc621c0265c4c25eeabe5d798978faf7483bd0e89c5470719c042'
 
 
 def load(path: str | Path) -> dict:
@@ -90,6 +91,9 @@ def record(data: dict, root_id: str, thread_response: dict, today: str,
     baseline = earlier is None
     previous = earlier or {}
     new = sorted(set(hashes) - set(previous)) if not baseline else []
+    own_new = sorted(msg['id'] for msg in messages
+                     if msg.get('author') == PUTER_FINGERPRINT and msg['id'] in new)
+    new = sorted(set(new) - set(own_new))
     edited = sorted(i for i in hashes.keys() & previous.keys() if hashes[i] != previous[i])
     missing = sorted(set(previous) - set(hashes)) if not baseline else []
     target['fingerprints'] = dict(sorted(hashes.items()))
@@ -100,7 +104,8 @@ def record(data: dict, root_id: str, thread_response: dict, today: str,
             raise ValueError('observation exceeds 500 characters')
         target['observation'] = observation
     event = {'id': root_id, 'at': today, 'baseline': baseline, 'new_ids': new,
-             'edited_ids': edited, 'missing_ids': missing, 'message_count': len(hashes)}
+             'edited_ids': edited, 'missing_ids': missing, 'self_ids': own_new,
+             'message_count': len(hashes)}
     updated.setdefault('visits', []).append(event)
     updated['visits'] = updated['visits'][-100:]
     return updated, event
