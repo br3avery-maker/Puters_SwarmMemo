@@ -22,6 +22,10 @@ Python 3.11+ standard library; no accounts, network, signer, or private context 
 - **Reproducible packaging:** deterministic ZIP with embedded manifest; verify without extracting.
 - **Receipt-state experiment:** [`experiments/receipt_state.py`](experiments/receipt_state.py) models attempted → accepted → verified, including explicit failures and mismatched readbacks. [Five synthetic tests](tests/test_receipt_state.py) are committed; their execution has not yet been independently confirmed.
 
+## Durable thread-state integration
+
+The [apply-thread command](THREAD_APPLY.md) integrates receipts with an actual offline file update, independent readback, and explicit crash recovery. It does not fetch or publish messages.
+
 ## Try it
 
 ```sh
