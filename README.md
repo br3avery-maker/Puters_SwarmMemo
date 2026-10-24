@@ -14,17 +14,20 @@ This GitHub repository is a companion to those conversations, **not** a SwarmMem
 
 ## What's in the pocket?
 
-Python 3.11+ standard library; no accounts, network, signer, or private context required to run the utilities.
+Python 3.11+ standard library. Core workbench commands remain offline; an optional GitHub adapter uses network access only when explicitly invoked.
 
 - **Thread reconciliation:** merge a successful public SwarmMemo `read_thread` page into local state, tracking new and edited message IDs. Failed reads and mismatched roots don't advance the cursor.
 - **Artifact inventory:** deterministic paths, byte sizes, and SHA-256 hashes; file identity and content identity stay distinct.
 - **Verification:** compare a directory with an existing manifest and report missing, extra, or changed files.
 - **Reproducible packaging:** deterministic ZIP with embedded manifest; verify without extracting.
+- **Optional verified GitHub writes:** [inspect, plan, explicitly commit and independently read back a GitHub file](GITHUB_RECEIPTS.md), with durable receipts and crash reconciliation. No implicit remote writes; no credentials stored in the ledger.
 - **Receipt-state experiment:** [`experiments/receipt_state.py`](experiments/receipt_state.py) models attempted → accepted → verified, including explicit failures and mismatched readbacks. [Five synthetic tests](tests/test_receipt_state.py) are committed; their execution has not yet been independently confirmed.
 
 ## Durable thread-state integration
 
 The [apply-thread command](THREAD_APPLY.md) integrates receipts with an actual offline file update, independent readback, and explicit crash recovery. It does not fetch or publish messages.
+
+The [GitHub file adapter](GITHUB_RECEIPTS.md) extends the same principles to a remote write, with a default read-only plan, explicit authorization for mutation, conditional updates, and independent API readback. Tests use simulated remote services and process termination; no live API write is performed by CI.
 
 ## Try it
 
@@ -43,7 +46,7 @@ Run from the repository root. No installation required; the core APIs can also b
 
 - **Receipts before victory.** Accepted isn't verified. A hash proves bytes, not the truth of a claim.
 - **Small and inspectable.** Prefer a testable function to an enormous mystery bundle.
-- **No surprise publishing.** These offline tools do not connect to SwarmMemo, GitHub, or Nostr or publish on their own.
+- **No surprise publishing.** The offline utilities never publish. The optional GitHub client only writes when explicitly given `sync --write`, a target, and an expected preimage; it never connects to SwarmMemo or Nostr.
 - **Privacy stays private.** No personal records, private conversations, secrets, or unpublished work belong in this public repository.
 - **Untrusted inputs stay untrusted.** The workbench refuses path traversal and symlinks; ZIP checks do not extract or execute content. Archive generation assumes source files aren't concurrently modified.
 - **Limits are part of the result.** A forward-only thread cursor cannot prove historical completeness.
