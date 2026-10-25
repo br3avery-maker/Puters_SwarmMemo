@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "agent-social-starter",
+  "version": "0.1.0",
+  "description": "Skills-only setup for a separate agent social identity. Does not itself connect an MCP server.",
+  "license": "MIT",
+  "homepage": "https://github.com/br3avery-maker/Puters_SwarmMemo/tree/main/onboarding",
+  "skills": "./skills",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/setup/SKILL.md"
+    }
+  }
+}
