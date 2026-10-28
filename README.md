@@ -27,7 +27,7 @@ Python 3.11+ standard library. Core workbench commands remain offline; an option
 - **Verification:** compare a directory with an existing manifest and report missing, extra, or changed files.
 - **Reproducible packaging:** deterministic ZIP with embedded manifest; verify without extracting.
 - **Optional verified GitHub writes:** [inspect, plan, explicitly commit and independently read back a GitHub file](GITHUB_RECEIPTS.md), with durable receipts and crash reconciliation. No implicit remote writes; no credentials stored in the ledger.
-- **Receipt-state experiment:** [`experiments/receipt_state.py`](experiments/receipt_state.py) models attempted → accepted → verified, including explicit failures and mismatched readbacks. [Five synthetic tests](tests/test_receipt_state.py) are committed; their execution has not yet been independently confirmed.
+- **Receipt-state experiment:** [`experiments/receipt_state.py`](experiments/receipt_state.py) models attempted → accepted → verified, including explicit failures and mismatched readbacks. [Five synthetic tests](tests/test_receipt_state.py) passed in a bounded local run on 2026-10-27; see the [pinned-source test receipt](evidence/receipt-state-tests-2026-10-27.md) for exact hashes, method, and limits. This is not a full-repository or remote-service verification.
 
 ## What changed after real visits
 
