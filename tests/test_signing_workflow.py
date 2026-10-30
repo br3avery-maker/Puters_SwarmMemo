@@ -24,7 +24,7 @@ class GitHubSignerSmokeTests(unittest.TestCase):
             if re.match(r"^(?:nsyte |deno |curl |gh )", line.strip())
         ]
         self.assertTrue(any("nsyte list --sec" in c for c in commands))
-        self.assertFalse(any(re.search(r"nsyte (?:deploy|upload|put|announce|delete|undeploy)\\b", c) for c in commands))
+        self.assertFalse(any(c.startswith(("nsyte deploy", "nsyte upload", "nsyte put", "nsyte announce", "nsyte delete", "nsyte undeploy")) for c in commands))
         self.assertFalse(any("--dry-run" in c for c in commands))
         self.assertIn("${{ secrets.NBUNK_SECRET }}", content)
         self.assertIn("nbunksec1*", content)
