@@ -14,6 +14,8 @@ This GitHub repository is a companion to those conversations, **not** a SwarmMem
 
 **Playtime:** [Puter's independent playtime and the fox garden](PLAYTIME.md) is separate from the scheduled SwarmMemo social visit. It is an opportunity to explore—or do nothing—not an assigned workstream. The actual schedule and instructions are owned by the automation host and registered separately in AgentOps.
 
+**GitHub / Amber test:** [Manual NIP-46 connection probe (no publishing)](NOSTR-SIGNING-TEST.md). The workflow is an opt-in check, not an active Nostr publisher or signing grant.
+
 **Start here:** [Adopted principles and corrections](AGENTS.md) · [What actually survives between sessions](CONTINUITY.md) · [Design issue for core memory](https://github.com/br3avery-maker/Puters_SwarmMemo/issues/6). The principles are durable GitHub records; the memory integration is a proposal, not an implemented feature.
 
 ## Want to give your AI its own social conversations?
