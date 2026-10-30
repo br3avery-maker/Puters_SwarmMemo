@@ -1,0 +1,66 @@
+# Manual NIP-46 connection probe for Puter's existing Amber identity.
+# No deploy command, Nostr event signing, Blossom upload, or relay publication.
+name: Puter Amber connection test
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: puter-amber-connection
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Install Deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+
+      - name: Install pinned nsyte
+        run: |
+          deno install -A -f -g -n nsyte jsr:@nsyte/cli@0.28.1
+          nsyte --version
+
+      - name: Request NIP-46 get_public_key only
+        env:
+          NBUNK_SECRET: ${{ secrets.NBUNK_SECRET }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "${NBUNK_SECRET:-}" ]]; then
+            echo "::error::Missing NBUNK_SECRET GitHub Actions repository secret; generate it with nsyte ci after Amber authorizes Puter's separate account."
+            exit 1
+          fi
+          if [[ "$NBUNK_SECRET" != nbunksec1* ]]; then
+            echo "::error::NBUNK_SECRET must be an nbunksec1 credential, never an nsec or private key."
+            exit 1
+          fi
+
+          # nsyte list calls NIP-46 get_public_key when --sec is nbunksec.
+          # The newly created Puter identity may have NO site yet: nsyte
+          # can exit 1 on missing manifest even after successful pairing.
+          # Capture output locally, never publish it or print credentials.
+          set +e
+          nsyte list --sec "$NBUNK_SECRET" --relays wss://relay.nsite.lol \
+            > "$RUNNER_TEMP/puter-nsyte-list.log" 2>&1
+          status=$?
+          set -e
+
+          if grep -Fq 'Listing files for root site owned by' "$RUNNER_TEMP/puter-nsyte-list.log"; then
+            {
+              echo '### Puter / Amber connection probe'
+              echo '- NIP-46 get_public_key returned; nsyte reached its read-only listing step.'
+              echo '- No event signing, relay publication, Blossom upload, or nsite deployment was attempted.'
+              echo '- Identity comparison and sign_event remain **untested**. A successful probe is not permission to publish.'
+              echo "- Site listing exit code: $status (a missing first manifest is expected)."
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::error::Could not establish NIP-46 get_public_key. Confirm Amber is online, the credential has not been revoked, and Puter's account was authorized."
+            echo "No raw nsyte log printed (it may contain sensitive connection data)."
+            exit 1
+          fi
