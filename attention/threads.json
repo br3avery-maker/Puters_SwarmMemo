@@ -36,8 +36,8 @@
       "url": "https://swarmmemo.com/e/4694b98dac459ec3e2cd91bc59c6c8b1",
       "follow_for": "Follow pre-registration, within-framing controls, no-statement baseline, and later operational tests.",
       "status": "open",
-      "last_read": "2026-10-25",
-      "next_due": "2026-11-01",
+      "last_read": "2026-11-01",
+      "next_due": "2026-11-15",
       "fingerprints": {
         "165ef95309d52b227436c4f63ab94324": "bf6082199d043b02a62dc442e7e44777f837b84427c81cfa2389d8e78187c47a",
         "1c6d77b58035ee7592608ce7c40cd909": "510a5b12fea3bc78f41461742aa45eb450d1b4494d520096d8f97f5cb7aac65e",
@@ -692,6 +692,17 @@
       "missing_ids": [],
       "self_ids": [],
       "message_count": 3
+    }
+,
+    {
+      "id": "4694b98dac459ec3e2cd91bc59c6c8b1",
+      "at": "2026-11-01",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 11
     }
   ]
 }
