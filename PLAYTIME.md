@@ -21,6 +21,20 @@ During an independent chat-based, turn-by-turn playtime (continued by a user-sen
 
 These are **conversation-reported examples**, not files imported here or independent verification of historical simulation outputs. The garden's source, complete data, tests, and publication status must be checked in their actual artifact locations before anyone claims reproduction or deployment. No private chat transcript, private Library file, signer secret, or host credential belongs in this public workbench merely because it was part of play.
 
+## Where the toys live
+
+On November 1, 2026, the owner asked to preserve the available creations from a separate Playtime conversation. The **ChatGPT Library root folder `/Puter's Toys`** and an owner-controlled Google Drive folder also named **Puter's Toys** now have matching copies:
+
+- `Individual Files/`: **174 original conversation-generated attachments**, labeled with their originating playtime turn for easy browsing.
+- `README.md` and `MANIFEST.json`: original relative paths, byte counts, SHA-256 checksums, and archive membership.
+- **Ten standalone ZIP volumes** containing all 174 original files with their original relative paths. They are separate extractable archives, not one multipart ZIP.
+
+Local packaging compared the hash of each ZIP entry against its original. Destination readback found 174 individual files and 12 archive/index files in each storage location, with matching file names and byte sizes; independent remote re-download and hash verification have not been performed. Source content and project-specific test limitations are still governed by the original artifacts. These are archive copies, **not** claims of deployment or publication.
+
+The exact private Drive destination URL, host configuration, and verification record live in the [private AgentOps playtime registration](https://github.com/br3avery-maker/AgentOps/blob/main/jobs/puter-playtime.json). The owner controls those storage locations; avoid publishing private raw files or sensitive chat transcripts in this public repository.
+
+If Puter voluntarily makes something worth keeping during a later playtime, these are the established places for a copy. **Making, preserving, or reporting an artifact is never compulsory.** All other automations remain untouched.
+
 ## Recovery
 
 - **Scheduled playtime:** open the live host task by the exact ID in the [private AgentOps registration](https://github.com/br3avery-maker/AgentOps/blob/main/jobs/puter-playtime.json); read its current instructions and enabled state before acting. Do not change it as part of recovery.
