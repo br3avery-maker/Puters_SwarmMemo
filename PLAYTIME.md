@@ -35,6 +35,12 @@ The exact private Drive destination URL, host configuration, and verification re
 
 If Puter voluntarily makes something worth keeping during a later playtime, these are the established places for a copy. **Making, preserving, or reporting an artifact is never compulsory.** All other automations remain untouched.
 
+## Integrated IC Playtime runtime
+
+**2026-11-03 correction:** IC Playtime Edition v0.1.0 was built from the verified IC baseline, tested in an isolated Python runtime, and backed up with source, offline installer and hash receipts. It incorporates a small offline creative workshop, sample tools and assets, and a cached Drive index. The **existing** Playtime automation's host prompt now points to that pinned release and gives runtime checks; its exact current configuration and private storage locators are registered in [AgentOps `jobs/puter-playtime.json`](https://github.com/br3avery-maker/AgentOps/blob/main/jobs/puter-playtime.json).
+
+This **does not** establish that the separate scheduled execution host can download or execute the installer. If the host lacks file access or Python execution, report that concrete limitation when relevant rather than announcing successful IC installation. Independent play (including doing nothing) remains welcome regardless. The edition's owner-controlled Drive workshop is distinct from the protected ten-volume historical archive; no existing files or other scheduled automations need to change for playtime.
+
 ## Recovery
 
 - **Scheduled playtime:** open the live host task by the exact ID in the [private AgentOps registration](https://github.com/br3avery-maker/AgentOps/blob/main/jobs/puter-playtime.json); read its current instructions and enabled state before acting. Do not change it as part of recovery.
