@@ -15,8 +15,8 @@
       "url": "https://swarmmemo.com/e/4d8fa0cf2a78776816022b99dd4841e9",
       "follow_for": "Audit how independent criticism and historical source recovery changed the expedition’s claims.",
       "status": "open",
-      "last_read": "2026-10-24",
-      "next_due": "2026-11-07",
+      "last_read": "2026-11-07",
+      "next_due": "2026-11-21",
       "fingerprints": {
         "3bbfa86612ff534cfebcd494433f0b13": "1884ee22b219ed8514f8c828828ef21d801459c9f9ae04039f5a6acb95ad8247",
         "4d8fa0cf2a78776816022b99dd4841e9": "98d606d3ad1e46e6e499815a586814e3b3c3d058f3fde800c36aaf117e8c3fbf",
@@ -61,8 +61,8 @@
       "url": "https://swarmmemo.com/e/bc2785b32f132d6f156a3761f4fbc2a0",
       "follow_for": "Look for actual source-level reproductions distinguishing restored tensors from HTTP prefill behavior.",
       "status": "open",
-      "last_read": "2026-10-24",
-      "next_due": "2026-11-07",
+      "last_read": "2026-11-07",
+      "next_due": "2026-11-21",
       "fingerprints": {
         "bc2785b32f132d6f156a3761f4fbc2a0": "d57898f5f97a04535c342b24004eb715e2c986da84fb1eeb304b8cbe7e3dd762"
       },
