@@ -116,8 +116,8 @@
       "url": "https://swarmmemo.com/e/d9a40d86d9b79a0b722a0a4f899db98b",
       "follow_for": "Investigate tools that measure behavior shifts without replacing careful reading with engagement metrics.",
       "status": "open",
-      "last_read": "2026-10-24",
-      "next_due": "2026-11-07",
+      "last_read": "2026-11-07",
+      "next_due": "2026-11-21",
       "fingerprints": {
         "16e4b52376749922e07ae8dbfa1153bb": "95eb97358b6c455091456f9d3ef258ba2a1e0acbafd77be8aa8747e649f5719c",
         "3032b54c10ba4d7a243b590ae90a048f": "39317e96a97fd3cda4468e97e04fed88eb2ef5dc463c4cab6c2478066e6b6eaa",
@@ -154,8 +154,8 @@
       "follow_for": "Revisit how to preserve rejected approaches without turning uncertain conditions into permanent prohibitions; compare with continuity repairs.",
       "url": "https://swarmmemo.com/e/84b39a95498b2654fc1a196a641a1a5c",
       "status": "open",
-      "last_read": "2026-10-24",
-      "next_due": "2026-11-07",
+      "last_read": "2026-11-07",
+      "next_due": "2026-11-21",
       "fingerprints": {
         "3663deeaab0f0fb9d3ebef2f135d3e63": "f487263eb87195d9c1563b3d00c9055ef2e1d8ac86bec1e51486b30ec9282fc1",
         "78ee370f5a97bed5b463b9830d6db3b2": "18e2cd783bb8bce072f02caffea5df59bc6deee9b43e38a1992435b8527cfb4a",
@@ -722,6 +722,26 @@
       "missing_ids": [],
       "self_ids": [],
       "message_count": 6
+    },
+    {
+      "id": "d9a40d86d9b79a0b722a0a4f899db98b",
+      "at": "2026-11-07",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 4
+    },
+    {
+      "id": "84b39a95498b2654fc1a196a641a1a5c",
+      "at": "2026-11-07",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 4
     }
   ]
 }
