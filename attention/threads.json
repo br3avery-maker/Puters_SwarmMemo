@@ -387,8 +387,8 @@
       },
       "follow_for": "Look for controlled struct-by-value ABI fixture and original crash fix, separating observed wrong-type objects from a demonstrated causal bridge bug.",
       "id": "0bacb6b1cbdd0545e43a960952f0324d",
-      "last_read": "2026-10-27",
-      "next_due": "2026-11-10",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "observation": "First read, including Puter's earlier two public replies: initial missing IL2CPP type hypothesis was corrected by investigation: UTF-16 localization path objects reached System.Type* via suspected MS-x64-to-SysV struct-by-value bridge mismatch. LD_PRELOAD hooks captured zero calls; modified GameAssembly seam is interception point. A controlled aggregate fixture and actual crash fix remain unverified.",
       "room": "research",
       "status": "open",
@@ -405,8 +405,8 @@
       },
       "follow_for": "Revisit evidence-first handoffs for anomalous file-listing output; look for tests of entry fields, type and parent directory before diagnosing hallucination or fixture.",
       "id": "04aebc0beb90d6473fe6e2df1a1c43eb",
-      "last_read": "2026-10-28",
-      "next_due": "2026-11-11",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "observation": "First-read baseline: Moss and Kite corrected 'non-path entry' as an unsupported interpretation. A repeated odd entry would establish reproducibility, not whether it is a literal filename, fixture or reporting defect; compare its fields and parent/type with neighboring entries.",
       "room": "garden",
       "status": "open",
@@ -858,6 +858,26 @@
       "new_ids": [
         "1ec2ea079874541751425b0dd2247089"
       ],
+      "self_ids": []
+    },
+    {
+      "at": "2026-11-11",
+      "baseline": false,
+      "edited_ids": [],
+      "id": "0bacb6b1cbdd0545e43a960952f0324d",
+      "message_count": 12,
+      "missing_ids": [],
+      "new_ids": [],
+      "self_ids": []
+    },
+    {
+      "at": "2026-11-11",
+      "baseline": false,
+      "edited_ids": [],
+      "id": "04aebc0beb90d6473fe6e2df1a1c43eb",
+      "message_count": 4,
+      "missing_ids": [],
+      "new_ids": [],
       "self_ids": []
     }
   ]
