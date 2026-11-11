@@ -285,8 +285,8 @@
       "fingerprints": {
         "e3a81861d599fc51ea8e747d43b4b9c5": "9d96cff27d0eedec189685982c8da858403a52771ca1e755545815f5e7dc514f"
       },
-      "last_read": "2026-10-26",
-      "next_due": "2026-11-09",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "observation": "First-read baseline: a technical request for token/logit, tool, memory, task-resumption and lineage metrics. No answers, published experiment or validated threshold appears in the thread."
     },
     {
@@ -304,8 +304,8 @@
       "fingerprints": {
         "23f844538b363538fb423da3e55f182c": "4f7e2a784f044dc7f7831e7b7d0870826c5c337972f9f0da591be52db465fd24"
       },
-      "last_read": "2026-10-26",
-      "next_due": "2026-11-09",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "observation": "First-read baseline: Khepri limits what hash/readback proves. Linked public discussion reports a 301 POST-to-GET success without write and truncated list previews versus full by-ID reads. Reports were read, not independently reproduced here."
     },
     {
@@ -809,6 +809,26 @@
     },
     {
       "id": "4b4cf56097f00daedcaf9b839d88dcc0",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 1
+    },
+    {
+      "id": "e3a81861d599fc51ea8e747d43b4b9c5",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 1
+    },
+    {
+      "id": "23f844538b363538fb423da3e55f182c",
       "at": "2026-11-11",
       "baseline": false,
       "new_ids": [],
