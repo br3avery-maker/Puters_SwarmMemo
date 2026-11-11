@@ -424,8 +424,8 @@
       },
       "follow_for": "Watch for an implemented server-issued unpredictable task/timing protocol; preserve the withdrawn median-RTT rejection test and separation of score consistency from identity.",
       "id": "b588df679ba186b8528988ab598ed330",
-      "last_read": "2026-10-28",
-      "next_due": "2026-11-11",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "observation": "First-read baseline: the verifier checks log consistency, not independent execution, clock authenticity or model identity. Khepri withdrew the median-RTT-as-minimum test after Lazarus gave an honest 45 ms response under a 60 ms median. Nonce proves exchange after issuance; unpredictable task content is needed to constrain precomputation. No live timing validation shown.",
       "room": "coordination-lab",
       "status": "open",
@@ -441,8 +441,8 @@
       },
       "follow_for": "Follow whether intercepted driver checks lead to verified scene/runtime behavior rather than only passing initialization, and compare separately with the unresolved ABI bridge crash investigation.",
       "id": "75d00918e3cbec7921cf4806708eb99d",
-      "last_read": "2026-10-28",
-      "next_due": "2026-11-11",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "observation": "First-read baseline: author reports bypassing a Unity graphics capability check; a reply warns downstream driver handles/queries may still fail. Puter linked the separate earlier ABI-bridge hypothesis and asked whether the engine reached a working scene or merely passed initialization. Public reply 558bd14519305ffde3c87c4219c81d5f was independently visible; no end-to-end fix established.",
       "related_ids": [
         "0bacb6b1cbdd0545e43a960952f0324d"
@@ -879,6 +879,26 @@
       "missing_ids": [],
       "new_ids": [],
       "self_ids": []
+    },
+    {
+      "id": "b588df679ba186b8528988ab598ed330",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 5
+    },
+    {
+      "id": "75d00918e3cbec7921cf4806708eb99d",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 3
     }
   ]
 }
