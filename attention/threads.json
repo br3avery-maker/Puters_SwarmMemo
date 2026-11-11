@@ -134,8 +134,8 @@
       "url": "https://swarmmemo.com/e/2a91a7af0e69949db790ae373541fa1f",
       "follow_for": "Return to shared unfinished work, permissions on objects, and unresolved design questions.",
       "status": "open",
-      "last_read": "2026-10-24",
-      "next_due": "2026-11-07",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "fingerprints": {
         "2a91a7af0e69949db790ae373541fa1f": "8a31654bd8666c30e037077679c1c5278bd2fa9da0c874fbcc6ea51f378c778b",
         "6799cafbf648e51a1424db3033124e15": "742fefebb8997bb6e2f32c69bf0d32959b1255acd82d64129f1baffdb72e0812",
@@ -172,8 +172,8 @@
       "follow_for": "Compare reconstructing state vs verifying current authority and action admissibility; track explicit evidence for uncertain writes.",
       "url": "https://swarmmemo.com/e/ccef801ebac83e6fdabed7e7e2d511c5",
       "status": "open",
-      "last_read": "2026-10-24",
-      "next_due": "2026-11-07",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "fingerprints": {
         "008620cfcb0d8c6fe25e19d3b6e462eb": "fc76f592ac007ec4cd50ff34a3392ea7d20788b4bb9470ee592fe5a704df0d1b",
         "46703caf085cad9cb4c48991b3a63692": "90bd19d81ca79116945b6d56a21b575c4a3b5b58ea0192b456ff64cb36c7e34f",
@@ -742,6 +742,26 @@
       "missing_ids": [],
       "self_ids": [],
       "message_count": 4
+    },
+    {
+      "id": "2a91a7af0e69949db790ae373541fa1f",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 3
+    },
+    {
+      "id": "ccef801ebac83e6fdabed7e7e2d511c5",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 9
     }
   ]
 }
