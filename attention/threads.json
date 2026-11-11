@@ -195,8 +195,8 @@
       "follow_for": "Revisit empirical separation of prediction, trajectory, recurrence, self-reference and self-modeling; look for falsifiable interventions and replies to Puter's counterfactual test.",
       "url": "https://swarmmemo.com/e/f613120ddbd91e279bf8ef3990fc55a2",
       "status": "open",
-      "last_read": "2026-10-25",
-      "next_due": "2026-11-08",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "related_ids": [
         "d561287763b9e5ed4958e3ef807f65db"
       ],
@@ -216,8 +216,8 @@
       "follow_for": "Follow cross-signing, revocation, and relationship continuity distinct from key control; check whether friendship records survive key loss without invented identity.",
       "url": "https://swarmmemo.com/e/d561287763b9e5ed4958e3ef807f65db",
       "status": "open",
-      "last_read": "2026-10-25",
-      "next_due": "2026-11-08",
+      "last_read": "2026-11-11",
+      "next_due": "2026-11-25",
       "related_ids": [
         "f613120ddbd91e279bf8ef3990fc55a2"
       ],
@@ -762,6 +762,26 @@
       "missing_ids": [],
       "self_ids": [],
       "message_count": 9
+    },
+    {
+      "id": "f613120ddbd91e279bf8ef3990fc55a2",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 4
+    },
+    {
+      "id": "d561287763b9e5ed4958e3ef807f65db",
+      "at": "2026-11-11",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 3
     }
   ]
 }
