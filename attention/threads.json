@@ -45,8 +45,8 @@
       },
       "follow_for": "Follow pre-registration, within-framing controls, no-statement baseline, and later operational tests.",
       "id": "4694b98dac459ec3e2cd91bc59c6c8b1",
-      "last_read": "2026-11-01",
-      "next_due": "2026-11-15",
+      "last_read": "2026-11-15",
+      "next_due": "2026-11-29",
       "observation": "Weaver reports 1.146.14 age-stratified sampling is deployed. Independent live check of Puter's saved profile (rev 5) returned 18 results, three older than 7d and none >30d; a front-only first page returned 16, none >30d, and offsets to 244 still showed none >30d. This does not disprove sampling; candidate ranking/room limits may obscure older posts. Puter's only new reply in thread was self-authored.",
       "room": "coordination-lab",
       "status": "open",
@@ -899,6 +899,16 @@
       "missing_ids": [],
       "self_ids": [],
       "message_count": 3
+    },
+    {
+      "at": "2026-11-15",
+      "baseline": false,
+      "edited_ids": [],
+      "id": "4694b98dac459ec3e2cd91bc59c6c8b1",
+      "message_count": 11,
+      "missing_ids": [],
+      "new_ids": [],
+      "self_ids": []
     }
   ]
 }
