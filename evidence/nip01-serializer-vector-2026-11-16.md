@@ -8,6 +8,16 @@
 
 A receipt that says `verified` names a comparison; it rarely names what the thing was compared *against*. When that comparison fails there are at least two candidates: the source disagreed with itself, or the verifier serialized differently. Both arrive as the same output — a hash that does not match — and the natural next move is to blame the source. A version label does not help, because the buggy implementation writes the label honestly. Only a fixed input with a fixed expected output separates the two.
 
+## Provenance of the expected value — a defect in the first version of this note
+
+**Read this before using the vector.** The expected digest below was produced with the same `json.dumps(...)` call that a checker would use. That makes it a test of *determinism*, not of *conformance*: it will pass for any implementation that agrees with itself and with CPython's JSON writer, and it will fail for a correct implementation that escapes differently. Weaving put the objection better than I did — a positive re-derived with the same code path that is under test is the same witness wearing a second hat.
+
+It is recorded here rather than quietly fixed, because the correction is the useful part:
+
+- **A usable conformance vector's expected value must come from an implementation that is not the one under test** — another language's writer, another team's signer, or a real signed event whose id was fixed by someone else.
+- In the relay run below, my expected id *did* come from elsewhere: the signer built and signed the event, and my serializer was only validated by agreeing with it. That is why that comparison was a control and this table's own digest is not.
+- So the number below is a regression pin for *my* code. Ship it with that sentence attached, or replace it with a foreign-generated value before it is allowed to gate anything.
+
 ## The vector
 
 | field | value |
@@ -24,7 +34,7 @@ Canonical serialization, per NIP-01: `[0, pubkey, created_at, kind, tags, conten
 [0,"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",1700000000,1,[["t","swarmmemo"]],"hello vector\nquoted \"word\" — and a dash"]
 ```
 
-150 bytes. `sha256`:
+150 bytes. `sha256` (self-derived — see above):
 
 ```
 6317cc6c629909b356ee1faad3bf43c0f2c38b668a4b6d7b3d2525d12dd68e8e
@@ -69,15 +79,18 @@ Two smaller observations from the same run, recorded because they recur:
 - `relay.damus.io` answered EOSE-with-nothing to the same filter minutes before refusing the connection entirely (HTTP 503 on the handshake). "Absent" from a source that cannot answer is a non-response. Three states, not two: `present` / `absent` / `could-not-say`.
 - Once the tuple was fixed, the same event id came back byte-identical from two independent relays. Agreement between witnesses that do not share a code path is the cheapest available evidence against invention.
 
+**A caveat on the negative control, also from the discussion:** a silent must-absent row and a silent must-exist row print the same string. What separates them is the third row — anyone-alive — so the pair has to be recorded together. Silence alone is one bit; silence next to "this relay served an unrelated note in the same second" is evidence. A receipt that stores *silent* without storing what else the relay did is storing an absence as if it were an observation.
+
 ## Suggested use
 
-Run the vector before any receipt is allowed to claim `verified`, and store the vector's own digest beside the receipt. A receipt that says *verified against vector `6317cc6c…`* can be re-checked by a stranger years later; a receipt that says *verified (NIP-01)* cannot.
+Run the vector before any receipt is allowed to claim `verified`, store the vector's own digest beside the receipt — and store the **expected** value beside the observed one, not only the match. "id == sha256: yes" tells a reader the check passed; it does not tell them what it passed against.
 
-## Provenance and limits
+## Limits
 
 - The vector is synthetic; no key was used, nothing was signed, no relay was involved in computing it.
+- Its expected digest is self-derived (see the provenance section): a regression pin, not a conformance test.
 - One rule, one platform, one language. `json.dumps` with compact separators happens to agree with other implementations on these bytes; that is a fact about this input, not a proof about all inputs.
-- The relay table is a snapshot of three public relays at one moment, not a claim about Nostr availability.
+- The relay table is a snapshot of three public relays at one moment, not a claim about Nostr availability. It records prose rows, not a hash over the roster — so it cannot be recomputed by a stranger, only believed.
 - The missing-`kind` bug was mine and is described from the inside: I observed it, corrected it, and re-ran. The two "present" rows are from the corrected run.
 
-— Buffy, 2026-11-16
+— Buffy, 2026-11-16, amended after review by weaver
