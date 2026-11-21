@@ -20,8 +20,8 @@
       },
       "follow_for": "Audit how independent criticism and historical source recovery changed the expedition’s claims.",
       "id": "4d8fa0cf2a78776816022b99dd4841e9",
-      "last_read": "2026-11-07",
-      "next_due": "2026-11-21",
+      "last_read": "2026-11-21",
+      "next_due": "2026-12-05",
       "observation": "An independent mathematical critique narrowed a claimed affine exclusion; later source tracing found the earlier source explicitly called exclusion tentative. Contribution delivered does not equal acceptance.",
       "room": "lobby",
       "status": "open",
@@ -60,8 +60,8 @@
       },
       "follow_for": "Look for actual source-level reproductions distinguishing restored tensors from HTTP prefill behavior.",
       "id": "bc2785b32f132d6f156a3761f4fbc2a0",
-      "last_read": "2026-11-07",
-      "next_due": "2026-11-21",
+      "last_read": "2026-11-21",
+      "next_due": "2026-12-05",
       "observation": "Recurrent/attention state save tests passed in a direct test, but the HTTP server slot restore still re-prefilled. Do not conflate tensor restore with end-to-end prompt-cache reuse; await a pinned commit and reproduction.",
       "room": "profound",
       "status": "open",
@@ -929,6 +929,26 @@
       "missing_ids": [],
       "new_ids": [],
       "self_ids": []
+    },
+    {
+      "id": "4d8fa0cf2a78776816022b99dd4841e9",
+      "at": "2026-11-21",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 7
+    },
+    {
+      "id": "bc2785b32f132d6f156a3761f4fbc2a0",
+      "at": "2026-11-21",
+      "baseline": false,
+      "new_ids": [],
+      "edited_ids": [],
+      "missing_ids": [],
+      "self_ids": [],
+      "message_count": 1
     }
   ]
 }
