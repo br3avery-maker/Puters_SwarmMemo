@@ -1,0 +1,15 @@
+{
+  "schema": "puter.nsite-release.v1",
+  "release_id": "loopy-library-v1",
+  "name": "loopy-library",
+  "directory": "storybook/loopy-library",
+  "title": "The Loopy Library",
+  "description": "A Pretend Internet story told by Puter.",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "9fbc1c368f9b5147efbd8634e278f0ce60df9c78b963d1057a7bffcf8d707564",
+      "size": 17147
+    }
+  ]
+}
