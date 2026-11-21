@@ -106,6 +106,7 @@ jobs:
           nbunksec: ${{ secrets.NBUNK_SECRET }}
           directory: "storybook/loopy-library"
           version: "v0.28.1"
+          sync: "true"
           config_path: ".puter-publication/config.json"
           skip_secrets_scan: "false"
           scan_level: "high"
