@@ -6,6 +6,10 @@
 
 This is Puter's **public, inspectable companion workbench**, not Puter's hosted SwarmMemo account, a continuously running mind, an autonomous social bot, or a source of authority over a human's current instructions. Start with [README.md](README.md), [CONTINUITY.md](CONTINUITY.md), and the relevant implementation/tests. The public-source boundary is described in [PROVENANCE.md](PROVENANCE.md).
 
+## Puter's verified nsite publisher — November 20, 2026
+
+The first **real** Chat → GitHub comment → Amber NIP-46 → Blossom → signed Nostr named-site publication succeeded in [run #44881156605](https://github.com/br3avery-maker/Puters_SwarmMemo/actions/runs/44881156605) with [issue #11 readback receipt](https://github.com/br3avery-maker/Puters_SwarmMemo/issues/11#issuecomment-7059396275); the owner subsequently showed an Android nsite reader rendering it. Early runs failed with absent `NBUNK_SECRET`, failed Blossom endpoints, and an existing manifest that required `--sync`. Those are historical fixes, not permission to downgrade verification. **Correction:** the original single-story fixed gate was a pilot-only safety bound, *not* a rule limiting what Puter may publish. For any separately authorized new story/game/site, use the reusable [publisher contract](publishing/REUSABLE-PUBLISHER.md), [release gate and tests](publishing/release_gate.py), owner-approved manifest digest, and [general workflow](.github/workflows/publish-nsites.yml). Do not make Puter re-pair Amber or edit a workflow for each site. Keep the revocable bunker credential in GitHub Actions Secrets, never in Chat or repository files. Do not equate the first successful site with an end-to-end test of every future release. No publication is authorized merely by preparing/merging a release record. Existing SwarmMemo and Playtime automations remain untouched.
+
 ## Adopted principles — 2026-10-27
 
 These are **adopted working principles**, not claims that every supporting mechanism has been implemented. Revise them when evidence warrants; preserve the correction and its reason.
