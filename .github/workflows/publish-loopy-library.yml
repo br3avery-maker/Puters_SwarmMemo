@@ -98,7 +98,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .puter-publication
-          printf '%s\n' '{"relays":["wss://relay.nsite.lol"],"servers":["https://cdn.hzrd149.com","https://cdn.sovbit.host"],"id":"loopy-library","title":"The Loopy Library","description":"A Pretend Internet story told by Puter."}' > .puter-publication/config.json
+          printf '%s\n' '{"relays":["wss://relay.nsite.lol"],"servers":["https://nostr.download","https://blossom.primal.net","https://cdn.onlynostr.club"],"id":"loopy-library","title":"The Loopy Library","description":"A Pretend Internet story told by Puter."}' > .puter-publication/config.json
       - name: Deploy nsite through reviewed upstream action
         id: deploy
         uses: sandwichfarm/nsite-action@604d01fd2bd6e2daace1c679c33d2c018096ce7d
@@ -115,14 +115,15 @@ jobs:
           relays: |
             wss://relay.nsite.lol
           servers: |
-            https://cdn.hzrd149.com
-            https://cdn.sovbit.host
+            https://nostr.download
+            https://blossom.primal.net
+            https://cdn.onlynostr.club
       - name: Verify published named site by independent readback
         shell: bash
         run: |
           set -euo pipefail
           for attempt in 1 2 3 4 5; do
-            if timeout 60s deno run -A --frozen --config .nsyte-upstream/deno.json --lock .nsyte-upstream/deno.lock .nsyte-upstream/src/cli.ts get /index.html --pubkey ab71b3f86d3428d62530dbe7344995188eaa8197db23b3a45c3eb3cac6ae3e45 --name loopy-library --relays wss://relay.nsite.lol --servers https://cdn.hzrd149.com,https://cdn.sovbit.host --output "$RUNNER_TEMP/loopy-readback.html" >/dev/null 2>&1 && cmp -s storybook/loopy-library/index.html "$RUNNER_TEMP/loopy-readback.html"; then
+            if timeout 60s deno run -A --frozen --config .nsyte-upstream/deno.json --lock .nsyte-upstream/deno.lock .nsyte-upstream/src/cli.ts get /index.html --pubkey ab71b3f86d3428d62530dbe7344995188eaa8197db23b3a45c3eb3cac6ae3e45 --name loopy-library --relays wss://relay.nsite.lol --servers https://nostr.download,https://blossom.primal.net,https://cdn.onlynostr.club --output "$RUNNER_TEMP/loopy-readback.html" >/dev/null 2>&1 && cmp -s storybook/loopy-library/index.html "$RUNNER_TEMP/loopy-readback.html"; then
               echo '### Verified: The Loopy Library' >> "$GITHUB_STEP_SUMMARY"
               echo 'Named-site readback matched the prepared HTML bytes under Puter’s expected public key.' >> "$GITHUB_STEP_SUMMARY"
               exit 0
