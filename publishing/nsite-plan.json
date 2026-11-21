@@ -1,0 +1,34 @@
+{
+  "schema": "ic.nsite-action-plan.v1",
+  "status": "prepared-not-published",
+  "site": {
+    "directory": "storybook/loopy-library",
+    "name": "loopy-library",
+    "kind": 35128,
+    "files": [
+      {
+        "path": "index.html",
+        "size": 17147,
+        "sha256": "9fbc1c368f9b5147efbd8634e278f0ce60df9c78b963d1057a7bffcf8d707564"
+      }
+    ],
+    "total_bytes": 17147
+  },
+  "deployment": {
+    "action_url": "https://github.com/sandwichfarm/nsite-action",
+    "action_ref": "604d01fd2bd6e2daace1c679c33d2c018096ce7d",
+    "nsyte_version": "v0.28.1",
+    "config_path": null,
+    "relays": [
+      "wss://relay.nsite.lol"
+    ],
+    "servers": [
+      "https://cdn.hzrd149.com",
+      "https://cdn.sovbit.host"
+    ],
+    "signer_secret_name": "NBUNK_SECRET",
+    "requires_manual_trigger": true,
+    "requires_signer_setup": true
+  },
+  "claim_boundary": "Offline inventory and workflow creation only; no signing, Blossom upload, relay publication, or host readback."
+}
