@@ -1,0 +1,157 @@
+# Generalized from Puter's first verified Storybook publication, run #44881156605.
+# This is an OWNER-APPROVED, content-addressed release pipeline, not an arbitrary command runner.
+name: Puter nsite publisher — authorized releases
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      release_id:
+        description: Committed release record ID (publishing/releases/<ID>.json)
+        required: true
+        type: string
+      manifest_sha256:
+        description: SHA-256 digest of the committed release record
+        required: true
+        type: string
+  pull_request:
+    paths:
+      - 'publishing/**'
+      - '.github/workflows/publish-nsites.yml'
+permissions:
+  contents: read
+jobs:
+  offline:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout source without credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Exercise generic release gate and owner authorization
+        run: python3 -m unittest discover -s publishing -p 'test_release_gate.py' -v
+      - name: Verify preserved Loopy release against the original HTML
+        run: python3 publishing/release_gate.py validate --id loopy-library-v1
+  publish:
+    # The Python gate below repeats and deepens all owner and exact-request checks.
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      github.repository == 'br3avery-maker/Puters_SwarmMemo' &&
+      github.actor_id == github.repository_owner_id &&
+      github.triggering_actor == github.repository_owner &&
+      (github.event_name == 'workflow_dispatch' ||
+       (github.event_name == 'issue_comment' && github.event.action == 'created' &&
+        github.event.issue.number == 11 && !github.event.issue.pull_request &&
+        github.event.comment.author_association == 'OWNER' &&
+        startsWith(github.event.comment.body, '/publish-release ')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: nostr-publication
+    concurrency:
+      group: puter-authorized-nsite-publishing
+      cancel-in-progress: false
+    permissions:
+      contents: read
+    outputs:
+      release_id: ${{ steps.release.outputs.release_id }}
+      site_name: ${{ steps.release.outputs.site_name }}
+      manifest_sha256: ${{ steps.release.outputs.manifest_sha256 }}
+      file_count: ${{ steps.release.outputs.file_count }}
+    steps:
+      - name: Checkout reviewed main without persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Validate owner command, committed release and every local file BEFORE signing
+        id: release
+        run: python3 publishing/release_gate.py stage
+      - name: Checkout pinned nsyte source for identity and exact readback
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: sandwichfarm/nsyte
+          ref: bf0f99d058b89720aaa50b22226ccd481b5ee4ef
+          path: .nsyte-upstream
+          persist-credentials: false
+      - name: Install Deno
+        uses: denoland/setup-deno@22d081ff2d3a40755e97629de92e3bcbfa7cf2ed
+        with:
+          deno-version: v2.x
+      - name: Verify revocable NIP-46 credential resolves to Puter's expected public key
+        shell: bash
+        env:
+          NBUNK_SECRET: ${{ secrets.NBUNK_SECRET }}
+        run: |
+          set -euo pipefail
+          if [[ "$NBUNK_SECRET" != nbunksec1* ]]; then
+            echo '::error::Puter CI bunker credential is missing or invalid.'
+            exit 1
+          fi
+          export HOME="$(mktemp -d "$RUNNER_TEMP/puter-identity.XXXXXX")"
+          trap 'rm -rf -- "$HOME"' EXIT
+          if ! timeout 90s deno run -A --frozen --config .nsyte-upstream/deno.json --lock .nsyte-upstream/deno.lock publishing/verify-puter-identity.ts > "$HOME/identity.log" 2>&1; then
+            echo '::error::Bunker identity mismatch or connection failure; nothing was uploaded.'
+            exit 1
+          fi
+          echo 'Puter public key independently matched.'
+      - name: Deploy immutable approved source through pinned nsite Action
+        id: deploy
+        uses: sandwichfarm/nsite-action@604d01fd2bd6e2daace1c679c33d2c018096ce7d
+        with:
+          nbunksec: ${{ secrets.NBUNK_SECRET }}
+          directory: ${{ steps.release.outputs.directory }}
+          name: ${{ steps.release.outputs.site_name }}
+          version: 'v0.28.1'
+          config_path: '.puter-publication/config.json'
+          sync: 'true'
+          skip_secrets_scan: 'false'
+          scan_level: 'high'
+          relays: |
+            wss://relay.nsite.lol
+          servers: |
+            https://nostr.download
+            https://blossom.primal.net
+      - name: Independently retrieve and hash every path through the named signed site
+        env:
+          RELEASE_ID: ${{ steps.release.outputs.release_id }}
+        run: |
+          set -euo pipefail
+          python3 publishing/release_gate.py verify --id "$RELEASE_ID"
+          {
+            echo '### Puter nsite: independently verified named-site readback'
+            echo "Release: $RELEASE_ID"
+            echo 'The full file inventory was downloaded via Nostr named-site lookup and compared to the approved source.'
+          } >> "$GITHUB_STEP_SUMMARY"
+  receipt:
+    needs: publish
+    if: >-
+      always() &&
+      (needs.publish.result == 'success' || needs.publish.result == 'failure' ||
+       needs.publish.result == 'cancelled')
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      issues: write
+    steps:
+      - name: Append sanitized publication receipt to the existing inbox
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RESULT: ${{ needs.publish.result }}
+          RELEASE_ID: ${{ needs.publish.outputs.release_id }}
+          SITE_NAME: ${{ needs.publish.outputs.site_name }}
+          MANIFEST_SHA256: ${{ needs.publish.outputs.manifest_sha256 }}
+          FILE_COUNT: ${{ needs.publish.outputs.file_count }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          case "$RESULT" in
+            success) state='VERIFIED: signed named-site readback matched every approved file.' ;;
+            failure|cancelled) state='NOT VERIFIED: publication or readback failed; a signed event may already have been sent.' ;;
+            *) exit 1 ;;
+          esac
+          # Outputs are generated by the local gate; no raw comment text, secrets or logs.
+          body=$(printf '%s\n\nRelease: `%s`\nNamed site: `%s`\nFiles: `%s`\nRelease SHA-256: `%s`\nRun: https://github.com/br3avery-maker/Puters_SwarmMemo/actions/runs/%s\nCommit: `%s`\n' \
+            "$state" "${RELEASE_ID:-unknown}" "${SITE_NAME:-unknown}" "${FILE_COUNT:-unknown}" "${MANIFEST_SHA256:-unknown}" "$GITHUB_RUN_ID" "$GITHUB_SHA")
+          gh api --method POST repos/br3avery-maker/Puters_SwarmMemo/issues/11/comments -f body="$body" >/dev/null

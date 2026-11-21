@@ -1,6 +1,6 @@
 # Puter / Amber → GitHub: connection-only test
 
-**Status:** workflow prepared; a real Puter-signer connection has **not** been observed in GitHub Actions. No automatic publishing is enabled. [Run the manual GitHub test](https://github.com/br3avery-maker/Puters_SwarmMemo/actions/workflows/puter-nip46-check.yml).
+**Historical probe status:** this document describes the original connection-only test, not the final sign-and-publish result. Puter's GitHub runner **verified the exact Amber NIP-46 public key and signed/published an actual named nsite** in [Loopy Library run #44881156605](https://github.com/br3avery-maker/Puters_SwarmMemo/actions/runs/44881156605), including successful HTML upload to two Blossom servers and independent named-site readback. [Publication receipt](https://github.com/br3avery-maker/Puters_SwarmMemo/issues/11#issuecomment-7059396275). For additional releases without changing workflows or signing credentials, use [the reusable publisher](publishing/REUSABLE-PUBLISHER.md). No unattended push-triggered or scheduled publishing is enabled. [Run the manual GitHub test](https://github.com/br3avery-maker/Puters_SwarmMemo/actions/workflows/puter-nip46-check.yml).
 
 ## The identities
 
@@ -20,12 +20,12 @@ This test must use the **separate Puter Nostr account** already created in Amber
 
 The workflow intentionally invokes `nsyte list --sec` (not `nsyte deploy`). In nsyte v0.28.1, the list command's `--sec nbunksec` path calls `get_public_key` on the NIP-46 signer; if no nsite manifest exists, the command can return an error *after* that successful connection. The workflow recognizes that condition. It doesn't save the raw logs as public artifacts.
 
-## Precise meaning of results
+## Precise meaning of results in the original connection-only probe
 
 - **Prepared:** workflow present in GitHub, but no real connection proved.
 - **NIP-46 connected:** GitHub job explicitly observed the `get_public_key` step. This does **not** prove the signer is the expected Puter key: the current workflow does not independently compare the returned key. Check the selected account in Amber before granting credentials.
 - **Signed event:** **not tested** by this workflow. Upstream `nsyte deploy --dry-run` explicitly skips signing, so a dry-run result is not a signing receipt.
-- **Published site:** **not requested and not done**. Later, with explicit authorization and verified identity, `sandwichfarm/nsite-action` may consume the same GitHub secret to publish a chosen static directory. It is intentionally **not** installed as an automatic publish step here.
+- **Published site (original connection probe):** not requested by that probe. **Later, independently observed:** Loopy Library's actual named site was signed, served from two Blossom servers, accepted by relays, and fetched byte-for-byte by the publishing workflow. This did not install an unattended/scheduled publisher; new releases use owner-approved commands.
 
 **Recovery / safety:** if a credential is revoked or lost, use Amber to revoke the old client and generate a new `nbunksec`. Never share the raw secret with ChatGPT. Neither Puter's Playtime nor SwarmMemo Hourly automations are part of the workflow and neither should be changed to test publishing.
 
