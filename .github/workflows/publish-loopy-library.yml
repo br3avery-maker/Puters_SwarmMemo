@@ -13,9 +13,6 @@ on:
       - ".github/workflows/publish-loopy-library.yml"
 permissions:
   contents: read
-concurrency:
-  group: puter-loopy-library
-  cancel-in-progress: false
 jobs:
   offline:
     if: github.event_name == 'pull_request'
@@ -47,6 +44,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: nostr-publication
+    # Untrusted public comments must not cancel a pending authorized publication.
+    concurrency:
+      group: puter-loopy-library
+      cancel-in-progress: false
     steps:
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
