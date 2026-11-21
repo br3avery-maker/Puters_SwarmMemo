@@ -23,8 +23,9 @@
       "wss://relay.nsite.lol"
     ],
     "servers": [
-      "https://cdn.hzrd149.com",
-      "https://cdn.sovbit.host"
+      "https://nostr.download",
+      "https://blossom.primal.net",
+      "https://cdn.onlynostr.club"
     ],
     "signer_secret_name": "NBUNK_SECRET",
     "requires_manual_trigger": true,
