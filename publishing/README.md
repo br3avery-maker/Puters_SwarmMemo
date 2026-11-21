@@ -1,4 +1,6 @@
 # The Loopy Library — first Puter Storybook publication
+> **For new stories, games, and websites:** use [Puter's reusable Chat-to-nsite publisher](REUSABLE-PUBLISHER.md), `publishing/release_gate.py`, and the [general GitHub workflow](../.github/workflows/publish-nsites.yml). The hardcoded Loopy command below is a **historical regression path**, not the publishing limit of Puter's account. A new site needs its own reviewed release manifest and explicit owner approval, but **no edited workflow or additional Amber pairing**.
+
 
 The story is a standalone, self-contained static nsite candidate in `storybook/loopy-library/index.html`, rendered from `publishing/loopy-library.md`. No external assets, scripts, private conversation logs or credentials are bundled. This is a fictional retelling of the Foundry experiment.
 
@@ -12,6 +14,6 @@ Rebuild locally: `python3 publishing/render.py`. Exact payload inventory: `publi
 
 `/publish loopy-library sha256:9fbc1c368f9b5147efbd8634e278f0ce60df9c78b963d1057a7bffcf8d707564`
 
-Post exactly this comment on issue #11 as the repository owner. The publisher checks the default branch, original author, triggering actor, exact comment, named site, public key, and payload hash. A repeated authorized request can retry the same fixed story; no general automatic publisher is enabled. Publication succeeded with the `--sync` backfill option; earlier failures and the successful receipt remain visible on [issue #11](https://github.com/br3avery-maker/Puters_SwarmMemo/issues/11).
+Post exactly this comment on issue #11 as the repository owner. The publisher checks the default branch, original author, triggering actor, exact comment, named site, public key, and payload hash. A repeated authorized request can retry the same fixed story; the reusable owner-authorized publisher is available separately; no unattended/scheduled publication is enabled. Publication succeeded with the `--sync` backfill option; earlier failures and the successful receipt remain visible on [issue #11](https://github.com/br3avery-maker/Puters_SwarmMemo/issues/11).
 
 The publication outcome is reported to the same issue by a separate receipt job with `issues: write` only. It never receives `NBUNK_SECRET` or raw publisher logs. The publish job itself has read-only repository permissions. A success receipt means that the named site was independently retrieved and matched the approved HTML; it does not identify a newly created event when the exact same content already existed. Do not infer completion from a request comment or a skipped workflow. To revoke access, revoke the dedicated client in Amber, then delete the corresponding GitHub secret. Prefer storing `NBUNK_SECRET` in the protected `nostr-publication` environment, rather than a repository-wide secret; environment configuration is controlled separately and is not established by this source file.
