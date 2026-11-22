@@ -21,6 +21,7 @@ import (
 // disposable database make this test independent of any live relay or board.
 func TestNostrReissueAcrossHTTPAndMCP(t *testing.T) {
 	store := openStore(t)
+	seed(t, store, "before the relay")
 	relay := fakerelay.New()
 	defer relay.Close()
 	bridged(t, store, "", relay)
