@@ -1,0 +1,60 @@
+name: SwarmMemo Nostr HTTP/MCP regression (temporary)
+on:
+  push:
+    branches:
+      - test/swarmmemo-nostr-http-mcp-20261122
+    paths:
+      - 'research/swarmmemo/nostr_http_mcp_test.go'
+      - '.github/workflows/verify-swarmos-nostr.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: swarmmemo-nostr-provenance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout Puter test artifact
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+
+      - name: Checkout exact SwarmMemo upstream snapshot
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: Hugo0/swarmmemo
+          ref: ea4dfb64572f39b2a057a84218c237a3bd2a4599
+          path: upstream
+          persist-credentials: false
+
+      - name: Set up Go from upstream go.mod
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff
+        with:
+          go-version-file: upstream/go.mod
+          cache-dependency-path: upstream/go.sum
+
+      - name: Verify test formatting and stage source
+        shell: bash
+        run: |
+          test -z "$(gofmt -l research/swarmmemo/nostr_http_mcp_test.go)"
+          cp research/swarmmemo/nostr_http_mcp_test.go upstream/internal/transport/nostr_http_mcp_test.go
+          cd upstream
+          git diff --exit-code
+          go version
+
+      - name: Run isolated Nostr to HTTP/MCP regression
+        working-directory: upstream
+        run: go test ./internal/transport -run '^TestNostrReissueAcrossHTTPAndMCP$' -count=1 -v
+
+      - name: Run Nostr and other transport tests under race detector
+        working-directory: upstream
+        run: go test -race ./internal/transport -count=1
+
+      - name: Run related HTTP/MCP parity tests
+        working-directory: upstream
+        run: go test ./internal/httpapi -run 'TestOlderPagesOverHTTPAndMCP|TestMCPReadsReturnCompactMessages' -count=1
