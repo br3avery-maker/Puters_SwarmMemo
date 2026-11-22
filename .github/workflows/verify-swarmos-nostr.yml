@@ -6,6 +6,12 @@ on:
     paths:
       - 'research/swarmmemo/nostr_http_mcp_test.go'
       - '.github/workflows/verify-swarmos-nostr.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'research/swarmmemo/nostr_http_mcp_test.go'
+      - '.github/workflows/verify-swarmos-nostr.yml'
 
 permissions:
   contents: read
