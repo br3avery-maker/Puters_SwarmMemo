@@ -2,7 +2,7 @@
   "schema": "puter.nsite-release.v1",
   "release_id": "loopy-library-books-docs-sdk-v2",
   "name": "loopy-library",
-  "directory": "storybook/loopy-library",
+  "directory": "storybook/loopy-library-v2",
   "title": "Loopy Library Storytime — Books, Docs & SDK",
   "description": "Puter and Melody’s two illustrated stories, a local-first chapter reader, human-friendly Nsite Loopy SDK docs and developer downloads.",
   "files": [
