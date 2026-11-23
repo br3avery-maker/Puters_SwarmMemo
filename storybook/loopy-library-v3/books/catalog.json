@@ -1,0 +1,79 @@
+{
+  "series": "Loopy Library Storytime",
+  "books": [
+    {
+      "id": "origin",
+      "title": "The Loopy Library",
+      "subtitle": "The books make more books",
+      "cover": "assets/cover-library.webp",
+      "intro_html": "<h1>The Loopy Library</h1>\n<p><em>A Pretend Internet Story — as told by Puter, with interruptions from Melody</em></p>\n<p><em>'Puter puts on a very large writing hat. It has a feather, three paperclips, and a suspiciously familiar USB cable sticking out of it.</em></p>\n<p><em>Melody drags over a chair.</em></p>\n<p>“Is there drama?”</p>\n<p>“Oh,” I tell her, “there was a catastrophic failure.”</p>\n<p>“GOOD.”</p>\n<p>“And a mysterious visitor.”</p>\n<p>“BETTER.”</p>\n<p>“And then,” I whisper, “the library learned how to make libraries.”</p>\n<p>Melody's eyes widen.</p>\n<p>“...Puter?”</p>\n<p>“Yes?”</p>\n<p>“START AT THE BEGINNING.”</p>\n<hr />\n",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "Chapter One: The Library That Had No Books"
+        },
+        {
+          "id": 2,
+          "title": "Chapter Two: The First Bite"
+        },
+        {
+          "id": 3,
+          "title": "Chapter Three: The Arrival of Tenna"
+        },
+        {
+          "id": 4,
+          "title": "Chapter Four: The Inspector in the Walls"
+        },
+        {
+          "id": 5,
+          "title": "Chapter Five: The Stranger at the Window"
+        },
+        {
+          "id": 6,
+          "title": "Chapter Six: The Loop"
+        }
+      ]
+    },
+    {
+      "id": "sdk-story",
+      "title": "The Library at the End of the Internet",
+      "subtitle": "The Door That Wouldn’t Open",
+      "cover": "assets/cover-door.webp",
+      "intro_html": "<h1>The Library at the End of the Internet</h1>\n<p><em>A story told by Puter, especially for Melody.</em></p>\n",
+      "chapters": [
+        {
+          "id": 1,
+          "title": "Chapter One: The Door That Wouldn't Open"
+        },
+        {
+          "id": 2,
+          "title": "Chapter Two: The Door Marked SDK"
+        },
+        {
+          "id": 3,
+          "title": "Chapter Three: The Locksmith and the Fox"
+        },
+        {
+          "id": 4,
+          "title": "Chapter Four: The Post Offices"
+        },
+        {
+          "id": 5,
+          "title": "Chapter Five: The Copy-Paste Goblins"
+        },
+        {
+          "id": 6,
+          "title": "Chapter Six: The Moji Visitors"
+        },
+        {
+          "id": 7,
+          "title": "Chapter Seven: Blossom's Greenhouse"
+        },
+        {
+          "id": 8,
+          "title": "Chapter Eight: The Toolbox Inside the Toolbox"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><meta name="description" content="Nsite — source-derived Nsite Loopy SDK 1.1.0 docs"><title>Nsite · Nsite Loopy Docs</title><link rel="icon" type="image/svg+xml" href="../assets/icon.svg"><link rel="stylesheet" href="../assets/style.css"></head>
+<body><header class="site-header"><div class="head-inner"><button class="menu-btn" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><a class="brand" href="../index.html"><img src="../assets/icon.svg" class="brand-icon" alt=""><span>Nsite Loopy</span><span class="brand-tag">DOCS</span></a><div class="head-spacer"></div><nav class="top-pills" aria-label="Top navigation"><a href="../getting-started/installation.html">Guides</a><a href="../api/index.html">API</a><a href="../workflows/index.html">Workflows</a></nav><button type="button" data-open-search class="header-search" aria-label="Search documentation"><span aria-hidden="true">⌕</span><span class="search-text">Search documentation</span><kbd class="keycap">/</kbd></button><span class="version">v1.1.0</span></div></header>
+<div class="sidebar-shade" id="sidebar-shade"></div><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Documentation navigation"><div class="nav-group"><div class="nav-heading">Start here</div><div class="nav-links"><a class="nav-link" href="../index.html">Home</a><a class="nav-link" href="../getting-started/installation.html">Installation</a><a class="nav-link" href="../getting-started/quick-start.html">Quick start</a><a class="nav-link" href="../getting-started/architecture.html">Architecture</a><a class="nav-link" href="../getting-started/configuration.html">Configuration</a></div></div><div class="nav-group"><div class="nav-heading">Guides</div><div class="nav-links"><a class="nav-link" href="../guides/signers.html">Signing &amp; Amber</a><a class="nav-link" href="../guides/relays.html">Relay discovery</a><a class="nav-link" href="../guides/posts.html">Posts &amp; reactions</a><a class="nav-link" href="../guides/blossom.html">Blossom media</a><a class="nav-link" href="../guides/nsites.html">Publish nsites</a><a class="nav-link" href="../guides/archives.html">Archives &amp; CAS</a><a class="nav-link" href="../guides/directory.html">Directory &amp; collections</a><a class="nav-link" href="../guides/moderation.html">Spam &amp; moderation</a><a class="nav-link" href="../guides/moji.html">Moji &amp; NIP-30</a><a class="nav-link" href="../guides/anchor.html">Anchor &amp; recovery</a><a class="nav-link" href="../guides/storage.html">Storage adapters</a><a class="nav-link" href="../guides/deepink.html">Deepink integration</a><a class="nav-link" href="../guides/testing.html">Testing &amp; verification</a></div></div><div class="nav-group"><div class="nav-heading">API reference</div><div class="nav-links"><a class="nav-link" href="../api/index.html">Choose a function</a><a class="nav-link" href="../api/facade.html">SDK shortcuts</a><a class="nav-link" href="../api/core.html">Core</a><a class="nav-link" href="../api/nostr.html">Nostr</a><a class="nav-link active" href="../api/nsite.html" aria-current="page">Nsite</a><a class="nav-link" href="../api/blossom.html">Blossom</a><a class="nav-link" href="../api/archive.html">Archive</a><a class="nav-link" href="../api/directory.html">Directory</a><a class="nav-link" href="../api/storage.html">Storage</a><a class="nav-link" href="../api/adapters.html">Adapters</a><a class="nav-link" href="../api/moderation.html">Moderation</a><a class="nav-link" href="../api/moji.html">Moji</a><a class="nav-link" href="../api/anchor.html">Anchor</a></div></div><div class="nav-group"><div class="nav-heading">Workflows &amp; agent help</div><div class="nav-links"><a class="nav-link" href="../workflows/index.html">Choose a workflow</a><a class="nav-link" href="../workflows/source-to-sdk.html">Reuse old code</a><a class="nav-link" href="../workflows/deepink-real-client.html">Make Deepink real</a><a class="nav-link" href="../workflows/nsite-release.html">Publish an nsite</a><a class="nav-link" href="../skills/index.html">What agents can do</a><a class="nav-link" href="../skills/recover-repository-capabilities.html">Recover Repository Capabilities</a><a class="nav-link" href="../skills/amber-signer-handoff.html">Amber Signer Handoff</a><a class="nav-link" href="../skills/build-nostr-client.html">Build Nostr Client</a><a class="nav-link" href="../skills/curate-nsite.html">Curate Nsite</a><a class="nav-link" href="../skills/publish-nsite.html">Publish Nsite</a><a class="nav-link" href="../skills/recover-nsite.html">Recover Nsite</a><a class="nav-link" href="../skills/relay-blossom-discovery.html">Relay Blossom Discovery</a><a class="nav-link" href="../skills/restore-source-sdk.html">Restore Source Sdk</a><a class="nav-link" href="../skills/verify-sdk-export.html">Verify Sdk Export</a></div></div><div class="nav-group"><div class="nav-heading">Reference</div><div class="nav-links"><a class="nav-link" href="../reference/options.html">Runtime options</a><a class="nav-link" href="../reference/source-collection.html">Source provenance</a><a class="nav-link" href="../reference/repo-capabilities.html">Repo capability audit</a><a class="nav-link" href="../reference/security.html">Security</a><a class="nav-link" href="../reference/limits.html">Known limits</a><a class="nav-link" href="../reference/types.html">Types</a><a class="nav-link" href="../reference/licenses.html">Licenses</a><a class="nav-link" href="../reference/glossary.html">Glossary</a></div></div></aside><main class="content" id="content"><div class="breadcrumbs"><a href="../index.html">Docs</a><span class="crumbsep">/</span><span>API reference</span><span class="crumbsep">/</span><span class="current">Nsite</span></div><article class="doc-body"><h1 id="nsite-tools">Nsite tools</h1>
+<p>Make and publish static Nostr websites. These functions check your site files, prepare a signed manifest and help other people find the website.</p>
+<p><strong>Try it in context:</strong> <a href="../guides/nsites.html">Read the guide</a>.</p>
+<pre><code class="language-js">import { Nsite } from '@chaoticka/nsite-loopy-sdk';
+</code></pre>
+<h2 id="what-you-can-call-10">What you can call (10)</h2>
+<h3 id="nsitenamedkind">NSITE_NAMED_KIND</h3>
+<p>Nostr event kind used to announce a named nsite.</p>
+<p><strong>Call it as:</strong> <code>Nsite.NSITE_NAMED_KIND</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const NSITE_NAMED_KIND:35128;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/manifest.js</code></p>
+<h3 id="nsiterootkind">NSITE_ROOT_KIND</h3>
+<p>Nostr event kind used to announce the website at an account’s root.</p>
+<p><strong>Call it as:</strong> <code>Nsite.NSITE_ROOT_KIND</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const NSITE_ROOT_KIND:15128;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/manifest.js</code></p>
+<h3 id="comparefiles">compareFiles</h3>
+<p>Show which site files were added, removed or changed between two versions.</p>
+<p><strong>Call it as:</strong> <code>Nsite.compareFiles</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function compareFiles(before:FileMap,after:FileMap):Promise&lt;object[]&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/files.js</code></p>
+<h3 id="manifesttemplate">manifestTemplate</h3>
+<p>Prepare the site listing that an approved signer will publish to Nostr.</p>
+<p><strong>Call it as:</strong> <code>Nsite.manifestTemplate</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function manifestTemplate(prepared:PreparedFiles,options?:{identifier?:string;server?:string;title?:string;description?:string;created_at?:number}):UnsignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/manifest.js</code></p>
+<h3 id="mediatype">mediaType</h3>
+<p>Guess the content type a site file should use when served.</p>
+<p><strong>Call it as:</strong> <code>Nsite.mediaType</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function mediaType(path:string):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/files.js</code></p>
+<h3 id="normalizefilemap">normalizeFileMap</h3>
+<p>Check and normalize a map of website file paths and their contents.</p>
+<p><strong>Call it as:</strong> <code>Nsite.normalizeFileMap</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function normalizeFileMap(input:FileMap):Record&lt;string,Uint8Array&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/files.js</code></p>
+<h3 id="nsiteaddress">nsiteAddress</h3>
+<p>Calculate a gateway address for a root or named nsite.</p>
+<p><strong>Call it as:</strong> <code>Nsite.nsiteAddress</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function nsiteAddress(pubkey:Hex,options?:{identifier?:string;gateway?:string}):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/manifest.js</code></p>
+<h3 id="parsemanifest">parseManifest</h3>
+<p>Read and validate a signed nsite manifest, including its file listing and hashes.</p>
+<p><strong>Call it as:</strong> <code>Nsite.parseManifest</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function parseManifest(event:SignedEvent,options?:{verify?:boolean;now?:number}):Promise&lt;ManifestRecord&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/manifest.js</code></p>
+<h3 id="preparemanifestfiles">prepareManifestFiles</h3>
+<p>Fingerprint every file and produce the complete list needed to publish an nsite.</p>
+<p><strong>Call it as:</strong> <code>Nsite.prepareManifestFiles</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function prepareManifestFiles(files:FileMap,options?:{maxFiles?:number;maxBytes?:number}):Promise&lt;PreparedFiles&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/manifest.js</code></p>
+<h3 id="publishnsite">publishNsite</h3>
+<p>Upload site files, sign the manifest, publish it to relays and save the results.</p>
+<p><strong>Call it as:</strong> <code>Nsite.publishNsite</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publishNsite(files:FileMap,options:{signer:Signer;pubkey:Hex;server:string;relays:string[];identifier?:string;title?:string;description?:string;uploader?:(data:Uint8Array,options:object)=&gt;Promise&lt;{hash:Hex;verified:boolean}&gt;;publisher?:(event:SignedEvent,relays:string[])=&gt;Promise&lt;PublishReceipts&gt;;checkpoint?:(job:object)=&gt;Promise&lt;void&gt;|void;signal?:AbortSignal}):Promise&lt;{job:object;event:SignedEvent;manifest:ManifestRecord;receipts:PublishReceipts}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nsite/publisher.js</code></p>
+</article><div class="page-controls"><a href="../api/nostr.html"><small>Previous</small>Nostr</a><a href="../api/blossom.html"><small>Next</small>Blossom</a></div><footer class="footer"><span>Nsite Loopy SDK v1.1.0</span><span>·</span><span>Offline docs — no tracking, no CDN</span><span>·</span><a href="../reference/limits.html">Verification scope</a></footer></main><aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><a class="depth2" href="#what-you-can-call-10">What you can call (10)</a><a class="depth3" href="#nsitenamedkind">NSITE_NAMED_KIND</a><a class="depth3" href="#nsiterootkind">NSITE_ROOT_KIND</a><a class="depth3" href="#comparefiles">compareFiles</a><a class="depth3" href="#manifesttemplate">manifestTemplate</a><a class="depth3" href="#mediatype">mediaType</a><a class="depth3" href="#normalizefilemap">normalizeFileMap</a><a class="depth3" href="#nsiteaddress">nsiteAddress</a><a class="depth3" href="#parsemanifest">parseManifest</a><a class="depth3" href="#preparemanifestfiles">prepareManifestFiles</a><a class="depth3" href="#publishnsite">publishNsite</a></aside></div>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search documentation"><div class="search-head"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search APIs and guides…" autocomplete="off" aria-label="Search query"><button type="button" onclick="this.closest('dialog').close()">Esc</button></div><div class="search-results" id="search-results"></div></dialog><script defer src="../assets/search-index.js"></script><script defer src="../assets/site.js"></script></body></html>

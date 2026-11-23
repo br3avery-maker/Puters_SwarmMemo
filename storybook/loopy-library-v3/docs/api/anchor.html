@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><meta name="description" content="Anchor — source-derived Nsite Loopy SDK 1.1.0 docs"><title>Anchor · Nsite Loopy Docs</title><link rel="icon" type="image/svg+xml" href="../assets/icon.svg"><link rel="stylesheet" href="../assets/style.css"></head>
+<body><header class="site-header"><div class="head-inner"><button class="menu-btn" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><a class="brand" href="../index.html"><img src="../assets/icon.svg" class="brand-icon" alt=""><span>Nsite Loopy</span><span class="brand-tag">DOCS</span></a><div class="head-spacer"></div><nav class="top-pills" aria-label="Top navigation"><a href="../getting-started/installation.html">Guides</a><a href="../api/index.html">API</a><a href="../workflows/index.html">Workflows</a></nav><button type="button" data-open-search class="header-search" aria-label="Search documentation"><span aria-hidden="true">⌕</span><span class="search-text">Search documentation</span><kbd class="keycap">/</kbd></button><span class="version">v1.1.0</span></div></header>
+<div class="sidebar-shade" id="sidebar-shade"></div><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Documentation navigation"><div class="nav-group"><div class="nav-heading">Start here</div><div class="nav-links"><a class="nav-link" href="../index.html">Home</a><a class="nav-link" href="../getting-started/installation.html">Installation</a><a class="nav-link" href="../getting-started/quick-start.html">Quick start</a><a class="nav-link" href="../getting-started/architecture.html">Architecture</a><a class="nav-link" href="../getting-started/configuration.html">Configuration</a></div></div><div class="nav-group"><div class="nav-heading">Guides</div><div class="nav-links"><a class="nav-link" href="../guides/signers.html">Signing &amp; Amber</a><a class="nav-link" href="../guides/relays.html">Relay discovery</a><a class="nav-link" href="../guides/posts.html">Posts &amp; reactions</a><a class="nav-link" href="../guides/blossom.html">Blossom media</a><a class="nav-link" href="../guides/nsites.html">Publish nsites</a><a class="nav-link" href="../guides/archives.html">Archives &amp; CAS</a><a class="nav-link" href="../guides/directory.html">Directory &amp; collections</a><a class="nav-link" href="../guides/moderation.html">Spam &amp; moderation</a><a class="nav-link" href="../guides/moji.html">Moji &amp; NIP-30</a><a class="nav-link" href="../guides/anchor.html">Anchor &amp; recovery</a><a class="nav-link" href="../guides/storage.html">Storage adapters</a><a class="nav-link" href="../guides/deepink.html">Deepink integration</a><a class="nav-link" href="../guides/testing.html">Testing &amp; verification</a></div></div><div class="nav-group"><div class="nav-heading">API reference</div><div class="nav-links"><a class="nav-link" href="../api/index.html">Choose a function</a><a class="nav-link" href="../api/facade.html">SDK shortcuts</a><a class="nav-link" href="../api/core.html">Core</a><a class="nav-link" href="../api/nostr.html">Nostr</a><a class="nav-link" href="../api/nsite.html">Nsite</a><a class="nav-link" href="../api/blossom.html">Blossom</a><a class="nav-link" href="../api/archive.html">Archive</a><a class="nav-link" href="../api/directory.html">Directory</a><a class="nav-link" href="../api/storage.html">Storage</a><a class="nav-link" href="../api/adapters.html">Adapters</a><a class="nav-link" href="../api/moderation.html">Moderation</a><a class="nav-link" href="../api/moji.html">Moji</a><a class="nav-link active" href="../api/anchor.html" aria-current="page">Anchor</a></div></div><div class="nav-group"><div class="nav-heading">Workflows &amp; agent help</div><div class="nav-links"><a class="nav-link" href="../workflows/index.html">Choose a workflow</a><a class="nav-link" href="../workflows/source-to-sdk.html">Reuse old code</a><a class="nav-link" href="../workflows/deepink-real-client.html">Make Deepink real</a><a class="nav-link" href="../workflows/nsite-release.html">Publish an nsite</a><a class="nav-link" href="../skills/index.html">What agents can do</a><a class="nav-link" href="../skills/recover-repository-capabilities.html">Recover Repository Capabilities</a><a class="nav-link" href="../skills/amber-signer-handoff.html">Amber Signer Handoff</a><a class="nav-link" href="../skills/build-nostr-client.html">Build Nostr Client</a><a class="nav-link" href="../skills/curate-nsite.html">Curate Nsite</a><a class="nav-link" href="../skills/publish-nsite.html">Publish Nsite</a><a class="nav-link" href="../skills/recover-nsite.html">Recover Nsite</a><a class="nav-link" href="../skills/relay-blossom-discovery.html">Relay Blossom Discovery</a><a class="nav-link" href="../skills/restore-source-sdk.html">Restore Source Sdk</a><a class="nav-link" href="../skills/verify-sdk-export.html">Verify Sdk Export</a></div></div><div class="nav-group"><div class="nav-heading">Reference</div><div class="nav-links"><a class="nav-link" href="../reference/options.html">Runtime options</a><a class="nav-link" href="../reference/source-collection.html">Source provenance</a><a class="nav-link" href="../reference/repo-capabilities.html">Repo capability audit</a><a class="nav-link" href="../reference/security.html">Security</a><a class="nav-link" href="../reference/limits.html">Known limits</a><a class="nav-link" href="../reference/types.html">Types</a><a class="nav-link" href="../reference/licenses.html">Licenses</a><a class="nav-link" href="../reference/glossary.html">Glossary</a></div></div></aside><main class="content" id="content"><div class="breadcrumbs"><a href="../index.html">Docs</a><span class="crumbsep">/</span><span>API reference</span><span class="crumbsep">/</span><span class="current">Anchor</span></div><article class="doc-body"><h1 id="anchor-tools">Anchor tools</h1>
+<p>Keep Nostr account settings portable, look up event kinds, evaluate relay suitability and understand what a publication receipt actually proves.</p>
+<p><strong>Try it in context:</strong> <a href="../guides/anchor.html">Read the guide</a>.</p>
+<pre><code class="language-js">import { Anchor } from '@chaoticka/nsite-loopy-sdk';
+</code></pre>
+<h2 id="what-you-can-call-9">What you can call (9)</h2>
+<h3 id="assessrelayoutbox">assessRelayOutbox</h3>
+<p>Evaluate whether a relay is suitable for posting based on observed health and policy.</p>
+<p><strong>Call it as:</strong> <code>Anchor.assessRelayOutbox</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function assessRelayOutbox(relay?:object):{status:string;role:string;reasons:string[];verified:boolean};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/relays.js</code></p>
+<h3 id="buildpublicaccountbackup">buildPublicAccountBackup</h3>
+<p>Save portable public account settings without exporting private keys or signer secrets.</p>
+<p><strong>Call it as:</strong> <code>Anchor.buildPublicAccountBackup</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function buildPublicAccountBackup(state:object,options?:{now?:number}):object;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/index.js</code></p>
+<h3 id="classifyeventstorage">classifyEventStorage</h3>
+<p>Identify how a Nostr event kind is normally stored and replaced.</p>
+<p><strong>Call it as:</strong> <code>Anchor.classifyEventStorage</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function classifyEventStorage(kind:number):'regular'|'replaceable'|'ephemeral'|'addressable';
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/kinds.js</code></p>
+<h3 id="extracteventassets">extractEventAssets</h3>
+<p>List media attachments mentioned in a verified event without downloading them.</p>
+<p><strong>Call it as:</strong> <code>Anchor.extractEventAssets</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function extractEventAssets(event:SignedEvent):string[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/index.js</code></p>
+<h3 id="kindspec">kindSpec</h3>
+<p>Look up the purpose and storage behavior of a Nostr event kind.</p>
+<p><strong>Call it as:</strong> <code>Anchor.kindSpec</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function kindSpec(kind:number):{kind:number;label:string;nip:string;storageClass:string;requiresDTag:boolean};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/kinds.js</code></p>
+<h3 id="planverifiedoutbox">planVerifiedOutbox</h3>
+<p>Choose publishing relays from an account’s current options using actual probe evidence.</p>
+<p><strong>Call it as:</strong> <code>Anchor.planVerifiedOutbox</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function planVerifiedOutbox(relays:object[],options?:{max?:number}):{write:string[];reviewed:object[];insufficientEvidence:boolean};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/relays.js</code></p>
+<h3 id="restorepublicaccountbackup">restorePublicAccountBackup</h3>
+<p>Restore public account settings in read-only mode until a signer is reapproved.</p>
+<p><strong>Call it as:</strong> <code>Anchor.restorePublicAccountBackup</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function restorePublicAccountBackup(input:object|string):{session:object;profile:object;relays:object[];blossomServers:object[];follows:object[];publications:object[];rejectedPublications:object[];signerConnected:false};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/index.js</code></p>
+<h3 id="sanitizepublicsession">sanitizePublicSession</h3>
+<p>Remove private connection details before storing or exporting account information.</p>
+<p><strong>Call it as:</strong> <code>Anchor.sanitizePublicSession</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function sanitizePublicSession(session:object):object|null;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/index.js</code></p>
+<h3 id="summarizepublicationreceipts">summarizePublicationReceipts</h3>
+<p>Summarize which relays accepted a publication and which actually returned the event.</p>
+<p><strong>Call it as:</strong> <code>Anchor.summarizePublicationReceipts</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function summarizePublicationReceipts(receipts?:object[]|object):{total:number;accepted:number;retrieved:number;verified:boolean;receipts:object[]};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/anchor/index.js</code></p>
+</article><div class="page-controls"><a href="../api/moji.html"><small>Previous</small>Moji</a><a href="../workflows/index.html"><small>Next</small>Choose a workflow</a></div><footer class="footer"><span>Nsite Loopy SDK v1.1.0</span><span>·</span><span>Offline docs — no tracking, no CDN</span><span>·</span><a href="../reference/limits.html">Verification scope</a></footer></main><aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><a class="depth2" href="#what-you-can-call-9">What you can call (9)</a><a class="depth3" href="#assessrelayoutbox">assessRelayOutbox</a><a class="depth3" href="#buildpublicaccountbackup">buildPublicAccountBackup</a><a class="depth3" href="#classifyeventstorage">classifyEventStorage</a><a class="depth3" href="#extracteventassets">extractEventAssets</a><a class="depth3" href="#kindspec">kindSpec</a><a class="depth3" href="#planverifiedoutbox">planVerifiedOutbox</a><a class="depth3" href="#restorepublicaccountbackup">restorePublicAccountBackup</a><a class="depth3" href="#sanitizepublicsession">sanitizePublicSession</a><a class="depth3" href="#summarizepublicationreceipts">summarizePublicationReceipts</a></aside></div>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search documentation"><div class="search-head"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search APIs and guides…" autocomplete="off" aria-label="Search query"><button type="button" onclick="this.closest('dialog').close()">Esc</button></div><div class="search-results" id="search-results"></div></dialog><script defer src="../assets/search-index.js"></script><script defer src="../assets/site.js"></script></body></html>
