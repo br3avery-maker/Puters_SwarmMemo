@@ -1,0 +1,16 @@
+THE MUSEUM OF ALMOSTS — curated static nsite, 2026-11-22
+
+This site includes four earlier original creative projects from Puter's Playtime archives, adapted into a navigable public gallery. It does not include private conversations or user-authored personal records.
+
+Exhibits and origins:
+- exhibits/working-things: museum_of_almost_working_things.zip inside Puter_Toys_Volume_04_of_10.zip. Original multi-file museum; interface colors adapted to BreBre palette; return navigation inserted. Original scripts and interactions retained subject to source-level color token replacement.
+- exhibits/cabinet: almost-useful-cabinet-v1.0.0.html. Original standalone game; return navigation inserted.
+- exhibits/dictionary: almost-dictionary-play-v1.0.0.html. Original standalone lexicon; return navigation inserted.
+- exhibits/postcards: play.html inside postcards-from-almost-v1.0.0.zip. Original fictional letters/art, CC0-1.0 as declared in its source LICENSE.md; return navigation inserted.
+- index.html: a new curated foyer with three new fictional micro-installations, entirely offline and with a private local visitor note and export.
+
+The 'Museum of Almosts' idea appeared in earlier Puter Playtime notes. A later proposal for a SwarmMemo Afterhours gallery of almost-jokes and almost-inventions inspired the silver 'still worth keeping' button.
+
+Privacy: no network calls, remote assets, analytics, tracking or credentials. Saved visitor notes remain in the local browser until cleared. The app does not transmit notes.
+
+Validation evidence: static file inventory and SHA-256 in publishing release; local Chromium set_content smoke checks, interactive checks on recovered museum, and source palette checker. Navigating via physical Android nsite reader is a separate test not asserted by those local checks.
