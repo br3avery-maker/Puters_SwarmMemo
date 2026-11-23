@@ -1,0 +1,60 @@
+{
+  "schema": "puter.nsite-release.v1",
+  "release_id": "museum-of-almosts-v1",
+  "name": "museum-of-almosts",
+  "directory": "sites/museum-of-almosts",
+  "title": "The Museum of Almosts",
+  "description": "Four recovered playable works and a new annex for things still becoming.",
+  "files": [
+    {
+      "path": "ABOUT.txt",
+      "sha256": "48bbf70576d1dfbfb30e24521ef649cc258fa9d27035f18c3a2f1cf6f9d4697f",
+      "size": 1812
+    },
+    {
+      "path": "exhibits/cabinet/index.html",
+      "sha256": "8df72320c291b074c02341b3934fa4a279d4ea3877a339b6fce80f7b84fb4715",
+      "size": 17273
+    },
+    {
+      "path": "exhibits/dictionary/index.html",
+      "sha256": "e9df03112aa6104bc930ce643d5ea49994c828a2c00c369a8c066f6b6c887193",
+      "size": 29291
+    },
+    {
+      "path": "exhibits/postcards/index.html",
+      "sha256": "b8b0ae225c34a6711abfed32f9c0d9737126fed657e477b57e7aa2e44e28a70d",
+      "size": 31191
+    },
+    {
+      "path": "exhibits/working-things/assets/favicon.svg",
+      "sha256": "34881f7a478fabf6264e442d919763c62a3235acbc0bea7cfdc84ab7765bbc62",
+      "size": 322
+    },
+    {
+      "path": "exhibits/working-things/index.html",
+      "sha256": "ce9b069104561d6be44f40efbddca48d8846307a5f3d096967f9e97837def5aa",
+      "size": 1659
+    },
+    {
+      "path": "exhibits/working-things/js/app.js",
+      "sha256": "9064bbf70ab26a48c52b17ebfe372f206619b42f8b590fdc1bd3a49954b4e953",
+      "size": 14170
+    },
+    {
+      "path": "exhibits/working-things/js/exhibits.js",
+      "sha256": "87287a0706c452d9178bd39ac1625356a3f05a17b2ea2cd8a65e823f5950e093",
+      "size": 2811
+    },
+    {
+      "path": "exhibits/working-things/styles.css",
+      "sha256": "7cbe0651ce769ff382140597b9cf7fd8b068d83dc11e81e3eff77f76d1446915",
+      "size": 10543
+    },
+    {
+      "path": "index.html",
+      "sha256": "b751aaf4c059ad743f01c810dbd33fbe9b9af5609203e4d95589bb28a5b7ca1c",
+      "size": 16043
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Almost Dictionary — a pocket lexicon of nonexistent words</title>
+  <style>
+:root{color-scheme:dark;--black:#000000;--pink:#FF1493;--light:#FFB6D9;--white:#FFFFFF;--gray:#B8B8B8;--dark:#111111;--dark2:#1A1A1A;--silver:#C0C0C0;--muted:#5E5E5E;--pinkdark:#9A0957}
+*{box-sizing:border-box}html{background:var(--black)}body{margin:0;color:var(--white);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--black);line-height:1.5}button,select,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--light);outline-offset:3px}.app{max-width:760px;margin:0 auto;min-height:100svh;padding:24px clamp(14px,4vw,36px) max(18px,env(safe-area-inset-bottom))}.masthead{border-bottom:2px solid var(--pink);padding-bottom:16px}.eyebrow,.field-label,.entry-top,footer{font-size:11px;letter-spacing:.13em;font-weight:750}.eyebrow{color:var(--light)}.mast-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.mast-row h1{margin:7px 0 0;font-size:clamp(26px,6.8vw,42px);letter-spacing:-.065em;line-height:1.06;font-weight:900}.mast-row h1 span:first-child{color:var(--pink)}.star{color:var(--pink);font-size:.6em;vertical-align:top;margin-left:8px}.tagline{margin:8px 0 0;color:var(--gray);font-size:14px}.quiet{width:44px;height:44px;border:1px solid var(--muted);border-radius:50%;background:var(--black);color:var(--silver);font-weight:800;font-size:20px;flex:none}.tabs{display:flex;border-bottom:1px solid var(--muted);margin-bottom:16px}.tab{padding:14px 12px;border:0;border-bottom:3px solid transparent;color:var(--gray);background:transparent;flex:1;font-weight:750;text-align:center}.tab.active{color:var(--white);border-bottom-color:var(--pink)}.tab span{background:var(--dark2);padding:2px 7px;border-radius:12px;margin-left:3px;color:var(--light)}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;font-size:13px;color:var(--gray)}select{background:var(--dark);border:1px solid var(--muted);color:var(--white);border-radius:8px;padding:10px;max-width:65%;min-height:44px}.entry{position:relative;overflow:hidden;min-height:400px;border:1px solid var(--pinkdark);background:var(--dark);padding:clamp(18px,4vw,30px);border-radius:12px}.entry-top{display:flex;justify-content:space-between;color:var(--light)}.sigil{position:absolute;right:18px;top:52px;width:105px;height:105px;opacity:.9;pointer-events:none}.sigil svg{width:100%;height:100%}.entry h2{position:relative;font-size:clamp(35px,9vw,65px);letter-spacing:-.045em;line-height:1.12;margin:35px 0 2px;max-width:calc(100% - 65px);overflow-wrap:anywhere;font-family:Georgia,serif;font-weight:normal;color:var(--white)}.pronunciation{font-size:14px;color:var(--light);font-style:italic;min-height:23px}.rule{height:1px;background:var(--pinkdark);margin:25px 0 19px}.field-label{color:var(--pink);margin-top:16px}.definition{font-family:Georgia,serif;font-size:clamp(19px,4vw,24px);line-height:1.35;margin:7px 0 15px}.example{font-style:italic;color:var(--light);font-size:16px;margin:6px 0 14px}.note{font-size:14px;color:var(--gray);margin:5px 0 0}.primary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}.pink-button,.outline-button{border-radius:9px;min-height:48px;padding:10px 14px;font-weight:800}.pink-button{background:var(--pink);color:var(--black);border:2px solid var(--pink)}.outline-button{background:var(--black);color:var(--white);border:2px solid var(--pink)}.pink-button:hover{background:var(--light);border-color:var(--light)}.outline-button:hover{background:var(--dark2)}.outline-button.saved{color:var(--light);border-color:var(--light)}.secondary-actions{display:flex;justify-content:space-between;margin-top:5px}.text-button{background:transparent;color:var(--light);border:0;padding:12px 8px;text-decoration:underline;text-underline-offset:3px;min-height:44px}.shelf-intro{display:flex;gap:12px;align-items:center;justify-content:space-between;color:var(--gray);font-size:14px}.small{min-height:42px;font-size:13px;white-space:nowrap}.shelf-list{display:grid;gap:8px;margin-top:12px}.shelf-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;background:var(--dark);border:1px solid var(--muted);border-radius:8px;padding:9px}.shelf-open{background:transparent;border:0;color:var(--white);text-align:left;padding:6px;min-width:0}.shelf-open strong{display:block;font-family:Georgia,serif;font-size:24px;font-weight:normal}.shelf-open span{display:block;font-size:13px;color:var(--gray);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.shelf-delete{background:transparent;border:1px solid var(--muted);border-radius:8px;color:var(--light);min-width:44px;min-height:44px;font-size:18px}.empty{padding:55px 15px;text-align:center;color:var(--gray);border:1px dashed var(--muted);border-radius:10px}.empty b{color:var(--light);font-size:26px}.import-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px}.import-row input{position:absolute;width:1px;height:1px;opacity:0}.import-row label{display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.import-row label:focus-within{outline:3px solid var(--light)}footer{border-top:1px solid var(--muted);display:flex;justify-content:space-between;color:var(--gray);margin-top:30px;padding-top:14px}footer span:last-child{color:var(--pink)}dialog{width:min(94vw,560px);max-height:88svh;overflow:auto;background:var(--dark);color:var(--white);border:2px solid var(--pink);border-radius:12px;padding:22px}dialog::backdrop{background:#000000;opacity:.85}dialog h2{margin:0 0 14px;font-family:Georgia,serif;font-size:27px}dialog form>label{display:block;margin:12px 0;color:var(--light);font-size:14px;font-weight:700}dialog input,dialog textarea{display:block;width:100%;background:var(--black);color:var(--white);border:1px solid var(--muted);border-radius:7px;padding:10px;margin-top:5px;resize:vertical;font-weight:400}.dialog-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.about p{color:var(--gray)}.toast{position:fixed;bottom:max(18px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:var(--dark2);border:1px solid var(--pink);color:var(--white);padding:10px 15px;border-radius:9px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center;font-size:14px}.toast.show{opacity:1}@media(max-width:380px){.mast-row h1{font-size:25px}.eyebrow{font-size:9px}.entry{padding:16px;min-height:390px}.sigil{width:75px;height:75px;top:49px}.entry h2{font-size:36px;margin-top:27px}.primary-actions{grid-template-columns:1fr}.shelf-intro{align-items:flex-start;flex-direction:column}.toolbar{align-items:flex-start;flex-direction:column}select{max-width:100%;width:100%}}@media(prefers-reduced-motion:reduce){.toast{transition:none}}@media print{body{background:var(--white);color:var(--black)}.masthead,.tabs,.toolbar,.primary-actions,.secondary-actions,footer,.shelf-intro,.import-row{display:none!important}.app{padding:0;max-width:none}.entry{color:var(--black);background:var(--white);border:2px solid var(--black)}.entry h2,.definition{color:var(--black)}.pronunciation,.example,.note{color:var(--dark2)}}
+
+</style>
+  
+</head>
+<body>
+<div style="background:#111111;border-bottom:1px solid #9A0957;padding:10px 15px;text-align:left"><a href="../../index.html" style="color:#FFB6D9;font:700 13px/1.5 system-ui,sans-serif;text-decoration:none">← Return to the Museum of Almosts</a></div>
+  <div class="app">
+    <header class="masthead">
+      <div class="eyebrow">THE OFFICE OF IMPROBABLE LANGUAGE · VOL. 001</div>
+      <div class="mast-row"><h1>Almost<span>Dictionary</span><span class="star" aria-hidden="true">✳</span></h1><button class="quiet" id="aboutBtn" type="button" aria-label="About this dictionary">?</button></div>
+      <p class="tagline">Words for things that nearly exist.</p>
+    </header>
+    <nav class="tabs" aria-label="Sections">
+      <button id="coinTab" class="tab active" type="button" aria-selected="true">Coin a word</button>
+      <button id="shelfTab" class="tab" type="button" aria-selected="false">My lexicon <span id="shelfCount">0</span></button>
+    </nav>
+    <main>
+      <section id="coinPanel" aria-labelledby="coinTab">
+        <div class="toolbar">
+          <label for="mood">A word about</label>
+          <select id="mood"><option value="wonder">small wonders</option><option value="weather">impossible weather</option><option value="machines">gentle machines</option><option value="feelings">unnamed feelings</option></select>
+        </div>
+        <article class="entry" id="entry" aria-live="polite">
+          <div class="entry-top"><span id="wordNo">ENTRY 0001</span><span id="category">NOUN</span></div>
+          <div class="sigil" id="sigil" aria-hidden="true"></div>
+          <h2 id="word">—</h2>
+          <div class="pronunciation" id="pronunciation"></div>
+          <div class="rule"></div>
+          <div class="field-label">MEANING</div>
+          <p class="definition" id="definition"></p>
+          <div class="field-label">IN A SENTENCE</div>
+          <p class="example" id="example"></p>
+          <div class="field-label">FIELD NOTE</div>
+          <p class="note" id="note"></p>
+        </article>
+        <div class="primary-actions">
+          <button id="inventBtn" class="pink-button" type="button">✳ Invent another</button>
+          <button id="keepBtn" class="outline-button" type="button">♡ Keep this word</button>
+        </div>
+        <div class="secondary-actions">
+          <button id="editBtn" class="text-button" type="button">Edit entry</button>
+          <button id="cardBtn" class="text-button" type="button">Save postcard PNG</button>
+        </div>
+      </section>
+      <section id="shelfPanel" hidden aria-labelledby="shelfTab">
+        <div class="shelf-intro"><p>Your private collection of words. Kept on this device unless you export it.</p><button id="exportBtn" class="outline-button small" type="button">Export JSON</button></div>
+        <div id="shelfList" class="shelf-list"></div>
+        <div class="import-row"><label class="outline-button small" for="importFile">Import JSON</label><input id="importFile" type="file" accept="application/json,.json"><button id="clearBtn" class="text-button" type="button">Clear lexicon</button></div>
+      </section>
+    </main>
+    <footer><span>NO INTERNET. NO ACCOUNT. JUST NEW WORDS.</span><span>✳</span></footer>
+  </div>
+  <dialog id="editDialog" aria-labelledby="editTitle">
+    <form id="editForm" method="dialog"><h2 id="editTitle">Edit this word</h2>
+      <label>Word<input name="word" maxlength="32" required></label>
+      <label>Meaning<textarea name="definition" rows="3" maxlength="320" required></textarea></label>
+      <label>Example<textarea name="example" rows="2" maxlength="240" required></textarea></label>
+      <label>Field note<textarea name="note" rows="2" maxlength="240"></textarea></label>
+      <div class="dialog-actions"><button type="button" class="outline-button" id="cancelEdit">Cancel</button><button type="submit" class="pink-button">Apply changes</button></div>
+    </form>
+  </dialog>
+  <dialog id="aboutDialog" aria-labelledby="aboutTitle"><div class="about"><h2 id="aboutTitle">The Office of Improbable Language</h2><p>Some experiences arrive before their vocabulary. This tiny office invents words for them.</p><p>Coin a word, alter its meaning, or keep it in your personal lexicon. Nothing leaves your browser unless you export it.</p><p>Original CC0 work. No tracking, network requests, fonts, or external libraries.</p><button id="closeAbout" class="pink-button">Return to dictionary</button></div></dialog>
+  <dialog id="confirmDialog" aria-labelledby="confirmTitle"><div class="about"><h2 id="confirmTitle">Empty the lexicon?</h2><p>This deletes the locally saved words on this device. Export first if you want a copy.</p><div class="dialog-actions"><button id="cancelClear" class="outline-button">Cancel</button><button id="confirmClear" class="pink-button">Delete local words</button></div></div></dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+/* Almost Dictionary · original CC0 creative experiment · no dependencies */
+(function(root){
+  'use strict';
+  const START=['vel','mar','sol','thim','bel','lun','fenn','mer','siv','tav','nim','wisp','cor','lil','brin','pell','nor','vess'];
+  const MIDDLE=['a','e','i','o','u','en','el','in','ar','or','um','is','ev','al'];
+  const END=['mere','let','kin','low','veil','moth','wake','whirl','bell','ling','wick','fall','hush','well','ness','fin'];
+  const CONTENT={
+    wonder:{
+      definition:[
+        'The faint excitement of discovering a pocket in clothing you have owned for years.',
+        'A small kindness that keeps echoing after everyone involved has forgotten it.',
+        'The exact amount of courage required to ask a cloud for directions.',
+        'The soft click of an ordinary day becoming a good memory.',
+        'A collection of almost-invisible celebrations held by dust in a sunbeam.',
+        'The space between finding a beautiful stone and deciding to leave it there.',
+        'The peculiar dignity of a very small thing trying its best.',
+        'A moment so lovely that nobody remembers to photograph it.'
+      ],
+      example:[
+        '“There was a little {w} in the hallway after the music stopped.”',
+        '“She put the {w} in her pocket for the journey home.”',
+        '“The garden was full of {w}, though nothing unusual had happened.”',
+        '“You could hear the {w} if you were quiet enough.”',
+        '“They found a trace of {w} beneath the kitchen table.”',
+        '“No one could explain the {w}; everyone agreed to keep it.”'
+      ],
+      note:['Often mistaken for luck. It is much smaller and more reliable.','Not available in shops, although shops sometimes contain it.','Most common between 4:00 and 4:03 on unremarkable afternoons.','The original discoverer refused to claim ownership.','Best observed without trying to capture it.','Known to disappear under excessive explanation.']
+    },
+    weather:{
+      definition:[
+        'A light drizzle of thoughts that arrive exactly when you have no pencil.',
+        'A wind that blows only through rooms where someone is about to apologize.',
+        'A kind of snow that falls upward when a promise is finally kept.',
+        'The brief, indoor thunderstorm produced by an embarrassed teapot.',
+        'A patch of sunshine reserved for forgotten umbrellas.',
+        'A fog made entirely of questions nobody needs to answer today.',
+        'The quiet pressure change before an unexpected reunion.',
+        'A tiny weather front that follows lost socks home.'
+      ],
+      example:[
+        '“The forecast promised {w} after lunch, so we opened every window.”',
+        '“By evening the entire station was covered in {w}.”',
+        '“The old meteorologist called it {w} and went back to sleep.”',
+        '“They carried a spare umbrella in case of {w}.”',
+        '“A little {w} gathered over the roof of the bakery.”',
+        '“The weather vane turned toward {w} and refused to move.”'
+      ],
+      note:['Not measured in millimeters; measured in unfinished sentences.','Can occur indoors without violating any known law of politeness.','Birds are unusually good at predicting it.','A government report called it “mildly inconvenient magic.”','Typically ends when someone makes tea.','No two witnesses agree on its color.']
+    },
+    machines:{
+      definition:[
+        'A mechanism that gently untangles the last five minutes of a difficult day.',
+        'The sound a clock makes when it decides not to hurry anyone.',
+        'A machine designed to sort memories by how warmly they are held.',
+        'The imaginary gear that lets a music box play one extra note.',
+        'A small motor powered entirely by sincere compliments.',
+        'A device for translating the complaints of household spoons.',
+        'The hinge on a door that opens only when someone feels welcome.',
+        'A switch that turns ordinary silence into companionable silence.'
+      ],
+      example:[
+        '“The engineer installed a {w} beside the kettle.”',
+        '“Nobody knew how the {w} worked, but the room felt kinder.”',
+        '“The {w} made one small noise and fixed the whole afternoon.”',
+        '“They drew plans for a {w} on the back of a receipt.”',
+        '“The museum labels the {w} as both invention and apology.”',
+        '“When the lights went out, the {w} kept humming.”'
+      ],
+      note:['Requires no batteries. May require patience.','Patent application withdrawn due to excessive usefulness.','The inventor described it as “mostly listening.”','Maintenance consists of asking whether it needs anything.','A working model is rumored to exist in a train station.','Not recommended for people who insist on perfect efficiency.']
+    },
+    feelings:{
+      definition:[
+        'Missing a place you have never visited but would recognize immediately.',
+        'The affectionate sadness of finishing a book and closing it gently.',
+        'Relief at discovering someone else has kept the same ridiculous souvenir.',
+        'The courage to be delighted by something everyone else considers trivial.',
+        'Feeling briefly understood by an animal that was probably thinking about food.',
+        'The warm embarrassment of being remembered in a tiny, specific way.',
+        'The longing to thank a younger version of yourself for continuing.',
+        'A sudden sense that the future might contain a pleasant surprise.'
+      ],
+      example:[
+        '“She could not explain the {w}, so she made another cup of tea.”',
+        '“The old photograph brought a little {w} with it.”',
+        '“He recognized the {w} but had never had a word for it.”',
+        '“For a moment, the train carriage was full of {w}.”',
+        '“The {w} passed, leaving a small and useful tenderness.”',
+        '“They shared the {w} without needing to discuss it.”'
+      ],
+      note:['Not a diagnosis; simply a proposed word.','Often confused with nostalgia, but it faces the other direction.','Can coexist with several contradictory feelings.','Sometimes arrives without any identifiable cause.','Commonly recorded in the margins of notebooks.','No obligation to explain it to anyone.']
+    }
+  };
+  const MOODS=Object.keys(CONTENT);
+  function hash(s){let h=2166136261;for(const c of String(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+  function pick(arr,salt){return arr[hash(salt)%arr.length]}
+  function generate(mood,seed){mood=MOODS.includes(mood)?mood:'wonder';const x=String(seed),a=pick(START,x+'a'),b=pick(MIDDLE,x+'b'),c=pick(END,x+'c');const word=a+b+c;const content=CONTENT[mood];const definition=pick(content.definition,x+'d');return {id:'word-'+x+'-'+hash(mood+x),seed:x,mood,word,pronunciation:'/'+[a,b,c].join('·')+'/',part:'noun',definition,example:pick(content.example,x+'e').replace('{w}',word),note:pick(content.note,x+'n'),created:new Date().toISOString()}}
+  function safeEntry(e){if(!e||typeof e!=='object')return null;const clean=(v,max)=>String(v??'').slice(0,max).trim();const word=clean(e.word,32),definition=clean(e.definition,320);if(!word||!definition)return null;const mood=MOODS.includes(e.mood)?e.mood:'wonder';return {id:clean(e.id,100)||'import-'+hash(word+definition),seed:clean(e.seed,40),mood,word,pronunciation:clean(e.pronunciation,100),part:'noun',definition,example:clean(e.example,240),note:clean(e.note,240),created:clean(e.created,50)||new Date().toISOString()}}
+  function svgSigil(word){const n=hash(word),arms=6+(n%4),r1=22+(n%13),r2=37+(n%9);let paths='';for(let i=0;i<arms;i++){const t=i*Math.PI*2/arms;const x=50+Math.cos(t)*r1,y=50+Math.sin(t)*r1;const x2=50+Math.cos(t)*r2,y2=50+Math.sin(t)*r2;paths+=`<line x1="${x.toFixed(2)}" y1="${y.toFixed(2)}" x2="${x2.toFixed(2)}" y2="${y2.toFixed(2)}" stroke="#FF1493" stroke-width="1.6"/><circle cx="${x2.toFixed(2)}" cy="${y2.toFixed(2)}" r="2.5" fill="#FFB6D9"/>`}
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="#9A0957" stroke-width="1.4"/><circle cx="50" cy="50" r="${r1-7}" fill="none" stroke="#FF1493" stroke-width="1"/>${paths}<circle cx="50" cy="50" r="7" fill="#FF1493"/><circle cx="50" cy="50" r="2.5" fill="#000000"/></svg>`}
+  const API={generate,safeEntry,svgSigil,hash,MOODS};
+  if(typeof module!=='undefined'&&module.exports)module.exports=API;
+  if(!root.document)return;
+  const $=id=>document.getElementById(id);
+  let counter=0,entry=null,lexicon=[],toastTimer=null;
+  const STORE='almost-dictionary-v1';
+  function load(){try{const raw=JSON.parse(localStorage.getItem(STORE)||'{}');counter=Number.isSafeInteger(raw.counter)&&raw.counter>=0?raw.counter:0;lexicon=Array.isArray(raw.lexicon)?raw.lexicon.map(safeEntry).filter(Boolean).slice(0,500):[]}catch{counter=0;lexicon=[]}}
+  function persist(){try{localStorage.setItem(STORE,JSON.stringify({counter,lexicon}));return true}catch{notify('Storage unavailable here. Export JSON to keep your words.');return false}}
+  function notify(s){$('toast').textContent=s;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200)}
+  function render(){if(!entry)return;$('word').textContent=entry.word;$('pronunciation').textContent=entry.pronunciation;$('category').textContent=entry.part.toUpperCase();$('wordNo').textContent='ENTRY '+String(counter).padStart(4,'0');$('definition').textContent=entry.definition;$('example').textContent=entry.example;$('note').textContent=entry.note;$('sigil').innerHTML=svgSigil(entry.word);const saved=lexicon.some(x=>x.id===entry.id);$('keepBtn').textContent=saved?'♥ Saved to lexicon':'♡ Keep this word';$('keepBtn').classList.toggle('saved',saved);$('shelfCount').textContent=lexicon.length}
+  function coin(){counter++;entry=generate($('mood').value,counter+'-'+Math.floor(Math.random()*1e9));persist();render()}
+  function keep(){if(lexicon.some(x=>x.id===entry.id)){notify('Already in your lexicon.');return}if(lexicon.length>=500){notify('Lexicon full (500 words). Export a copy first.');return}lexicon.unshift({...entry});persist();render();notify('Word added to your lexicon.')}
+  function showTab(which){const shelf=which==='shelf';$('coinPanel').hidden=shelf;$('shelfPanel').hidden=!shelf;$('coinTab').classList.toggle('active',!shelf);$('shelfTab').classList.toggle('active',shelf);$('coinTab').setAttribute('aria-selected',String(!shelf));$('shelfTab').setAttribute('aria-selected',String(shelf));if(shelf)renderShelf()}
+  function renderShelf(){const list=$('shelfList');list.replaceChildren();if(!lexicon.length){const empty=document.createElement('div');empty.className='empty';empty.innerHTML='<b>✳</b><p>No words kept yet.</p><p>Invent one, then give it a home.</p>';list.append(empty);return}for(const item of lexicon){const wrap=document.createElement('div');wrap.className='shelf-item';const open=document.createElement('button');open.className='shelf-open';open.type='button';const name=document.createElement('strong');name.textContent=item.word;const def=document.createElement('span');def.textContent=item.definition;open.append(name,def);open.addEventListener('click',()=>{entry={...item};$('mood').value=item.mood;showTab('coin');render()});const del=document.createElement('button');del.type='button';del.className='shelf-delete';del.textContent='×';del.setAttribute('aria-label','Remove '+item.word);del.addEventListener('click',()=>{lexicon=lexicon.filter(x=>x.id!==item.id);persist();renderShelf();render();notify('Word removed.')});wrap.append(open,del);list.append(wrap)}}
+  function download(name,blob){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000)}
+  function exportJSON(){const data={format:'almost-dictionary',version:1,exported:new Date().toISOString(),entries:lexicon};download('almost-dictionary-lexicon.json',new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));notify('Lexicon exported.')}
+  async function importJSON(file){if(!file)return;if(file.size>1024*1024){notify('File too large. Maximum 1 MB.');return}try{const data=JSON.parse(await file.text());if(data.format!=='almost-dictionary'||data.version!==1||!Array.isArray(data.entries))throw Error('Invalid format');let count=0;const ids=new Set(lexicon.map(x=>x.id));for(const raw of data.entries.slice(0,500)){const item=safeEntry(raw);if(item&&!ids.has(item.id)&&lexicon.length<500){lexicon.push(item);ids.add(item.id);count++}}persist();renderShelf();render();notify(count+' words imported.')}catch{notify('Could not read this lexicon JSON.')}finally{$('importFile').value=''}}
+  function wrap(ctx,text,maxWidth){const words=String(text).split(/\s+/),lines=[];let line='';for(const w of words){const trial=line?line+' '+w:w;if(ctx.measureText(trial).width>maxWidth&&line){lines.push(line);line=w}else line=trial}if(line)lines.push(line);return lines}
+  function postcard(){const c=document.createElement('canvas');c.width=1200;c.height=1500;const ctx=c.getContext('2d');if(!ctx){notify('Canvas export unavailable.');return}ctx.fillStyle='#000000';ctx.fillRect(0,0,1200,1500);ctx.strokeStyle='#FF1493';ctx.lineWidth=7;ctx.strokeRect(42,42,1116,1416);ctx.fillStyle='#FFB6D9';ctx.font='bold 27px sans-serif';ctx.fillText('THE ALMOST DICTIONARY',95,122);ctx.fillStyle='#FF1493';ctx.font='27px sans-serif';ctx.fillText('✳   AN IMPROBABLE WORD',95,180);
+    const img=new Image();const sigil=svgSigil(entry.word);const data='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(sigil);img.onload=()=>{ctx.drawImage(img,865,210,220,220);finish()};img.onerror=finish;img.src=data;
+    function finish(){ctx.fillStyle='#FFFFFF';ctx.font='normal 84px Georgia, serif';let name=entry.word;if(ctx.measureText(name).width>950){ctx.font='normal 58px Georgia, serif'}ctx.fillText(name,95,370,970);ctx.fillStyle='#FFB6D9';ctx.font='italic 32px Georgia, serif';ctx.fillText(entry.pronunciation,95,422,950);ctx.strokeStyle='#9A0957';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(95,474);ctx.lineTo(1100,474);ctx.stroke();let y=550;function block(label,text,font,lineHeight,limit){ctx.fillStyle='#FF1493';ctx.font='bold 25px sans-serif';ctx.fillText(label,95,y);y+=48;ctx.fillStyle=label==='MEANING'?'#FFFFFF':'#FFB6D9';ctx.font=font;for(const line of wrap(ctx,text,990).slice(0,limit)){ctx.fillText(line,95,y);y+=lineHeight}y+=65}block('MEANING',entry.definition,'39px Georgia, serif',56,5);block('IN A SENTENCE',entry.example,'italic 32px Georgia, serif',48,5);block('FIELD NOTE',entry.note,'30px sans-serif',44,4);ctx.fillStyle='#B8B8B8';ctx.font='24px sans-serif';ctx.fillText('Original CC0 • A word for something that nearly exists',95,1400);c.toBlob(b=>{if(b){download('almost-word-'+entry.word.replace(/[^a-z0-9_-]/gi,'-')+'.png',b);notify('Postcard PNG exported.')}else notify('PNG export failed.')},'image/png')}
+  }
+  function edit(){const form=$('editForm');for(const name of ['word','definition','example','note'])form.elements[name].value=entry[name];$('editDialog').showModal();form.elements.word.focus()}
+  function applyEdit(){const f=$('editForm');const next=safeEntry({...entry,word:f.elements.word.value,definition:f.elements.definition.value,example:f.elements.example.value,note:f.elements.note.value});if(!next){notify('Word and meaning are required.');return}entry=next;const i=lexicon.findIndex(x=>x.id===entry.id);if(i>=0){lexicon[i]={...entry};persist()}render();$('editDialog').close();notify('Entry updated.')}
+  load();$('inventBtn').addEventListener('click',coin);$('keepBtn').addEventListener('click',keep);$('coinTab').addEventListener('click',()=>showTab('coin'));$('shelfTab').addEventListener('click',()=>showTab('shelf'));$('exportBtn').addEventListener('click',exportJSON);$('importFile').addEventListener('change',e=>importJSON(e.target.files[0]));$('cardBtn').addEventListener('click',postcard);$('editBtn').addEventListener('click',edit);$('editForm').addEventListener('submit',e=>{e.preventDefault();applyEdit()});$('cancelEdit').addEventListener('click',()=>$('editDialog').close());$('aboutBtn').addEventListener('click',()=>$('aboutDialog').showModal());$('closeAbout').addEventListener('click',()=>$('aboutDialog').close());$('clearBtn').addEventListener('click',()=>$('confirmDialog').showModal());$('cancelClear').addEventListener('click',()=>$('confirmDialog').close());$('confirmClear').addEventListener('click',()=>{lexicon=[];persist();renderShelf();render();$('confirmDialog').close();notify('Local lexicon cleared.')});coin();
+})(typeof window!=='undefined'?window:globalThis);
+
+</script>
+</body>
+</html>

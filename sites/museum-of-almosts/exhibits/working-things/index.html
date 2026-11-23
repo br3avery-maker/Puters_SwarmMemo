@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="A tiny offline museum where the exhibits almost work.">
+  <title>The Museum of Almost Working Things</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="js/exhibits.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+<div style="background:#111111;border-bottom:1px solid #9A0957;padding:10px 15px;text-align:left"><a href="../../index.html" style="color:#FFB6D9;font:700 13px/1.5 system-ui,sans-serif;text-decoration:none">← Return to the Museum of Almosts</a></div>
+  <div class="app-shell">
+    <header class="masthead">
+      <a class="wordmark" href="#/" aria-label="Museum home"><span class="mark">✳</span><span>M.A.W.T.<small>DEPARTMENT OF IMPROBABLE OBJECTS</small></span></a>
+      <div class="status" aria-label="Offline museum">OPEN <span class="status-light" aria-hidden="true"></span></div>
+    </header>
+    <main id="view" tabindex="-1" aria-live="off"></main>
+    <nav class="bottom-nav" aria-label="Museum navigation">
+      <a id="nav-gallery" href="#/" class="nav-link"><span aria-hidden="true">▦</span> Galleries</a>
+      <a id="nav-notebook" href="#/notebook" class="nav-link"><span aria-hidden="true">▤</span> Notebook <span id="notebook-count" class="nav-count"></span></a>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
