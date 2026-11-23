@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><meta name="description" content="Nostr — source-derived Nsite Loopy SDK 1.1.0 docs"><title>Nostr · Nsite Loopy Docs</title><link rel="icon" type="image/svg+xml" href="../assets/icon.svg"><link rel="stylesheet" href="../assets/style.css"></head>
+<body><header class="site-header"><div class="head-inner"><button class="menu-btn" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><a class="brand" href="../index.html"><img src="../assets/icon.svg" class="brand-icon" alt=""><span>Nsite Loopy</span><span class="brand-tag">DOCS</span></a><div class="head-spacer"></div><nav class="top-pills" aria-label="Top navigation"><a href="../getting-started/installation.html">Guides</a><a href="../api/index.html">API</a><a href="../workflows/index.html">Workflows</a></nav><button type="button" data-open-search class="header-search" aria-label="Search documentation"><span aria-hidden="true">⌕</span><span class="search-text">Search documentation</span><kbd class="keycap">/</kbd></button><span class="version">v1.1.0</span></div></header>
+<div class="sidebar-shade" id="sidebar-shade"></div><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Documentation navigation"><div class="nav-group"><div class="nav-heading">Start here</div><div class="nav-links"><a class="nav-link" href="../index.html">Home</a><a class="nav-link" href="../getting-started/installation.html">Installation</a><a class="nav-link" href="../getting-started/quick-start.html">Quick start</a><a class="nav-link" href="../getting-started/architecture.html">Architecture</a><a class="nav-link" href="../getting-started/configuration.html">Configuration</a></div></div><div class="nav-group"><div class="nav-heading">Guides</div><div class="nav-links"><a class="nav-link" href="../guides/signers.html">Signing &amp; Amber</a><a class="nav-link" href="../guides/relays.html">Relay discovery</a><a class="nav-link" href="../guides/posts.html">Posts &amp; reactions</a><a class="nav-link" href="../guides/blossom.html">Blossom media</a><a class="nav-link" href="../guides/nsites.html">Publish nsites</a><a class="nav-link" href="../guides/archives.html">Archives &amp; CAS</a><a class="nav-link" href="../guides/directory.html">Directory &amp; collections</a><a class="nav-link" href="../guides/moderation.html">Spam &amp; moderation</a><a class="nav-link" href="../guides/moji.html">Moji &amp; NIP-30</a><a class="nav-link" href="../guides/anchor.html">Anchor &amp; recovery</a><a class="nav-link" href="../guides/storage.html">Storage adapters</a><a class="nav-link" href="../guides/deepink.html">Deepink integration</a><a class="nav-link" href="../guides/testing.html">Testing &amp; verification</a></div></div><div class="nav-group"><div class="nav-heading">API reference</div><div class="nav-links"><a class="nav-link" href="../api/index.html">Choose a function</a><a class="nav-link" href="../api/facade.html">SDK shortcuts</a><a class="nav-link" href="../api/core.html">Core</a><a class="nav-link active" href="../api/nostr.html" aria-current="page">Nostr</a><a class="nav-link" href="../api/nsite.html">Nsite</a><a class="nav-link" href="../api/blossom.html">Blossom</a><a class="nav-link" href="../api/archive.html">Archive</a><a class="nav-link" href="../api/directory.html">Directory</a><a class="nav-link" href="../api/storage.html">Storage</a><a class="nav-link" href="../api/adapters.html">Adapters</a><a class="nav-link" href="../api/moderation.html">Moderation</a><a class="nav-link" href="../api/moji.html">Moji</a><a class="nav-link" href="../api/anchor.html">Anchor</a></div></div><div class="nav-group"><div class="nav-heading">Workflows &amp; agent help</div><div class="nav-links"><a class="nav-link" href="../workflows/index.html">Choose a workflow</a><a class="nav-link" href="../workflows/source-to-sdk.html">Reuse old code</a><a class="nav-link" href="../workflows/deepink-real-client.html">Make Deepink real</a><a class="nav-link" href="../workflows/nsite-release.html">Publish an nsite</a><a class="nav-link" href="../skills/index.html">What agents can do</a><a class="nav-link" href="../skills/recover-repository-capabilities.html">Recover Repository Capabilities</a><a class="nav-link" href="../skills/amber-signer-handoff.html">Amber Signer Handoff</a><a class="nav-link" href="../skills/build-nostr-client.html">Build Nostr Client</a><a class="nav-link" href="../skills/curate-nsite.html">Curate Nsite</a><a class="nav-link" href="../skills/publish-nsite.html">Publish Nsite</a><a class="nav-link" href="../skills/recover-nsite.html">Recover Nsite</a><a class="nav-link" href="../skills/relay-blossom-discovery.html">Relay Blossom Discovery</a><a class="nav-link" href="../skills/restore-source-sdk.html">Restore Source Sdk</a><a class="nav-link" href="../skills/verify-sdk-export.html">Verify Sdk Export</a></div></div><div class="nav-group"><div class="nav-heading">Reference</div><div class="nav-links"><a class="nav-link" href="../reference/options.html">Runtime options</a><a class="nav-link" href="../reference/source-collection.html">Source provenance</a><a class="nav-link" href="../reference/repo-capabilities.html">Repo capability audit</a><a class="nav-link" href="../reference/security.html">Security</a><a class="nav-link" href="../reference/limits.html">Known limits</a><a class="nav-link" href="../reference/types.html">Types</a><a class="nav-link" href="../reference/licenses.html">Licenses</a><a class="nav-link" href="../reference/glossary.html">Glossary</a></div></div></aside><main class="content" id="content"><div class="breadcrumbs"><a href="../index.html">Docs</a><span class="crumbsep">/</span><span>API reference</span><span class="crumbsep">/</span><span class="current">Nostr</span></div><article class="doc-body"><h1 id="nostr-tools">Nostr tools</h1>
+<p>Sign in with a real account, prepare and verify posts, discover relays, and read or publish Nostr events. This is the part a social app like Deepink uses most.</p>
+<p><strong>Try it in context:</strong> <a href="../guides/posts.html">Read the guide</a>.</p>
+<pre><code class="language-js">import { Nostr } from '@chaoticka/nsite-loopy-sdk';
+</code></pre>
+<h2 id="what-you-can-call-32">What you can call (32)</h2>
+<h3 id="androidintent">androidIntent</h3>
+<p>Prepare an Amber/Android signing request that the host app can launch. It does not mean the request was approved.</p>
+<p><strong>Call it as:</strong> <code>Nostr.androidIntent</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function androidIntent(input:{type?:'get_public_key'|'sign_event';requestId:string;event?:UnsignedEvent;currentPubkey?:Hex;callbackUrl?:string}):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/nip55.js</code></p>
+<h3 id="assertsignedevent">assertSignedEvent</h3>
+<p>Reject a signed event if its contents or signature do not pass verification.</p>
+<p><strong>Call it as:</strong> <code>Nostr.assertSignedEvent</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function assertSignedEvent(event:SignedEvent):SignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/events.js</code></p>
+<h3 id="blossomservers">blossomServers</h3>
+<p>Read Blossom storage-server addresses from a verified account server-list event.</p>
+<p><strong>Call it as:</strong> <code>Nostr.blossomServers</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function blossomServers(event:SignedEvent):string[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/discovery.js</code></p>
+<h3 id="browsersigner">browserSigner</h3>
+<p>Use a NIP-07 browser signer when one is installed and available.</p>
+<p><strong>Call it as:</strong> <code>Nostr.browserSigner</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function browserSigner(provider?:Signer):Signer;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/signers.js</code></p>
+<h3 id="bunkersigner">bunkerSigner</h3>
+<p>Connect to a remote NIP-46 signer while keeping its secret out of the app’s saved data.</p>
+<p><strong>Call it as:</strong> <code>Nostr.bunkerSigner</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function bunkerSigner(uri:string,options?:object):Promise&lt;Signer&amp;{connect():Promise&lt;Hex&gt;;close():Promise&lt;void&gt;}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/signers.js</code></p>
+<h3 id="checkedsign">checkedSign</h3>
+<p>Ask an approved signer to sign and confirm it signed the event we actually requested.</p>
+<p><strong>Call it as:</strong> <code>Nostr.checkedSign</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function checkedSign(signer:Signer,template:UnsignedEvent,pubkey:Hex):Promise&lt;SignedEvent&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/events.js</code></p>
+<h3 id="connectidentity">connectIdentity</h3>
+<p>Ask the signer which account it controls and confirm a usable signing session.</p>
+<p><strong>Call it as:</strong> <code>Nostr.connectIdentity</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function connectIdentity(signer:Signer):Promise&lt;{pubkey:Hex;signer:Signer}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/signers.js</code></p>
+<h3 id="discoverblossom">discoverBlossom</h3>
+<p>Look up storage servers from the account’s signed Blossom preferences.</p>
+<p><strong>Call it as:</strong> <code>Nostr.discoverBlossom</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function discoverBlossom(pubkey:Hex,options?:{bootstrap?:string[];query?:(url:string,filter:object)=&gt;Promise&lt;SignedEvent[]&gt;}):Promise&lt;{sourceEvent:string|null;servers:string[];verified:boolean}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/discovery.js</code></p>
+<h3 id="discoverrelays">discoverRelays</h3>
+<p>Find the read and write relays an account has advertised.</p>
+<p><strong>Call it as:</strong> <code>Nostr.discoverRelays</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function discoverRelays(pubkey:Hex,options?:{bootstrap?:string[];query?:(url:string,filter:object)=&gt;Promise&lt;SignedEvent[]&gt;;defaults?:string[];max?:number}):Promise&lt;{status:string;records:RelayListEntry[];relays:string[];sourceEvent:string|null;errors:Array&lt;{relay:string;error:string}&gt;}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/discovery.js</code></p>
+<h3 id="encryptionadapter">encryptionAdapter</h3>
+<p>Delegate message encryption or decryption to an approved signer that supports it.</p>
+<p><strong>Call it as:</strong> <code>Nostr.encryptionAdapter</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function encryptionAdapter(signer:{nip44?:{encrypt(peer:string,plaintext:string):Promise&lt;string&gt;;decrypt(peer:string,ciphertext:string):Promise&lt;string&gt;}}):{encrypt(peer:string,plaintext:string):Promise&lt;string&gt;;decrypt(peer:string,ciphertext:string):Promise&lt;string&gt;};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/other-nips.js</code></p>
+<h3 id="eventtemplate">eventTemplate</h3>
+<p>Create the unsigned event data that a signer will later approve.</p>
+<p><strong>Call it as:</strong> <code>Nostr.eventTemplate</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function eventTemplate(input?:Partial&lt;UnsignedEvent&gt;):UnsignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/events.js</code></p>
+<h3 id="fetchfeed">fetchFeed</h3>
+<p>Fetch verified posts from selected relays and return errors from relays that fail.</p>
+<p><strong>Call it as:</strong> <code>Nostr.fetchFeed</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function fetchFeed(options:{authors:Hex[];kinds?:number[];relays:string[];limit?:number;query?:(url:string,filter:object)=&gt;Promise&lt;SignedEvent[]&gt;}):Promise&lt;{events:SignedEvent[];failed:Array&lt;{relay:string;error:string}&gt;;status:string}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/feed.js</code></p>
+<h3 id="fetchprofiles">fetchProfiles</h3>
+<p>Fetch and verify public profile information for a set of Nostr accounts.</p>
+<p><strong>Call it as:</strong> <code>Nostr.fetchProfiles</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function fetchProfiles(options:{pubkeys:Hex[];relays:string[];query?:(url:string,filter:object)=&gt;Promise&lt;SignedEvent[]&gt;}):Promise&lt;{profiles:Map&lt;Hex,Record&lt;string,string|number&gt;&gt;;failed:object[];status:string}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/profiles.js</code></p>
+<h3 id="finalizeevent">finalizeEvent</h3>
+<p>Sign an event with a supplied secret key; intended for controlled tooling and tests.</p>
+<p><strong>Call it as:</strong> <code>Nostr.finalizeEvent</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function finalizeEvent(template:UnsignedEvent,secret:Uint8Array):SignedEvent;
+</code></pre>
+<h3 id="generatesecretkey">generateSecretKey</h3>
+<p>Create a new secret key for controlled tests or authorized key generation.</p>
+<p><strong>Call it as:</strong> <code>Nostr.generateSecretKey</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function generateSecretKey():Uint8Array;
+</code></pre>
+<h3 id="getpublickey">getPublicKey</h3>
+<p>Derive the public key corresponding to a supplied secret key.</p>
+<p><strong>Call it as:</strong> <code>Nostr.getPublicKey</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function getPublicKey(secret:Uint8Array):Hex;
+</code></pre>
+<h3 id="httpauthheader">httpAuthHeader</h3>
+<p>Create a signed header for a Nostr-authenticated HTTPS request.</p>
+<p><strong>Call it as:</strong> <code>Nostr.httpAuthHeader</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function httpAuthHeader(options:{url:string;method:string;signer:Signer;pubkey:Hex;created_at?:number}):Promise&lt;string&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/other-nips.js</code></p>
+<h3 id="nostrconnectrequest">nostrConnectRequest</h3>
+<p>Create a Nostr Connect pairing request and a listener for a remote signer such as Amber.</p>
+<p><strong>Call it as:</strong> <code>Nostr.nostrConnectRequest</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function nostrConnectRequest(options:{relays:string[];name?:string;perms?:string[];secret?:string;clientSecret?:Uint8Array}):{uri:string;mode:'nip46';start(signal?:AbortSignal):Promise&lt;Signer&gt;};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/signers.js</code></p>
+<h3 id="npubencode">npubEncode</h3>
+<p>Convert a public key into its recognizable npub form.</p>
+<p><strong>Call it as:</strong> <code>Nostr.npubEncode</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function npubEncode(pubkey:Hex):string;
+</code></pre>
+<h3 id="parseprofile">parseProfile</h3>
+<p>Read bounded profile fields from a verified kind-0 profile event.</p>
+<p><strong>Call it as:</strong> <code>Nostr.parseProfile</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function parseProfile(event:SignedEvent):Record&lt;string,string|number&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/profiles.js</code></p>
+<h3 id="planrelays">planRelays</h3>
+<p>Select suitable sending and receiving relays using the account and recipients’ published preferences.</p>
+<p><strong>Call it as:</strong> <code>Nostr.planRelays</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function planRelays(options:{authorList?:RelayListEntry[];recipientLists?:RelayListEntry[][];defaults?:string[];max?:number}):string[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/nip65.js</code></p>
+<h3 id="publishmany">publishMany</h3>
+<p>Send one signed event to several relays and retain each relay’s result.</p>
+<p><strong>Call it as:</strong> <code>Nostr.publishMany</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publishMany(event:SignedEvent,relays:string[],options?:{writer?:(url:string,event:SignedEvent,options:object)=&gt;Promise&lt;RelayReceipt&gt;}):Promise&lt;PublishReceipts&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/relay-transport.js</code></p>
+<h3 id="publishrelay">publishRelay</h3>
+<p>Send a signed event to a relay and confirm it can be fetched back.</p>
+<p><strong>Call it as:</strong> <code>Nostr.publishRelay</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publishRelay(url:string,event:SignedEvent,options?:{Socket?:any;timeoutMs?:number;signal?:AbortSignal;verify?:boolean}):Promise&lt;RelayReceipt&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/relay-transport.js</code></p>
+<h3 id="publishtemplate">publishTemplate</h3>
+<p>Ask the signer to approve an unsigned event, publish it, and verify the result.</p>
+<p><strong>Call it as:</strong> <code>Nostr.publishTemplate</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publishTemplate(template:UnsignedEvent,options:{signer:Signer;pubkey:Hex;relays:string[];publisher?:(event:SignedEvent,relays:string[])=&gt;Promise&lt;PublishReceipts&gt;}):Promise&lt;{event:SignedEvent;receipts:PublishReceipts}&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/feed.js</code></p>
+<h3 id="queryrelay">queryRelay</h3>
+<p>Ask a relay for matching signed events, with a time limit and event verification.</p>
+<p><strong>Call it as:</strong> <code>Nostr.queryRelay</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function queryRelay(url:string,filter:object,options?:{Socket?:any;timeoutMs?:number;signal?:AbortSignal;verify?:boolean;maxEvents?:number}):Promise&lt;SignedEvent[]&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/relay-transport.js</code></p>
+<h3 id="reaction">reaction</h3>
+<p>Prepare a reaction linked to an existing post.</p>
+<p><strong>Call it as:</strong> <code>Nostr.reaction</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function reaction(target:SignedEvent,emoji?:string,options?:{created_at?:number}):UnsignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/feed.js</code></p>
+<h3 id="relayauthtemplate">relayAuthTemplate</h3>
+<p>Prepare a NIP-42 authentication response for a relay challenge.</p>
+<p><strong>Call it as:</strong> <code>Nostr.relayAuthTemplate</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function relayAuthTemplate(options:{challenge:string;relay:string;created_at?:number}):UnsignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/other-nips.js</code></p>
+<h3 id="relayinfo">relayInfo</h3>
+<p>Read a relay’s published capabilities and access-policy information.</p>
+<p><strong>Call it as:</strong> <code>Nostr.relayInfo</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function relayInfo(url:string,options?:object):Promise&lt;Record&lt;string,unknown&gt;&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/nip65.js</code></p>
+<h3 id="relaylist">relayList</h3>
+<p>Read the account’s signed NIP-65 list of read and write relays.</p>
+<p><strong>Call it as:</strong> <code>Nostr.relayList</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function relayList(event:SignedEvent):RelayListEntry[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/nip65.js</code></p>
+<h3 id="textnote">textNote</h3>
+<p>Prepare an ordinary text post or a reply with the correct reply links.</p>
+<p><strong>Call it as:</strong> <code>Nostr.textNote</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function textNote(content:string,options?:{replyTo?:SignedEvent;created_at?:number}):UnsignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/feed.js</code></p>
+<h3 id="verifyandroidresult">verifyAndroidResult</h3>
+<p>Check that Amber’s returned signature matches the pending Android request.</p>
+<p><strong>Call it as:</strong> <code>Nostr.verifyAndroidResult</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function verifyAndroidResult(input:{requestId:string;returnedId:string;event:SignedEvent;template:UnsignedEvent;expectedPubkey:Hex;rejected?:boolean}):SignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/nip55.js</code></p>
+<h3 id="verifyevent">verifyEvent</h3>
+<p>Check whether an event has a valid canonical identifier and cryptographic signature.</p>
+<p><strong>Call it as:</strong> <code>Nostr.verifyEvent</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function verifyEvent(event:SignedEvent):boolean;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/nostr/events.js</code></p>
+</article><div class="page-controls"><a href="../api/core.html"><small>Previous</small>Core</a><a href="../api/nsite.html"><small>Next</small>Nsite</a></div><footer class="footer"><span>Nsite Loopy SDK v1.1.0</span><span>·</span><span>Offline docs — no tracking, no CDN</span><span>·</span><a href="../reference/limits.html">Verification scope</a></footer></main><aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><a class="depth2" href="#what-you-can-call-32">What you can call (32)</a><a class="depth3" href="#androidintent">androidIntent</a><a class="depth3" href="#assertsignedevent">assertSignedEvent</a><a class="depth3" href="#blossomservers">blossomServers</a><a class="depth3" href="#browsersigner">browserSigner</a><a class="depth3" href="#bunkersigner">bunkerSigner</a><a class="depth3" href="#checkedsign">checkedSign</a><a class="depth3" href="#connectidentity">connectIdentity</a><a class="depth3" href="#discoverblossom">discoverBlossom</a><a class="depth3" href="#discoverrelays">discoverRelays</a><a class="depth3" href="#encryptionadapter">encryptionAdapter</a><a class="depth3" href="#eventtemplate">eventTemplate</a><a class="depth3" href="#fetchfeed">fetchFeed</a><a class="depth3" href="#fetchprofiles">fetchProfiles</a><a class="depth3" href="#finalizeevent">finalizeEvent</a><a class="depth3" href="#generatesecretkey">generateSecretKey</a><a class="depth3" href="#getpublickey">getPublicKey</a><a class="depth3" href="#httpauthheader">httpAuthHeader</a><a class="depth3" href="#nostrconnectrequest">nostrConnectRequest</a><a class="depth3" href="#npubencode">npubEncode</a><a class="depth3" href="#parseprofile">parseProfile</a><a class="depth3" href="#planrelays">planRelays</a><a class="depth3" href="#publishmany">publishMany</a><a class="depth3" href="#publishrelay">publishRelay</a><a class="depth3" href="#publishtemplate">publishTemplate</a><a class="depth3" href="#queryrelay">queryRelay</a><a class="depth3" href="#reaction">reaction</a><a class="depth3" href="#relayauthtemplate">relayAuthTemplate</a><a class="depth3" href="#relayinfo">relayInfo</a><a class="depth3" href="#relaylist">relayList</a><a class="depth3" href="#textnote">textNote</a><a class="depth3" href="#verifyandroidresult">verifyAndroidResult</a><a class="depth3" href="#verifyevent">verifyEvent</a></aside></div>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search documentation"><div class="search-head"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search APIs and guides…" autocomplete="off" aria-label="Search query"><button type="button" onclick="this.closest('dialog').close()">Esc</button></div><div class="search-results" id="search-results"></div></dialog><script defer src="../assets/search-index.js"></script><script defer src="../assets/site.js"></script></body></html>

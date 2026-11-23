@@ -1,0 +1,365 @@
+{
+  "schema": "puter.nsite-release.v1",
+  "release_id": "loopy-library-books-docs-sdk-v2",
+  "name": "loopy-library",
+  "directory": "storybook/loopy-library",
+  "title": "Loopy Library Storytime — Books, Docs & SDK",
+  "description": "Puter and Melody’s two illustrated stories, a local-first chapter reader, human-friendly Nsite Loopy SDK docs and developer downloads.",
+  "files": [
+    {
+      "path": "assets/cover-door.webp",
+      "sha256": "4de05bb0c1f5682dd911a33930828516878795bfb5f38250e365e5d65e561712",
+      "size": 193202
+    },
+    {
+      "path": "assets/cover-library.webp",
+      "sha256": "b7d3dfd8fd00481a8d1137303980683a2dc3ee16df7aadcd055fdcce2fbcae1d",
+      "size": 182888
+    },
+    {
+      "path": "assets/library-hero.webp",
+      "sha256": "0ab533a63b415e5e8393f4eb083582975a3287fd9886a59e08414d3b3a746569",
+      "size": 120528
+    },
+    {
+      "path": "assets/reader.js",
+      "sha256": "cc49b6055b382898dfbdb440c9fd4be9adf251b748e750a09e1b7206e0d4d2f5",
+      "size": 4482
+    },
+    {
+      "path": "assets/style.css",
+      "sha256": "6747e8de4052bf0f054b85d611f5be0fc6829d3083f241f41578696b1e538c24",
+      "size": 7483
+    },
+    {
+      "path": "books/catalog.js",
+      "sha256": "cda37d0afa8b924c3f50c11596a8f56a8a16aba939e39b7ba5b92fa4eac4a99e",
+      "size": 31770
+    },
+    {
+      "path": "books/catalog.json",
+      "sha256": "7ef045ac9825e5eaeeaab424b872f3238c2c5d2031a8e2a88441aa2de0bdbac0",
+      "size": 2686
+    },
+    {
+      "path": "docs/api/adapters.html",
+      "sha256": "f9ef9fb476c987a36e67832739ea78aef584f34f37a441abc4101ba85d98d4eb",
+      "size": 8884
+    },
+    {
+      "path": "docs/api/anchor.html",
+      "sha256": "6320f7ceeae4616b25e2615c30747a820dcb532f3f826805af8068cfe29f0095",
+      "size": 12785
+    },
+    {
+      "path": "docs/api/archive.html",
+      "sha256": "f0826cb2a7b0d62329b4a49762fa83420c4afe451c82e2bbd978b597a14d5fc6",
+      "size": 14802
+    },
+    {
+      "path": "docs/api/blossom.html",
+      "sha256": "05269f93ccca3001e983676ed5990db2dd4655b498ec39d526824846f6410f8e",
+      "size": 9835
+    },
+    {
+      "path": "docs/api/core.html",
+      "sha256": "6bc1c1aff26d1cc1bb4c719654bbaffe8e7d753ea5976a294c112757373584f7",
+      "size": 12398
+    },
+    {
+      "path": "docs/api/directory.html",
+      "sha256": "383c4e79b87899ffae536f35412c647d561a416e3617861d5b8c89d5b848013c",
+      "size": 21828
+    },
+    {
+      "path": "docs/api/facade.html",
+      "sha256": "5c6d36305189c01809f5c2ee3b8519850596340a27a80cb78956310ca7ccc91b",
+      "size": 8934
+    },
+    {
+      "path": "docs/api/index.html",
+      "sha256": "0f532800204ecc66a74031f6f4aff085f5643dcf014a0b69a0c5d6aee2c989fe",
+      "size": 9195
+    },
+    {
+      "path": "docs/api/moderation.html",
+      "sha256": "117a5ffa4477addf440f0235caf884c8a5fb7bebc9212b06dee5a8e1fb018306",
+      "size": 17988
+    },
+    {
+      "path": "docs/api/moji.html",
+      "sha256": "73d239dec84d88783ea67149765a10870fa14034d1515a5dca30a3b8a696659f",
+      "size": 11644
+    },
+    {
+      "path": "docs/api/nostr.html",
+      "sha256": "d5b3a9733374b5d80e6155494f9df1b7b5456b4322aa3e0978c818c643abec35",
+      "size": 25164
+    },
+    {
+      "path": "docs/api/nsite.html",
+      "sha256": "b23ce443e701176f3031c2222584a9682d106f704f0062b78512b12c040694f6",
+      "size": 13050
+    },
+    {
+      "path": "docs/api/storage.html",
+      "sha256": "a50edcf7ca36e3374a2ecef67341b0038e2459a625d0c4270a5bcec6ff9b1a29",
+      "size": 8550
+    },
+    {
+      "path": "docs/assets/icon.svg",
+      "sha256": "d117bdb4185d8828ddb1088151ca3080094fd83aaa35b52ca59166e369f67cf6",
+      "size": 342
+    },
+    {
+      "path": "docs/assets/search-index.js",
+      "sha256": "7a41bd1aa464555da6689776693a293c3de7f05d3419fdfde76127f915debc88",
+      "size": 71669
+    },
+    {
+      "path": "docs/assets/site.js",
+      "sha256": "dc22a119873fc14c10f1624d5d00742df91bd2c6e61f44465ac6ee22b422d38e",
+      "size": 4892
+    },
+    {
+      "path": "docs/assets/style.css",
+      "sha256": "3730dcd9cfc3a13dc37bbf9211a8651050bbc025e69876421eb328666f2c0b07",
+      "size": 12086
+    },
+    {
+      "path": "docs/getting-started/architecture.html",
+      "sha256": "078137c365f3750b7dd16df6b7dd7118d6dd2a2b3eb5b7262444f5d8be1b755e",
+      "size": 8932
+    },
+    {
+      "path": "docs/getting-started/configuration.html",
+      "sha256": "8ca1389b58ed18a3b9ce0a9d20e3b9a06a04a780a6c3ca954304e536393bf039",
+      "size": 8628
+    },
+    {
+      "path": "docs/getting-started/installation.html",
+      "sha256": "6522e996409f417e60b44d8aece667a78eb931bb75f560f3cd2062a05239efc6",
+      "size": 9175
+    },
+    {
+      "path": "docs/getting-started/quick-start.html",
+      "sha256": "8fe8f8779558e4beebc9d7a8b9e4ee8787ceaae7c4b5304257ab28c72dd5f212",
+      "size": 9052
+    },
+    {
+      "path": "docs/guides/anchor.html",
+      "sha256": "3ed3d4bfafc12bb3ed7fb1cc87fb1820d8518305edc9543c7aa7d3f0ef3b68e8",
+      "size": 8342
+    },
+    {
+      "path": "docs/guides/archives.html",
+      "sha256": "7f160e65b934bd93f88e10687aee2b8871010345f430ead5b193cb97c794b29d",
+      "size": 9078
+    },
+    {
+      "path": "docs/guides/blossom.html",
+      "sha256": "1d7ef3e2ca2064c5d23c1f8450693a82899c9ddbebde5dec561751619c965519",
+      "size": 8640
+    },
+    {
+      "path": "docs/guides/deepink.html",
+      "sha256": "fcd99bb09044f9b635505b5c66daf913c8376eb9de1fdbcafb110085e20bbe81",
+      "size": 11933
+    },
+    {
+      "path": "docs/guides/directory.html",
+      "sha256": "dfb22e22ef0b850f2f0bea328a488c224e8427c86403f29faed05210d36fd01a",
+      "size": 8319
+    },
+    {
+      "path": "docs/guides/moderation.html",
+      "sha256": "b8705321be82f62c3092a76733f25b5f2732e7fd452dcd02d850c14f1c499c2c",
+      "size": 9250
+    },
+    {
+      "path": "docs/guides/moji.html",
+      "sha256": "718b9f013776c242d690b9a4bc2e0108a9416fc4da2af550fa016a782c1d1e99",
+      "size": 8515
+    },
+    {
+      "path": "docs/guides/nsites.html",
+      "sha256": "a10932b0a69eb1901ae65844feff1cc2159ab34df2236d99334b94c66c819dad",
+      "size": 8768
+    },
+    {
+      "path": "docs/guides/posts.html",
+      "sha256": "074ae099e4b28f532fc1032387eaad82f40a69c21911244d1fda3981802ed0ba",
+      "size": 8569
+    },
+    {
+      "path": "docs/guides/relays.html",
+      "sha256": "5f991d35375074e7ba1a53adf386b33a019592505c312895485026317f9b8615",
+      "size": 9390
+    },
+    {
+      "path": "docs/guides/signers.html",
+      "sha256": "67307576ca5bea01d225e0e2af8f8cfa56c6b4fe7b49a72a96ef02df32a9528a",
+      "size": 10383
+    },
+    {
+      "path": "docs/guides/storage.html",
+      "sha256": "41fd384e39eb9a1da521dc3b97f87504e11e58026cd51605aa459abe1009c0b2",
+      "size": 8190
+    },
+    {
+      "path": "docs/guides/testing.html",
+      "sha256": "e82e50769346a86fa77c42dedf786230f2e730e1bc0236c4fdbd8bee8ff410f3",
+      "size": 8500
+    },
+    {
+      "path": "docs/index.html",
+      "sha256": "acdb72a0c19f0e5daa7305217f7d33772e25459003510a80ef588b461c0b4045",
+      "size": 10821
+    },
+    {
+      "path": "docs/reference/glossary.html",
+      "sha256": "177c55db252b71d4ddd885b3e31a17810d68bbb10100d8ec98b260110d1da25b",
+      "size": 8485
+    },
+    {
+      "path": "docs/reference/licenses.html",
+      "sha256": "0953f9e3252af62c2498f94c80dd0374106384aa036c1e6ccd4cab5b554bfd1c",
+      "size": 9211
+    },
+    {
+      "path": "docs/reference/limits.html",
+      "sha256": "55c61090acb17321f71b71fca8d0700a82e2718953c6feeb24dcaa55f77ddbdd",
+      "size": 8877
+    },
+    {
+      "path": "docs/reference/options.html",
+      "sha256": "f598ba1e6724994a4bf151bf11c341e48250e7def30e43776d8ee6e939753d90",
+      "size": 9780
+    },
+    {
+      "path": "docs/reference/repo-capabilities.html",
+      "sha256": "a5655bbe94ca0fe87804317c726304b4a8bbf3ade50651878b51d7d3e899ce26",
+      "size": 10433
+    },
+    {
+      "path": "docs/reference/security.html",
+      "sha256": "aee0f7b88c8fba9a8b5d0ca076122915d9c96b3124e8432f27e02c4cf2dd537e",
+      "size": 8713
+    },
+    {
+      "path": "docs/reference/source-collection.html",
+      "sha256": "ca2a0cdb39b540dcae7eff8ba83dadfad8ab1bc792dfd4b37ff1187a45e829be",
+      "size": 9190
+    },
+    {
+      "path": "docs/reference/types.html",
+      "sha256": "f23c8ea2221d973aa5f7944875213e601569100ac69ba7e674a682e0bb0b38c8",
+      "size": 7749
+    },
+    {
+      "path": "docs/site-manifest.json",
+      "sha256": "ee6de55197e44d96d5d89fb8bfffb3a901f807eecb64ef580e1ad7701d70167c",
+      "size": 2098
+    },
+    {
+      "path": "docs/skills/amber-signer-handoff.html",
+      "sha256": "375012b97214b28f406c2b7d435ef272d746c7ba4c9557da6e5a5afcf8b7b210",
+      "size": 8937
+    },
+    {
+      "path": "docs/skills/build-nostr-client.html",
+      "sha256": "d79f6c2e8182c894cb5190e00d1104e56236151dc4a0fb789d150712d156e3fb",
+      "size": 9112
+    },
+    {
+      "path": "docs/skills/curate-nsite.html",
+      "sha256": "5e79c4f79eb02fe7baaacd3c3573a3ac81f67e82852078fc8c37762b4ba6e21e",
+      "size": 8676
+    },
+    {
+      "path": "docs/skills/index.html",
+      "sha256": "daf52aac2d5b9cf2315a822241d3fe5e6b81e8517501ae7f1ef2cb152da34835",
+      "size": 9867
+    },
+    {
+      "path": "docs/skills/publish-nsite.html",
+      "sha256": "f0dac505ca5c021c42542d71dc210ee0af66e062c65d3363ee9034d5b170f14f",
+      "size": 8780
+    },
+    {
+      "path": "docs/skills/recover-nsite.html",
+      "sha256": "dd1b37594b904dcb6758dfa734d5d54691b6f51681653ba01bf2e15b598be4ab",
+      "size": 8718
+    },
+    {
+      "path": "docs/skills/recover-repository-capabilities.html",
+      "sha256": "580cdf0e48ddfeeda8e554e9e8fe9360db1574abbef8819c5cc0c824a124a17e",
+      "size": 10165
+    },
+    {
+      "path": "docs/skills/relay-blossom-discovery.html",
+      "sha256": "2882e2c60929c6eeaff49641be64d6145513c259a4790f6ef2520c0e7251b13f",
+      "size": 8941
+    },
+    {
+      "path": "docs/skills/restore-source-sdk.html",
+      "sha256": "b17ab4edc3434a19f703ecac8e1fc105879342991feefba0450ac36dc673a527",
+      "size": 9963
+    },
+    {
+      "path": "docs/skills/verify-sdk-export.html",
+      "sha256": "ea915ae56d859d7fcb8892033ad0ab16ac7595df2748bf3f113058c84d006584",
+      "size": 8667
+    },
+    {
+      "path": "docs/workflows/deepink-real-client.html",
+      "sha256": "f2b18653de27d1a0533b24f553f33dbb4b20696339e77c3f777e3dccef27f493",
+      "size": 11404
+    },
+    {
+      "path": "docs/workflows/index.html",
+      "sha256": "3072bfe274a0e0c06ab26b1b47b285b0b5388234281768fdaecf2571363283c1",
+      "size": 9073
+    },
+    {
+      "path": "docs/workflows/nsite-release.html",
+      "sha256": "bee7b6e9591a27d4eee216c88b0b49c00c5c2267ef2520be6ef50a7d7242ffcf",
+      "size": 10647
+    },
+    {
+      "path": "docs/workflows/source-to-sdk.html",
+      "sha256": "48d71791119d9ee5b55412ba25416c19b2ef204a5ee6c5b4a6befeb772bb6946",
+      "size": 11775
+    },
+    {
+      "path": "downloads/LICENSES.md",
+      "sha256": "44ad3a3bcbd941408e86d877b9c232df74bb8a8ceab4be5c20449f5fb6490fcf",
+      "size": 2431
+    },
+    {
+      "path": "downloads/Nsite-Loopy-Unified-SDK-1.1.0.zip",
+      "sha256": "35dd53708d4b981c34d2e6987a9c4426c9061b1fb4660d475690a548cf6824fd",
+      "size": 144645
+    },
+    {
+      "path": "downloads/README.txt",
+      "sha256": "fae1afe636d0c35dc6f103b59518de3d96d5c86891e923e873dee2eb4ddf4003",
+      "size": 382
+    },
+    {
+      "path": "downloads/chaoticka-nsite-loopy-sdk-1.1.0.tgz",
+      "sha256": "6ec8dc261bcb62e5979df423e12c068e42fffa35b71dd595039982d29e872436",
+      "size": 115845
+    },
+    {
+      "path": "index.html",
+      "sha256": "e7fda55129178eb35852811ca68d9a428ab84eb3fc630d0d0738866156a8e618",
+      "size": 4144
+    },
+    {
+      "path": "read.html",
+      "sha256": "aa253100326fae59fd778aa93bf1524f2cba9790d756121be0d94c34b926aaa5",
+      "size": 3105
+    }
+  ]
+}
