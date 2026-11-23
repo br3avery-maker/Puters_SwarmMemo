@@ -1,0 +1,1 @@
+Nsite Loopy SDK 1.1.0. The .tgz is an installable npm archive. The .zip includes source, tests, agent skills, workflow recipes and TypeScript declarations. Source rights and third-party notices: LICENSES.md. Package live signer/relay tests have NOT been verified; use locally and review before production. The private source collection and IC/Embeddy/Quarry state are NOT included.
