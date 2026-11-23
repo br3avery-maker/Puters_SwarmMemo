@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><meta name="description" content="Reuse old code — source-derived Nsite Loopy SDK 1.1.0 docs"><title>Reuse old code · Nsite Loopy Docs</title><link rel="icon" type="image/svg+xml" href="../assets/icon.svg"><link rel="stylesheet" href="../assets/style.css"></head>
+<body><header class="site-header"><div class="head-inner"><button class="menu-btn" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><a class="brand" href="../index.html"><img src="../assets/icon.svg" class="brand-icon" alt=""><span>Nsite Loopy</span><span class="brand-tag">DOCS</span></a><div class="head-spacer"></div><nav class="top-pills" aria-label="Top navigation"><a href="../getting-started/installation.html">Guides</a><a href="../api/index.html">API</a><a href="../workflows/index.html">Workflows</a></nav><button type="button" data-open-search class="header-search" aria-label="Search documentation"><span aria-hidden="true">⌕</span><span class="search-text">Search documentation</span><kbd class="keycap">/</kbd></button><span class="version">v1.1.0</span></div></header>
+<div class="sidebar-shade" id="sidebar-shade"></div><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Documentation navigation"><div class="nav-group"><div class="nav-heading">Start here</div><div class="nav-links"><a class="nav-link" href="../index.html">Home</a><a class="nav-link" href="../getting-started/installation.html">Installation</a><a class="nav-link" href="../getting-started/quick-start.html">Quick start</a><a class="nav-link" href="../getting-started/architecture.html">Architecture</a><a class="nav-link" href="../getting-started/configuration.html">Configuration</a></div></div><div class="nav-group"><div class="nav-heading">Guides</div><div class="nav-links"><a class="nav-link" href="../guides/signers.html">Signing &amp; Amber</a><a class="nav-link" href="../guides/relays.html">Relay discovery</a><a class="nav-link" href="../guides/posts.html">Posts &amp; reactions</a><a class="nav-link" href="../guides/blossom.html">Blossom media</a><a class="nav-link" href="../guides/nsites.html">Publish nsites</a><a class="nav-link" href="../guides/archives.html">Archives &amp; CAS</a><a class="nav-link" href="../guides/directory.html">Directory &amp; collections</a><a class="nav-link" href="../guides/moderation.html">Spam &amp; moderation</a><a class="nav-link" href="../guides/moji.html">Moji &amp; NIP-30</a><a class="nav-link" href="../guides/anchor.html">Anchor &amp; recovery</a><a class="nav-link" href="../guides/storage.html">Storage adapters</a><a class="nav-link" href="../guides/deepink.html">Deepink integration</a><a class="nav-link" href="../guides/testing.html">Testing &amp; verification</a></div></div><div class="nav-group"><div class="nav-heading">API reference</div><div class="nav-links"><a class="nav-link" href="../api/index.html">Choose a function</a><a class="nav-link" href="../api/facade.html">SDK shortcuts</a><a class="nav-link" href="../api/core.html">Core</a><a class="nav-link" href="../api/nostr.html">Nostr</a><a class="nav-link" href="../api/nsite.html">Nsite</a><a class="nav-link" href="../api/blossom.html">Blossom</a><a class="nav-link" href="../api/archive.html">Archive</a><a class="nav-link" href="../api/directory.html">Directory</a><a class="nav-link" href="../api/storage.html">Storage</a><a class="nav-link" href="../api/adapters.html">Adapters</a><a class="nav-link" href="../api/moderation.html">Moderation</a><a class="nav-link" href="../api/moji.html">Moji</a><a class="nav-link" href="../api/anchor.html">Anchor</a></div></div><div class="nav-group"><div class="nav-heading">Workflows &amp; agent help</div><div class="nav-links"><a class="nav-link" href="../workflows/index.html">Choose a workflow</a><a class="nav-link active" href="../workflows/source-to-sdk.html" aria-current="page">Reuse old code</a><a class="nav-link" href="../workflows/deepink-real-client.html">Make Deepink real</a><a class="nav-link" href="../workflows/nsite-release.html">Publish an nsite</a><a class="nav-link" href="../skills/index.html">What agents can do</a><a class="nav-link" href="../skills/recover-repository-capabilities.html">Recover Repository Capabilities</a><a class="nav-link" href="../skills/amber-signer-handoff.html">Amber Signer Handoff</a><a class="nav-link" href="../skills/build-nostr-client.html">Build Nostr Client</a><a class="nav-link" href="../skills/curate-nsite.html">Curate Nsite</a><a class="nav-link" href="../skills/publish-nsite.html">Publish Nsite</a><a class="nav-link" href="../skills/recover-nsite.html">Recover Nsite</a><a class="nav-link" href="../skills/relay-blossom-discovery.html">Relay Blossom Discovery</a><a class="nav-link" href="../skills/restore-source-sdk.html">Restore Source Sdk</a><a class="nav-link" href="../skills/verify-sdk-export.html">Verify Sdk Export</a></div></div><div class="nav-group"><div class="nav-heading">Reference</div><div class="nav-links"><a class="nav-link" href="../reference/options.html">Runtime options</a><a class="nav-link" href="../reference/source-collection.html">Source provenance</a><a class="nav-link" href="../reference/repo-capabilities.html">Repo capability audit</a><a class="nav-link" href="../reference/security.html">Security</a><a class="nav-link" href="../reference/limits.html">Known limits</a><a class="nav-link" href="../reference/types.html">Types</a><a class="nav-link" href="../reference/licenses.html">Licenses</a><a class="nav-link" href="../reference/glossary.html">Glossary</a></div></div></aside><main class="content" id="content"><div class="breadcrumbs"><a href="../index.html">Docs</a><span class="crumbsep">/</span><span>Workflows &amp; agent help</span><span class="crumbsep">/</span><span class="current">Reuse old code</span></div><article class="doc-body"><h1 id="turn-recovered-code-into-a-reusable-library">Turn recovered code into a reusable library</h1>
+<p>Find the useful parts hiding inside old nsite ZIPs, HTML projects, and repositories, then turn those parts into functions other apps can import. This is the Loopy Library workflow that stops us rebuilding the same signer, relay, and storage machinery for every project.</p>
+<p><strong>When to use it:</strong> Use this when a project needs something we already built elsewhere, or when recovering code from an older app.</p>
+<h2 id="what-happens">What happens</h2>
+<ol>
+<li><strong>Find the originals.</strong> Scan source projects safely, record filenames and hashes, and identify exact duplicates.</li>
+<li><strong>Recover real code.</strong> Keep exact source bytes and the original project paths so nothing useful is lost.</li>
+<li><strong>Ask Loopy and Embeddy.</strong> Search the existing semantic index and Code Quarry for related implementations, rather than trusting filename matches alone.</li>
+<li><strong>Make a clean API.</strong> Extract one reusable operation with standard inputs, outputs, errors, and dependencies; do not clone the whole old app.</li>
+<li><strong>Try it in another app.</strong> Run positive and failure tests, and use the module from a fresh consumer project.</li>
+<li><strong>Package and explain.</strong> Update the library, human documentation, machine-readable contracts, tests, and source history together.</li>
+</ol>
+<h2 id="what-you-get">What you get</h2>
+<p>A tested, importable capability with an API, documentation, examples, and a way to trace it back to its source.</p>
+<h2 id="for-agents-workflow-instructions">For agents: workflow instructions</h2>
+<p>A search result or embedding match is only a lead. A capability becomes reusable after extraction and consumer testing.</p>
+<p>The structured recipe below is available for automation and integration tools. You do not need to read it to understand the workflow.</p>
+<details class="machine-recipe"><summary>Show exact agent workflow (JSON)</summary><pre><code class="language-json">{
+  &quot;schema&quot;: &quot;loopy.workflow/1&quot;,
+  &quot;id&quot;: &quot;recover-unify-verify-nsite&quot;,
+  &quot;trigger&quot;: &quot;new Nostr/nsite ZIP, HTML, or donor code needs reusable API&quot;,
+  &quot;steps&quot;: [
+    {
+      &quot;id&quot;: &quot;discover&quot;,
+      &quot;action&quot;: &quot;scripts/nsite_source_audit.py scan&quot;,
+      &quot;output&quot;: &quot;source index, exact hashes&quot;,
+      &quot;gate&quot;: &quot;source safely inspected&quot;
+    },
+    {
+      &quot;id&quot;: &quot;restore&quot;,
+      &quot;action&quot;: &quot;scripts/source_collection.py export&quot;,
+      &quot;output&quot;: &quot;exact source collection&quot;,
+      &quot;gate&quot;: &quot;no path traversal / object hash mismatches&quot;
+    },
+    {
+      &quot;id&quot;: &quot;reuse&quot;,
+      &quot;action&quot;: &quot;inspect IC Loopy/Embeddy and Code Quarry + docs/API_INDEX.json&quot;,
+      &quot;output&quot;: &quot;candidate and existing API mapping&quot;,
+      &quot;gate&quot;: &quot;avoid parallel implementations&quot;
+    },
+    {
+      &quot;id&quot;: &quot;implement&quot;,
+      &quot;action&quot;: &quot;extend src namespace and types/index.d.ts&quot;,
+      &quot;output&quot;: &quot;callable implementation and documented options&quot;,
+      &quot;gate&quot;: &quot;no mock-only claims&quot;
+    },
+    {
+      &quot;id&quot;: &quot;verify&quot;,
+      &quot;action&quot;: &quot;npm run verify; python3 -m unittest discover -s tests -p test_*.py&quot;,
+      &quot;output&quot;: &quot;test receipt&quot;,
+      &quot;gate&quot;: &quot;all local checks pass&quot;
+    },
+    {
+      &quot;id&quot;: &quot;consumer&quot;,
+      &quot;action&quot;: &quot;test adapted module outside donor app&quot;,
+      &quot;output&quot;: &quot;working consumer or explicit live/device gap&quot;,
+      &quot;gate&quot;: &quot;requires evidence of requested behavior&quot;
+    },
+    {
+      &quot;id&quot;: &quot;export&quot;,
+      &quot;action&quot;: &quot;pack source, skills, docs, workflows, tests, provenance&quot;,
+      &quot;output&quot;: &quot;portable SDK and private source archive&quot;,
+      &quot;gate&quot;: &quot;re-extract and exact hash readback&quot;
+    }
+  ],
+  &quot;authority&quot;: &quot;read, local build, local test, private owner-controlled preservation; no unauthorized publication&quot;
+}
+</code></pre></details>
+</article><div class="page-controls"><a href="../workflows/index.html"><small>Previous</small>Choose a workflow</a><a href="../workflows/deepink-real-client.html"><small>Next</small>Make Deepink real</a></div><footer class="footer"><span>Nsite Loopy SDK v1.1.0</span><span>·</span><span>Offline docs — no tracking, no CDN</span><span>·</span><a href="../reference/limits.html">Verification scope</a></footer></main><aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><a class="depth2" href="#what-happens">What happens</a><a class="depth2" href="#what-you-get">What you get</a><a class="depth2" href="#for-agents-workflow-instructions">For agents: workflow instructions</a></aside></div>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search documentation"><div class="search-head"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search APIs and guides…" autocomplete="off" aria-label="Search query"><button type="button" onclick="this.closest('dialog').close()">Esc</button></div><div class="search-results" id="search-results"></div></dialog><script defer src="../assets/search-index.js"></script><script defer src="../assets/site.js"></script></body></html>

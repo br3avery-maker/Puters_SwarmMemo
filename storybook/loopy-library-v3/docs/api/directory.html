@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><meta name="description" content="Directory — source-derived Nsite Loopy SDK 1.1.0 docs"><title>Directory · Nsite Loopy Docs</title><link rel="icon" type="image/svg+xml" href="../assets/icon.svg"><link rel="stylesheet" href="../assets/style.css"></head>
+<body><header class="site-header"><div class="head-inner"><button class="menu-btn" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><a class="brand" href="../index.html"><img src="../assets/icon.svg" class="brand-icon" alt=""><span>Nsite Loopy</span><span class="brand-tag">DOCS</span></a><div class="head-spacer"></div><nav class="top-pills" aria-label="Top navigation"><a href="../getting-started/installation.html">Guides</a><a href="../api/index.html">API</a><a href="../workflows/index.html">Workflows</a></nav><button type="button" data-open-search class="header-search" aria-label="Search documentation"><span aria-hidden="true">⌕</span><span class="search-text">Search documentation</span><kbd class="keycap">/</kbd></button><span class="version">v1.1.0</span></div></header>
+<div class="sidebar-shade" id="sidebar-shade"></div><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Documentation navigation"><div class="nav-group"><div class="nav-heading">Start here</div><div class="nav-links"><a class="nav-link" href="../index.html">Home</a><a class="nav-link" href="../getting-started/installation.html">Installation</a><a class="nav-link" href="../getting-started/quick-start.html">Quick start</a><a class="nav-link" href="../getting-started/architecture.html">Architecture</a><a class="nav-link" href="../getting-started/configuration.html">Configuration</a></div></div><div class="nav-group"><div class="nav-heading">Guides</div><div class="nav-links"><a class="nav-link" href="../guides/signers.html">Signing &amp; Amber</a><a class="nav-link" href="../guides/relays.html">Relay discovery</a><a class="nav-link" href="../guides/posts.html">Posts &amp; reactions</a><a class="nav-link" href="../guides/blossom.html">Blossom media</a><a class="nav-link" href="../guides/nsites.html">Publish nsites</a><a class="nav-link" href="../guides/archives.html">Archives &amp; CAS</a><a class="nav-link" href="../guides/directory.html">Directory &amp; collections</a><a class="nav-link" href="../guides/moderation.html">Spam &amp; moderation</a><a class="nav-link" href="../guides/moji.html">Moji &amp; NIP-30</a><a class="nav-link" href="../guides/anchor.html">Anchor &amp; recovery</a><a class="nav-link" href="../guides/storage.html">Storage adapters</a><a class="nav-link" href="../guides/deepink.html">Deepink integration</a><a class="nav-link" href="../guides/testing.html">Testing &amp; verification</a></div></div><div class="nav-group"><div class="nav-heading">API reference</div><div class="nav-links"><a class="nav-link" href="../api/index.html">Choose a function</a><a class="nav-link" href="../api/facade.html">SDK shortcuts</a><a class="nav-link" href="../api/core.html">Core</a><a class="nav-link" href="../api/nostr.html">Nostr</a><a class="nav-link" href="../api/nsite.html">Nsite</a><a class="nav-link" href="../api/blossom.html">Blossom</a><a class="nav-link" href="../api/archive.html">Archive</a><a class="nav-link active" href="../api/directory.html" aria-current="page">Directory</a><a class="nav-link" href="../api/storage.html">Storage</a><a class="nav-link" href="../api/adapters.html">Adapters</a><a class="nav-link" href="../api/moderation.html">Moderation</a><a class="nav-link" href="../api/moji.html">Moji</a><a class="nav-link" href="../api/anchor.html">Anchor</a></div></div><div class="nav-group"><div class="nav-heading">Workflows &amp; agent help</div><div class="nav-links"><a class="nav-link" href="../workflows/index.html">Choose a workflow</a><a class="nav-link" href="../workflows/source-to-sdk.html">Reuse old code</a><a class="nav-link" href="../workflows/deepink-real-client.html">Make Deepink real</a><a class="nav-link" href="../workflows/nsite-release.html">Publish an nsite</a><a class="nav-link" href="../skills/index.html">What agents can do</a><a class="nav-link" href="../skills/recover-repository-capabilities.html">Recover Repository Capabilities</a><a class="nav-link" href="../skills/amber-signer-handoff.html">Amber Signer Handoff</a><a class="nav-link" href="../skills/build-nostr-client.html">Build Nostr Client</a><a class="nav-link" href="../skills/curate-nsite.html">Curate Nsite</a><a class="nav-link" href="../skills/publish-nsite.html">Publish Nsite</a><a class="nav-link" href="../skills/recover-nsite.html">Recover Nsite</a><a class="nav-link" href="../skills/relay-blossom-discovery.html">Relay Blossom Discovery</a><a class="nav-link" href="../skills/restore-source-sdk.html">Restore Source Sdk</a><a class="nav-link" href="../skills/verify-sdk-export.html">Verify Sdk Export</a></div></div><div class="nav-group"><div class="nav-heading">Reference</div><div class="nav-links"><a class="nav-link" href="../reference/options.html">Runtime options</a><a class="nav-link" href="../reference/source-collection.html">Source provenance</a><a class="nav-link" href="../reference/repo-capabilities.html">Repo capability audit</a><a class="nav-link" href="../reference/security.html">Security</a><a class="nav-link" href="../reference/limits.html">Known limits</a><a class="nav-link" href="../reference/types.html">Types</a><a class="nav-link" href="../reference/licenses.html">Licenses</a><a class="nav-link" href="../reference/glossary.html">Glossary</a></div></div></aside><main class="content" id="content"><div class="breadcrumbs"><a href="../index.html">Docs</a><span class="crumbsep">/</span><span>API reference</span><span class="crumbsep">/</span><span class="current">Directory</span></div><article class="doc-body"><h1 id="directory-tools">Directory tools</h1>
+<p>Build a searchable library of nsites, collections, publishers and versions. Hide entries without deleting their source records.</p>
+<p><strong>Try it in context:</strong> <a href="../guides/directory.html">Read the guide</a>.</p>
+<pre><code class="language-js">import { Directory } from '@chaoticka/nsite-loopy-sdk';
+</code></pre>
+<h2 id="what-you-can-call-31">What you can call (31)</h2>
+<h3 id="sorts">SORTS</h3>
+<p>The available sorting choices for a site directory.</p>
+<p><strong>Call it as:</strong> <code>Directory.SORTS</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const SORTS:Record&lt;string,string&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="version">VERSION</h3>
+<p>The saved directory-data format version.</p>
+<p><strong>Call it as:</strong> <code>Directory.VERSION</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const VERSION:number;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="ageseconds">ageSeconds</h3>
+<p>Calculate how old a record is for sorting or display.</p>
+<p><strong>Call it as:</strong> <code>Directory.ageSeconds</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function ageSeconds(value:string):number|null;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="bulkgroup">bulkGroup</h3>
+<p>Move several directory entries into a chosen group together.</p>
+<p><strong>Call it as:</strong> <code>Directory.bulkGroup</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function bulkGroup(state:object,ids:string[],group:string,remove?:boolean):void;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="defaultrules">defaultRules</h3>
+<p>Return the starter search and filtering rules for a directory.</p>
+<p><strong>Call it as:</strong> <code>Directory.defaultRules</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const defaultRules:object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="directoryrows">directoryRows</h3>
+<p>Build the site rows shown in a searchable directory.</p>
+<p><strong>Call it as:</strong> <code>Directory.directoryRows</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function directoryRows(sites:object[],state:object,options?:object):object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="effective">effective</h3>
+<p>Calculate which metadata values apply after user edits and overrides.</p>
+<p><strong>Call it as:</strong> <code>Directory.effective</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function effective(site:object,state:object):object;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="emptystate">emptyState</h3>
+<p>Create a new empty directory workspace with the expected structure.</p>
+<p><strong>Call it as:</strong> <code>Directory.emptyState</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function emptyState():any;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="exportcatalog">exportCatalog</h3>
+<p>Export the saved catalog and its editing state for backup.</p>
+<p><strong>Call it as:</strong> <code>Directory.exportCatalog</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function exportCatalog(sites:object[],state:object):object;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="groupstate">groupState</h3>
+<p>Read which entries and settings belong to a chosen collection.</p>
+<p><strong>Call it as:</strong> <code>Directory.groupState</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function groupState(state:object,ids:string[]):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="htmlmetadata">htmlMetadata</h3>
+<p>Extract simple metadata such as title and description from HTML.</p>
+<p><strong>Call it as:</strong> <code>Directory.htmlMetadata</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function htmlMetadata(source:string):{title:string;description:string;headings:string[]};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/metadata.js</code></p>
+<h3 id="matches">matches</h3>
+<p>Check whether a directory entry meets the current search/filter choices.</p>
+<p><strong>Call it as:</strong> <code>Directory.matches</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function matches(site:object,rule:object):boolean;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="membership">membership</h3>
+<p>Find which collections contain a particular site.</p>
+<p><strong>Call it as:</strong> <code>Directory.membership</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function membership(state:object):Map&lt;string,object&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="movequeue">moveQueue</h3>
+<p>Move an item to a different position in the review queue.</p>
+<p><strong>Call it as:</strong> <code>Directory.moveQueue</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function moveQueue(state:object,delta:number):unknown;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="patch">patch</h3>
+<p>Apply a controlled edit to a saved directory item.</p>
+<p><strong>Call it as:</strong> <code>Directory.patch</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function patch(state:object,ids:string[],changes:object):void;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="publiccatalog">publicCatalog</h3>
+<p>Create a public-facing catalog that omits entries marked hidden.</p>
+<p><strong>Call it as:</strong> <code>Directory.publicCatalog</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publicCatalog(sites:object[],state:object,group?:string):object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="publishercounts">publisherCounts</h3>
+<p>Count visible entries grouped by their publishing account.</p>
+<p><strong>Call it as:</strong> <code>Directory.publisherCounts</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publisherCounts(sites:object[],state:object):Map&lt;string,number&gt;;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="publisherkey">publisherKey</h3>
+<p>Normalize a publisher identifier for grouping.</p>
+<p><strong>Call it as:</strong> <code>Directory.publisherKey</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function publisherKey(site:object):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="reasons">reasons</h3>
+<p>Explain which directory rules included or excluded an entry.</p>
+<p><strong>Call it as:</strong> <code>Directory.reasons</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function reasons(site:object,state:object):string[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="safeimage">safeImage</h3>
+<p>Validate whether an image URL is suitable to display.</p>
+<p><strong>Call it as:</strong> <code>Directory.safeImage</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function safeImage(value:unknown):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="safeurl">safeURL</h3>
+<p>Validate a link before displaying or opening it.</p>
+<p><strong>Call it as:</strong> <code>Directory.safeURL</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function safeURL(value:string):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="select">select</h3>
+<p>Choose matching entries from a catalog and apply ordering.</p>
+<p><strong>Call it as:</strong> <code>Directory.select</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function select(sites:object[],state:object,options?:object):object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="setqueue">setQueue</h3>
+<p>Set up the order in which saved items should be reviewed.</p>
+<p><strong>Call it as:</strong> <code>Directory.setQueue</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function setQueue(state:object,ids:string[],append?:boolean):void;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="similaritykey">similarityKey</h3>
+<p>Calculate a key useful for comparing likely repeated or cloned entries.</p>
+<p><strong>Call it as:</strong> <code>Directory.similarityKey</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function similarityKey(site:object):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="stacksites">stackSites</h3>
+<p>Group versions or related sites into a stack without deleting originals.</p>
+<p><strong>Call it as:</strong> <code>Directory.stackSites</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function stackSites(state:object,ids:string[],meta?:{title?:string;description?:string}):object;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="togglestate">toggleState</h3>
+<p>Change a simple saved state flag such as hidden or selected.</p>
+<p><strong>Call it as:</strong> <code>Directory.toggleState</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function toggleState(values:boolean[]):string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="unstack">unstack</h3>
+<p>Remove a site from a stack without erasing the site.</p>
+<p><strong>Call it as:</strong> <code>Directory.unstack</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function unstack(state:object,ids:string[],remember?:boolean):void;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="upgrade">upgrade</h3>
+<p>Upgrade saved directory data to the current format.</p>
+<p><strong>Call it as:</strong> <code>Directory.upgrade</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function upgrade(state:object):object;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="validatecatalog">validateCatalog</h3>
+<p>Check a saved catalog for invalid entries and structure.</p>
+<p><strong>Call it as:</strong> <code>Directory.validateCatalog</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function validateCatalog(input:object):object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="validaterules">validateRules</h3>
+<p>Check whether directory filtering rules have a usable format.</p>
+<p><strong>Call it as:</strong> <code>Directory.validateRules</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function validateRules(rules:object[]):object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+<h3 id="validateworkspace">validateWorkspace</h3>
+<p>Check that a complete saved directory workspace is consistent.</p>
+<p><strong>Call it as:</strong> <code>Directory.validateWorkspace</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function validateWorkspace(workspace:object,sites:object[]):object;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/directory/model.js</code></p>
+</article><div class="page-controls"><a href="../api/archive.html"><small>Previous</small>Archive</a><a href="../api/storage.html"><small>Next</small>Storage</a></div><footer class="footer"><span>Nsite Loopy SDK v1.1.0</span><span>·</span><span>Offline docs — no tracking, no CDN</span><span>·</span><a href="../reference/limits.html">Verification scope</a></footer></main><aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><a class="depth2" href="#what-you-can-call-31">What you can call (31)</a><a class="depth3" href="#sorts">SORTS</a><a class="depth3" href="#version">VERSION</a><a class="depth3" href="#ageseconds">ageSeconds</a><a class="depth3" href="#bulkgroup">bulkGroup</a><a class="depth3" href="#c0c0c0ultrules">defaultRules</a><a class="depth3" href="#directoryrows">directoryRows</a><a class="depth3" href="#effective">effective</a><a class="depth3" href="#emptystate">emptyState</a><a class="depth3" href="#exportcatalog">exportCatalog</a><a class="depth3" href="#groupstate">groupState</a><a class="depth3" href="#htmlmetadata">htmlMetadata</a><a class="depth3" href="#matches">matches</a><a class="depth3" href="#membership">membership</a><a class="depth3" href="#movequeue">moveQueue</a><a class="depth3" href="#patch">patch</a><a class="depth3" href="#publiccatalog">publicCatalog</a><a class="depth3" href="#publishercounts">publisherCounts</a><a class="depth3" href="#publisherkey">publisherKey</a><a class="depth3" href="#reasons">reasons</a><a class="depth3" href="#safeimage">safeImage</a><a class="depth3" href="#safeurl">safeURL</a><a class="depth3" href="#select">select</a><a class="depth3" href="#setqueue">setQueue</a><a class="depth3" href="#similaritykey">similarityKey</a><a class="depth3" href="#stacksites">stackSites</a><a class="depth3" href="#togglestate">toggleState</a><a class="depth3" href="#unstack">unstack</a><a class="depth3" href="#upgrade">upgrade</a><a class="depth3" href="#validatecatalog">validateCatalog</a><a class="depth3" href="#validaterules">validateRules</a><a class="depth3" href="#validateworkspace">validateWorkspace</a></aside></div>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search documentation"><div class="search-head"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search APIs and guides…" autocomplete="off" aria-label="Search query"><button type="button" onclick="this.closest('dialog').close()">Esc</button></div><div class="search-results" id="search-results"></div></dialog><script defer src="../assets/search-index.js"></script><script defer src="../assets/site.js"></script></body></html>

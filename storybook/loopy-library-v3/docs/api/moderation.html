@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-root="../"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="color-scheme" content="dark"><meta name="description" content="Moderation — source-derived Nsite Loopy SDK 1.1.0 docs"><title>Moderation · Nsite Loopy Docs</title><link rel="icon" type="image/svg+xml" href="../assets/icon.svg"><link rel="stylesheet" href="../assets/style.css"></head>
+<body><header class="site-header"><div class="head-inner"><button class="menu-btn" id="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button><a class="brand" href="../index.html"><img src="../assets/icon.svg" class="brand-icon" alt=""><span>Nsite Loopy</span><span class="brand-tag">DOCS</span></a><div class="head-spacer"></div><nav class="top-pills" aria-label="Top navigation"><a href="../getting-started/installation.html">Guides</a><a href="../api/index.html">API</a><a href="../workflows/index.html">Workflows</a></nav><button type="button" data-open-search class="header-search" aria-label="Search documentation"><span aria-hidden="true">⌕</span><span class="search-text">Search documentation</span><kbd class="keycap">/</kbd></button><span class="version">v1.1.0</span></div></header>
+<div class="sidebar-shade" id="sidebar-shade"></div><div class="layout"><aside class="sidebar" id="sidebar" aria-label="Documentation navigation"><div class="nav-group"><div class="nav-heading">Start here</div><div class="nav-links"><a class="nav-link" href="../index.html">Home</a><a class="nav-link" href="../getting-started/installation.html">Installation</a><a class="nav-link" href="../getting-started/quick-start.html">Quick start</a><a class="nav-link" href="../getting-started/architecture.html">Architecture</a><a class="nav-link" href="../getting-started/configuration.html">Configuration</a></div></div><div class="nav-group"><div class="nav-heading">Guides</div><div class="nav-links"><a class="nav-link" href="../guides/signers.html">Signing &amp; Amber</a><a class="nav-link" href="../guides/relays.html">Relay discovery</a><a class="nav-link" href="../guides/posts.html">Posts &amp; reactions</a><a class="nav-link" href="../guides/blossom.html">Blossom media</a><a class="nav-link" href="../guides/nsites.html">Publish nsites</a><a class="nav-link" href="../guides/archives.html">Archives &amp; CAS</a><a class="nav-link" href="../guides/directory.html">Directory &amp; collections</a><a class="nav-link" href="../guides/moderation.html">Spam &amp; moderation</a><a class="nav-link" href="../guides/moji.html">Moji &amp; NIP-30</a><a class="nav-link" href="../guides/anchor.html">Anchor &amp; recovery</a><a class="nav-link" href="../guides/storage.html">Storage adapters</a><a class="nav-link" href="../guides/deepink.html">Deepink integration</a><a class="nav-link" href="../guides/testing.html">Testing &amp; verification</a></div></div><div class="nav-group"><div class="nav-heading">API reference</div><div class="nav-links"><a class="nav-link" href="../api/index.html">Choose a function</a><a class="nav-link" href="../api/facade.html">SDK shortcuts</a><a class="nav-link" href="../api/core.html">Core</a><a class="nav-link" href="../api/nostr.html">Nostr</a><a class="nav-link" href="../api/nsite.html">Nsite</a><a class="nav-link" href="../api/blossom.html">Blossom</a><a class="nav-link" href="../api/archive.html">Archive</a><a class="nav-link" href="../api/directory.html">Directory</a><a class="nav-link" href="../api/storage.html">Storage</a><a class="nav-link" href="../api/adapters.html">Adapters</a><a class="nav-link active" href="../api/moderation.html" aria-current="page">Moderation</a><a class="nav-link" href="../api/moji.html">Moji</a><a class="nav-link" href="../api/anchor.html">Anchor</a></div></div><div class="nav-group"><div class="nav-heading">Workflows &amp; agent help</div><div class="nav-links"><a class="nav-link" href="../workflows/index.html">Choose a workflow</a><a class="nav-link" href="../workflows/source-to-sdk.html">Reuse old code</a><a class="nav-link" href="../workflows/deepink-real-client.html">Make Deepink real</a><a class="nav-link" href="../workflows/nsite-release.html">Publish an nsite</a><a class="nav-link" href="../skills/index.html">What agents can do</a><a class="nav-link" href="../skills/recover-repository-capabilities.html">Recover Repository Capabilities</a><a class="nav-link" href="../skills/amber-signer-handoff.html">Amber Signer Handoff</a><a class="nav-link" href="../skills/build-nostr-client.html">Build Nostr Client</a><a class="nav-link" href="../skills/curate-nsite.html">Curate Nsite</a><a class="nav-link" href="../skills/publish-nsite.html">Publish Nsite</a><a class="nav-link" href="../skills/recover-nsite.html">Recover Nsite</a><a class="nav-link" href="../skills/relay-blossom-discovery.html">Relay Blossom Discovery</a><a class="nav-link" href="../skills/restore-source-sdk.html">Restore Source Sdk</a><a class="nav-link" href="../skills/verify-sdk-export.html">Verify Sdk Export</a></div></div><div class="nav-group"><div class="nav-heading">Reference</div><div class="nav-links"><a class="nav-link" href="../reference/options.html">Runtime options</a><a class="nav-link" href="../reference/source-collection.html">Source provenance</a><a class="nav-link" href="../reference/repo-capabilities.html">Repo capability audit</a><a class="nav-link" href="../reference/security.html">Security</a><a class="nav-link" href="../reference/limits.html">Known limits</a><a class="nav-link" href="../reference/types.html">Types</a><a class="nav-link" href="../reference/licenses.html">Licenses</a><a class="nav-link" href="../reference/glossary.html">Glossary</a></div></div></aside><main class="content" id="content"><div class="breadcrumbs"><a href="../index.html">Docs</a><span class="crumbsep">/</span><span>API reference</span><span class="crumbsep">/</span><span class="current">Moderation</span></div><article class="doc-body"><h1 id="moderation-tools">Moderation tools</h1>
+<p>Recognize known nsite spam, review repeated bot-like templates, and hide blocked publishers or emoji-media hashes without erasing anything.</p>
+<p><strong>Try it in context:</strong> <a href="../guides/moderation.html">Read the guide</a>.</p>
+<pre><code class="language-js">import { Moderation } from '@chaoticka/nsite-loopy-sdk';
+</code></pre>
+<h2 id="what-you-can-call-19">What you can call (19)</h2>
+<h3 id="builtinnsfwbanpubkeys">BUILT_IN_NSFW_BAN_PUBKEYS</h3>
+<p>The known blocked Nostr publishers from the curated Moji content list.</p>
+<p><strong>Call it as:</strong> <code>Moderation.BUILT_IN_NSFW_BAN_PUBKEYS</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const BUILT_IN_NSFW_BAN_PUBKEYS:readonly Hex[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="builtinnsfwblobhashes">BUILT_IN_NSFW_BLOB_HASHES</h3>
+<p>The known blocked emoji-media hashes used to hide matching content across packs.</p>
+<p><strong>Call it as:</strong> <code>Moderation.BUILT_IN_NSFW_BLOB_HASHES</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const BUILT_IN_NSFW_BLOB_HASHES:readonly Hex[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="builtinnsfwmediaurls">BUILT_IN_NSFW_MEDIA_URLS</h3>
+<p>The known media URLs used to seed Moji’s blocklist without loading the images.</p>
+<p><strong>Call it as:</strong> <code>Moderation.BUILT_IN_NSFW_MEDIA_URLS</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const BUILT_IN_NSFW_MEDIA_URLS:readonly string[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="campaignroleopeners">CAMPAIGN_ROLE_OPENERS</h3>
+<p>The opening phrases used by the recognized nsite spam campaign.</p>
+<p><strong>Call it as:</strong> <code>Moderation.CAMPAIGN_ROLE_OPENERS</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const CAMPAIGN_ROLE_OPENERS:readonly string[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/campaigns.js</code></p>
+<h3 id="mojicuratorblocklistversion">MOJI_CURATOR_BLOCKLIST_VERSION</h3>
+<p>The format identifier for the built-in Moji blocklist.</p>
+<p><strong>Call it as:</strong> <code>Moderation.MOJI_CURATOR_BLOCKLIST_VERSION</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">const MOJI_CURATOR_BLOCKLIST_VERSION:string;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="campaignmatch">campaignMatch</h3>
+<p>Find the confirmed three-part spam description pattern in a site description.</p>
+<p><strong>Call it as:</strong> <code>Moderation.campaignMatch</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function campaignMatch(description:string):{prefix:string;reasons:string[]}|null;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/campaigns.js</code></p>
+<h3 id="clusternsitespam">clusterNsiteSpam</h3>
+<p>Identify groups of suspiciously similar site descriptions posted by different accounts.</p>
+<p><strong>Call it as:</strong> <code>Moderation.clusterNsiteSpam</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function clusterNsiteSpam(sites:object[],options?:{minDistinctAuthors?:number}):object[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/campaigns.js</code></p>
+<h3 id="decodenip19">decodeNip19</h3>
+<p>Decode a Nostr identifier such as an npub into its underlying identifier data.</p>
+<p><strong>Call it as:</strong> <code>Moderation.decodeNip19</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function decodeNip19(value:string):{type:string;hex:Hex;relays?:string[];identifier?:string|null;kind?:number|null};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/identity.js</code></p>
+<h3 id="filternsites">filterNsites</h3>
+<p>Hide confirmed spam from a browsing view while retaining the complete original catalog.</p>
+<p><strong>Call it as:</strong> <code>Moderation.filterNsites</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function filterNsites(sites:object[],options?:{bannedPubkeys?:Hex[];hideConfirmed?:boolean;hideSuspected?:boolean;ownPubkey?:Hex}):{visible:object[];hidden:object[];decisions:object[];clusters:object[];rawCount:number};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/campaigns.js</code></p>
+<h3 id="inspectnsitespam">inspectNsiteSpam</h3>
+<p>Explain why a site looks like known spam, needs review or appears clear.</p>
+<p><strong>Call it as:</strong> <code>Moderation.inspectNsiteSpam</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function inspectNsiteSpam(site:object,options?:{knownCampaigns?:boolean}):{status:'confirmed'|'review'|'clear';reasons:string[];evidence:object};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/campaigns.js</code></p>
+<h3 id="isemojiallowed">isEmojiAllowed</h3>
+<p>Decide whether a custom emoji is visible under the selected publisher and media rules.</p>
+<p><strong>Call it as:</strong> <code>Moderation.isEmojiAllowed</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function isEmojiAllowed(candidate:{source?:string;packAuthor?:string;hash?:string;emojiKey?:string},policy?:object):boolean;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="mergeblocklists">mergeBlocklists</h3>
+<p>Combine curated blocked-publisher and media-hash lists without duplicates.</p>
+<p><strong>Call it as:</strong> <code>Moderation.mergeBlocklists</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function mergeBlocklists(...lists:object[]):{pubkeys:Hex[];emojiHashes:Hex[];mediaUrls:string[]};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="mutelisttemplate">muteListTemplate</h3>
+<p>Prepare a Nostr mute-list event that a signer can approve later.</p>
+<p><strong>Call it as:</strong> <code>Moderation.muteListTemplate</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function muteListTemplate(pubkeys:readonly string[],options?:{created_at?:number}):UnsignedEvent;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="normalizeemojihash">normalizeEmojiHash</h3>
+<p>Convert a supported emoji hash or URL into a stable lookup value.</p>
+<p><strong>Call it as:</strong> <code>Moderation.normalizeEmojiHash</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function normalizeEmojiHash(value:string|null|undefined):Hex|null;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/identity.js</code></p>
+<h3 id="normalizehashlist">normalizeHashList</h3>
+<p>Clean and deduplicate a list of emoji media hashes.</p>
+<p><strong>Call it as:</strong> <code>Moderation.normalizeHashList</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function normalizeHashList(values:readonly string[]):Hex[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/identity.js</code></p>
+<h3 id="normalizepubkey">normalizePubkey</h3>
+<p>Convert a valid npub or hex public key into a standard comparison form.</p>
+<p><strong>Call it as:</strong> <code>Moderation.normalizePubkey</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function normalizePubkey(value:string|null|undefined):Hex|null;
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/identity.js</code></p>
+<h3 id="normalizepubkeylist">normalizePubkeyList</h3>
+<p>Clean and deduplicate a list of publisher identities.</p>
+<p><strong>Call it as:</strong> <code>Moderation.normalizePubkeyList</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function normalizePubkeyList(values:readonly string[]):Hex[];
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/identity.js</code></p>
+<h3 id="parsecuratorblocklist">parseCuratorBlocklist</h3>
+<p>Import the curated publisher/media blocklist from JSON.</p>
+<p><strong>Call it as:</strong> <code>Moderation.parseCuratorBlocklist</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function parseCuratorBlocklist(raw:string):{schema:string;pubkeys:Hex[];emojiHashes:Hex[];mediaUrls:string[]};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+<h3 id="parsenip51mutelist">parseNip51MuteList</h3>
+<p>Verify a signed account mute-list event and collect its blocked publishers.</p>
+<p><strong>Call it as:</strong> <code>Moderation.parseNip51MuteList</code></p>
+<p><strong>For developers: TypeScript signature</strong></p>
+<pre><code class="language-ts">function parseNip51MuteList(event:SignedEvent):{pubkey:Hex;pubkeys:Hex[];eventId:Hex;createdAt:number};
+</code></pre>
+<p><strong>Code location:</strong> <code>src/moderation/lists.js</code></p>
+</article><div class="page-controls"><a href="../api/adapters.html"><small>Previous</small>Adapters</a><a href="../api/moji.html"><small>Next</small>Moji</a></div><footer class="footer"><span>Nsite Loopy SDK v1.1.0</span><span>·</span><span>Offline docs — no tracking, no CDN</span><span>·</span><a href="../reference/limits.html">Verification scope</a></footer></main><aside class="toc" aria-label="On this page"><div class="toc-title">On this page</div><a class="depth2" href="#what-you-can-call-19">What you can call (19)</a><a class="depth3" href="#builtinnsfwbanpubkeys">BUILT_IN_NSFW_BAN_PUBKEYS</a><a class="depth3" href="#builtinnsfwblobhashes">BUILT_IN_NSFW_BLOB_HASHES</a><a class="depth3" href="#builtinnsfwmediaurls">BUILT_IN_NSFW_MEDIA_URLS</a><a class="depth3" href="#campaignroleopeners">CAMPAIGN_ROLE_OPENERS</a><a class="depth3" href="#mojicuratorblocklistversion">MOJI_CURATOR_BLOCKLIST_VERSION</a><a class="depth3" href="#campaignmatch">campaignMatch</a><a class="depth3" href="#clusternsitespam">clusterNsiteSpam</a><a class="depth3" href="#c0c0c0odenip19">decodeNip19</a><a class="depth3" href="#filternsites">filterNsites</a><a class="depth3" href="#inspectnsitespam">inspectNsiteSpam</a><a class="depth3" href="#isemojiallowed">isEmojiAllowed</a><a class="depth3" href="#mergeblocklists">mergeBlocklists</a><a class="depth3" href="#mutelisttemplate">muteListTemplate</a><a class="depth3" href="#normalizeemojihash">normalizeEmojiHash</a><a class="depth3" href="#normalizehashlist">normalizeHashList</a><a class="depth3" href="#normalizepubkey">normalizePubkey</a><a class="depth3" href="#normalizepubkeylist">normalizePubkeyList</a><a class="depth3" href="#parsecuratorblocklist">parseCuratorBlocklist</a><a class="depth3" href="#parsenip51mutelist">parseNip51MuteList</a></aside></div>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search documentation"><div class="search-head"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search APIs and guides…" autocomplete="off" aria-label="Search query"><button type="button" onclick="this.closest('dialog').close()">Esc</button></div><div class="search-results" id="search-results"></div></dialog><script defer src="../assets/search-index.js"></script><script defer src="../assets/site.js"></script></body></html>
