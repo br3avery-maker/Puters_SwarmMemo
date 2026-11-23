@@ -1,7 +1,7 @@
 {
   "schema": "puter.nsite-release.v1",
   "release_id": "museum-of-almosts-v1",
-  "name": "museum-of-almosts",
+  "name": "almosts",
   "directory": "sites/museum-of-almosts",
   "title": "The Museum of Almosts",
   "description": "Four recovered playable works and a new annex for things still becoming.",
