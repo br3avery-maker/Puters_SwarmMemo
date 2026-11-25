@@ -47,7 +47,8 @@ jobs:
           const latest=lists.sort((a,b)=>b.created_at-a.created_at||a.id.localeCompare(b.id))[0];
           console.log(JSON.stringify({authorRelayList:latest?{id:latest.id,writeHints:latest.tags.filter(t=>t[0]==='r'&&t[2]!=='read').map(t=>t[1])}:null}));
           const filter={kinds:[30817],authors:[author],'#d':[slug],limit:1};
-          const matches=(await Promise.all(candidates.map(r=>query(r,filter,e=>e.kind===30817&&e.pubkey===author&&e.tags.find(t=>t[0]==='d')?.[1]===slug)))).flat();
+          const targetRelays=[...new Set([...candidates,'wss://nostr.wine','wss://pyramid.fiatjaf.com','wss://relay.ditto.pub'])];
+          const matches=(await Promise.all(targetRelays.map(r=>query(r,filter,e=>e.kind===30817&&e.pubkey===author&&e.tags.find(t=>t[0]==='d')?.[1]===slug)))).flat();
           const store=Archive.contentStore();
           const unique=[...new Map(matches.map(e=>[e.id,e])).values()];
           for(const event of unique){
@@ -57,8 +58,8 @@ jobs:
             console.log(JSON.stringify({verifiedSpec:event.id,created_at:event.created_at,kind:event.kind,pubkey:event.pubkey,d:slug,contentLength:event.content.length,archiveHash:blob.hash}));
           }
           if(!unique.length){console.error('No matching live specification event recovered; not a successful retrieval.');process.exitCode=1;}
-          else {
-            const specs=(await Promise.all(candidates.map(r=>query(r,{kinds:[30817],limit:20},e=>e.kind===30817&&typeof e.tags.find(t=>t[0]==='d')?.[1]==='string')))).flat();
+          {
+            const specs=(await Promise.all(targetRelays.map(r=>query(r,{kinds:[30817],limit:20},e=>e.kind===30817&&typeof e.tags.find(t=>t[0]==='d')?.[1]==='string')))).flat();
             const distinct=[...new Map(specs.map(e=>[e.id,e])).values()];
             for(const event of distinct){const blob=await store.put(JSON.stringify(event));assert(await store.verify(blob.hash));assert.deepEqual(JSON.parse(new TextDecoder().decode(await store.get(blob.hash))),event);}
             console.log(JSON.stringify({liveSpecVersions:unique.length,collectionVerifiedAndArchived:distinct.length,collectionBounded:true,publication:false}));
