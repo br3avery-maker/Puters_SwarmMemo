@@ -1,4 +1,4 @@
-name: Loopy Open Specs source-recovery experiment
+name: Open Specs upstream contribution verification
 on:
   pull_request:
     paths:
@@ -6,121 +6,44 @@ on:
 permissions:
   contents: read
 jobs:
-  source-recovery:
+  contribution:
     if: github.head_ref == 'experiment/loopy-openspecs-live' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
+          repository: br3avery-maker/openspecs
+          ref: ae10c0dfef630f9791afdef52d7bb9412bfca826
           persist-credentials: false
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          repository: nogringo/openspecs
-          ref: 04a7672a19588406d0bffe710053c7d3a6146cc9
-          path: donor
-          persist-credentials: false
-      - name: Run existing Loopy source audit and exact recovery
-        shell: bash
+      - name: Install pinned dependencies
         run: |
-          set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/loopy" "$RUNNER_TEMP/source-input" "$RUNNER_TEMP/receipt"
-          archive=storybook/loopy-library-v3/downloads/Nsite-Loopy-Unified-SDK-1.1.0.zip
-          echo "35dd53708d4b981c34d2e6987a9c4426c9061b1fb4660d475690a548cf6824fd  $archive" | sha256sum -c -
-          unzip -q "$archive" -d "$RUNNER_TEMP/loopy"
-          git -C donor rev-parse HEAD | tee "$RUNNER_TEMP/receipt/donor-commit.txt"
-          test "$(git -C donor rev-parse HEAD)" = 04a7672a19588406d0bffe710053c7d3a6146cc9
-          git -C donor archive --format=zip -0 HEAD > "$RUNNER_TEMP/source-input/openspecs.zip"
-          cd "$RUNNER_TEMP/loopy"
-          python3 scripts/nsite_source_audit.py scan "$RUNNER_TEMP/source-input" --out "$RUNNER_TEMP/receipt/source-index.json"
-          python3 scripts/nsite_source_audit.py verify --index "$RUNNER_TEMP/receipt/source-index.json"
-          python3 scripts/source_collection.py export --input "$RUNNER_TEMP/source-input" --out "$RUNNER_TEMP/receipt/source-collection.zip"
-          python3 scripts/source_collection.py restore --bundle "$RUNNER_TEMP/receipt/source-collection.zip" --out "$RUNNER_TEMP/restored"
-          python3 - <<'PY'
-          import os, json, hashlib, pathlib, zipfile
-          tmp=pathlib.Path(os.environ["RUNNER_TEMP"])
-          with zipfile.ZipFile(tmp/"receipt/source-collection.zip") as z:
-              manifest=json.loads(z.read("MANIFEST.json"))
-          assert not manifest["errors"], manifest["errors"]
-          root=manifest["sources"][0]
-          restored=tmp/"restored"/root["archive_sha256"]
-          exact=0
-          for entry in root["entries"]:
-              if entry["state"]=="exact_source":
-                  assert hashlib.sha256((restored/entry["name"]).read_bytes()).hexdigest()==entry["sha256"]
-                  exact+=1
-          paths=[x["name"] for x in root["entries"] if x["state"]!="exact_source"]
-          result={"exact_restored":exact,"unique_source_objects":manifest["unique_source_objects"],"skipped":paths,"raw_archive_preserved":True}
-          (tmp/"receipt/recovery.json").write_text(json.dumps(result,indent=2))
-          print(json.dumps(result))
-          for rel in ["packages/nostr/src/spec.ts","packages/nostr/src/corpus.ts","packages/nostr/src/relay.ts"]:
-              assert (restored/rel).read_bytes()==(pathlib.Path(os.environ["GITHUB_WORKSPACE"])/"donor"/rel).read_bytes()
-          PY
-          cp "$RUNNER_TEMP/source-input/openspecs.zip" "$RUNNER_TEMP/receipt/"
-          cp "$GITHUB_WORKSPACE/donor/LICENSE" "$RUNNER_TEMP/receipt/Open-Specs-LICENSE"
-          cd "$RUNNER_TEMP/loopy"
-          npm test
-          python3 -m unittest discover -s tests -p 'test_*.py'
-      - name: Install exact donor lockfile dependencies
-        working-directory: donor
-        run: |
+          test "$(git rev-parse HEAD)" = ae10c0dfef630f9791afdef52d7bb9412bfca826
           npm exec --yes --package=pnpm@11.18.0 -- pnpm install --frozen-lockfile --ignore-scripts
-      - name: Verify original recovered code in a fresh Loopy consumer
-        working-directory: donor/packages/nostr
+      - name: Reproduce regressions on upstream source
         shell: bash
-        env:
-          LOOPY_SDK: ${{ runner.temp }}/loopy/src/index.js
         run: |
           set -euo pipefail
-          digest=$(sha256sum "$RUNNER_TEMP/source-input/openspecs.zip" | cut -d' ' -f1)
-          cp -R "$RUNNER_TEMP/restored/$digest/packages/nostr/src" recovered-src
-          cat > test/loopy-consumer.test.ts <<'TS'
-          import { describe, expect, it } from "vitest";
-          import { pathToFileURL } from "node:url";
-          import { parseSpec, specDraftOf, editSpec } from "../recovered-src/spec";
-          import { latestByCoordinate } from "../recovered-src/relay";
-          import { events, caseEvents } from "./fixtures";
-          const {Nostr, Archive} = await import(/* @vite-ignore */ pathToFileURL(process.env.LOOPY_SDK!).href);
-          describe("Open Specs recovered source + Loopy consumer", () => {
-            it("authenticates real upstream relay fixtures before parsing and archives the original bytes", async () => {
-              const store=Archive.contentStore();
-              const accepted=[];
-              let count=0;
-              for(const e of events){
-                expect(Nostr.verifyEvent(e)).toBe(true);
-                const spec=parseSpec(e);
-                if(!spec) continue;
-                const blob=await store.put(JSON.stringify(e));
-                expect(await store.verify(blob.hash)).toBe(true);
-                expect(JSON.parse(new TextDecoder().decode(await store.get(blob.hash)))).toEqual(e);
-                accepted.push(spec); count++;
-              }
-              expect(count).toBeGreaterThan(0);
-              expect(latestByCoordinate(accepted).length).toBeGreaterThan(0);
-              console.log(JSON.stringify({upstreamFixtureEvents:events.length,acceptedSpecs:count,latestCoordinates:latestByCoordinate(accepted).length}));
-            });
-            it("rejects kind collisions and independently rejects tampered signatures", () => {
-              for(const e of caseEvents("kind-collision")) expect(parseSpec(e)).toBeNull();
-              const event=events.find(e=>parseSpec(e))!;
-              expect(Nostr.verifyEvent({...event,content:event.content+"tampered"})).toBe(false);
-            });
-            it("preserves an existing specification identifier and unknown tags when preparing an unsigned edit", () => {
-              const event=events.find(e=>parseSpec(e))!;
-              const original={...event,tags:[...event.tags,["custom-test-tag","retain"]]};
-              const draft=specDraftOf(original);
-              const edit=editSpec(original,{...draft,content:draft.content+"\n"});
-              expect(edit.tags.find(t=>t[0]==="d")?.[1]).toBe(draft.identifier);
-              expect(edit.tags).toContainEqual(["custom-test-tag","retain"]);
-              expect(edit.kind).toBe(30817);
-            });
-          });
-          TS
-          npm exec --yes --package=pnpm@11.18.0 -- pnpm exec vitest run test/spec.test.ts test/corpus.test.ts test/loopy-consumer.test.ts --reporter=verbose | tee "$RUNNER_TEMP/receipt/consumer-tests.txt"
-      - name: Preserve source and test receipts
+          git fetch --no-tags --depth=1 https://github.com/nogringo/openspecs.git 04a7672a19588406d0bffe710053c7d3a6146cc9
+          git restore --source=FETCH_HEAD -- packages/nostr/src
+          set +e
+          (cd packages/nostr && npm exec --yes --package=pnpm@11.18.0 -- pnpm exec vitest run test/corpus.test.ts test/nip65.test.ts --reporter=verbose) > "$RUNNER_TEMP/before.txt" 2>&1
+          code=$?
+          set -e
+          cat "$RUNNER_TEMP/before.txt"
+          test "$code" -eq 1
+          git restore --source=HEAD -- packages/nostr/src
+      - name: Execute complete Nostr package suite on candidate
+        working-directory: packages/nostr
+        run: npm exec --yes --package=pnpm@11.18.0 -- pnpm test
+      - name: Typecheck candidate package
+        working-directory: packages/nostr
+        run: npm exec --yes --package=pnpm@11.18.0 -- pnpm typecheck
+      - name: Check formatting of changed files
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: loopy-openspecs-source-recovery
-          path: ${{ runner.temp }}/receipt/
-          if-no-files-found: error
-          retention-days: 30
+        run: |
+          npm exec --yes --package=pnpm@11.18.0 -- pnpm exec biome check packages/nostr/src/{event,nip65,pool,corpus}.ts packages/nostr/test/{nip65,corpus}.test.ts || {
+            npm exec --yes --package=pnpm@11.18.0 -- pnpm exec biome check --write packages/nostr/src/{event,nip65,pool,corpus}.ts packages/nostr/test/{nip65,corpus}.test.ts
+            git diff
+            exit 1
+          }
