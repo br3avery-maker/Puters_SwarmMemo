@@ -1,0 +1,49 @@
+name: Open Specs upstream contribution verification
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/loopy-openspecs-experiment.yml'
+permissions:
+  contents: read
+jobs:
+  contribution:
+    if: github.head_ref == 'experiment/loopy-openspecs-live' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: br3avery-maker/openspecs
+          ref: 92a5f233b964d5dec745d472156e1bcfaf4f2b5c
+          persist-credentials: false
+      - name: Install pinned dependencies
+        run: |
+          test "$(git rev-parse HEAD)" = 92a5f233b964d5dec745d472156e1bcfaf4f2b5c
+          npm exec --yes --package=pnpm@11.18.0 -- pnpm install --frozen-lockfile --ignore-scripts
+      - name: Reproduce regressions on upstream source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags --depth=1 https://github.com/nogringo/openspecs.git 04a7672a19588406d0bffe710053c7d3a6146cc9
+          git restore --source=FETCH_HEAD -- packages/nostr/src
+          set +e
+          (cd packages/nostr && npm exec --yes --package=pnpm@11.18.0 -- pnpm exec vitest run test/corpus.test.ts test/nip65.test.ts --reporter=verbose) > "$RUNNER_TEMP/before.txt" 2>&1
+          code=$?
+          set -e
+          cat "$RUNNER_TEMP/before.txt"
+          test "$code" -eq 1
+          git restore --source=HEAD -- packages/nostr/src
+      - name: Execute complete Nostr package suite on candidate
+        working-directory: packages/nostr
+        run: npm exec --yes --package=pnpm@11.18.0 -- pnpm test
+      - name: Typecheck candidate package
+        working-directory: packages/nostr
+        run: npm exec --yes --package=pnpm@11.18.0 -- pnpm typecheck
+      - name: Check formatting of changed files
+        if: always()
+        run: |
+          npm exec --yes --package=pnpm@11.18.0 -- pnpm exec biome check packages/nostr/src/{event,nip65,pool,corpus}.ts packages/nostr/test/{nip65,corpus}.test.ts || {
+            npm exec --yes --package=pnpm@11.18.0 -- pnpm exec biome check --write packages/nostr/src/{event,nip65,pool,corpus}.ts packages/nostr/test/{nip65,corpus}.test.ts
+            git diff
+            exit 1
+          }
