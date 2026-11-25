@@ -1,4 +1,4 @@
-name: Loopy Open Specs live experiment
+name: Loopy Open Specs source-recovery experiment
 on:
   pull_request:
     paths:
@@ -6,62 +6,121 @@ on:
 permissions:
   contents: read
 jobs:
-  read-only:
+  source-recovery:
     if: github.head_ref == 'experiment/loopy-openspecs-live' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           persist-credentials: false
-      - name: Verify and extract unchanged SDK
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          repository: nogringo/openspecs
+          ref: 04a7672a19588406d0bffe710053c7d3a6146cc9
+          path: donor
+          persist-credentials: false
+      - name: Run existing Loopy source audit and exact recovery
+        shell: bash
         run: |
-          set -eu
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/loopy" "$RUNNER_TEMP/source-input" "$RUNNER_TEMP/receipt"
           archive=storybook/loopy-library-v3/downloads/Nsite-Loopy-Unified-SDK-1.1.0.zip
           echo "35dd53708d4b981c34d2e6987a9c4426c9061b1fb4660d475690a548cf6824fd  $archive" | sha256sum -c -
-          mkdir -p "$RUNNER_TEMP/loopy"
           unzip -q "$archive" -d "$RUNNER_TEMP/loopy"
+          git -C donor rev-parse HEAD | tee "$RUNNER_TEMP/receipt/donor-commit.txt"
+          test "$(git -C donor rev-parse HEAD)" = 04a7672a19588406d0bffe710053c7d3a6146cc9
+          git -C donor archive --format=zip -0 HEAD > "$RUNNER_TEMP/source-input/openspecs.zip"
           cd "$RUNNER_TEMP/loopy"
-          node --version
+          python3 scripts/nsite_source_audit.py scan "$RUNNER_TEMP/source-input" --out "$RUNNER_TEMP/receipt/source-index.json"
+          python3 scripts/nsite_source_audit.py verify --index "$RUNNER_TEMP/receipt/source-index.json"
+          python3 scripts/source_collection.py export --input "$RUNNER_TEMP/source-input" --out "$RUNNER_TEMP/receipt/source-collection.zip"
+          python3 scripts/source_collection.py restore --bundle "$RUNNER_TEMP/receipt/source-collection.zip" --out "$RUNNER_TEMP/restored"
+          python3 - <<'PY'
+          import os, json, hashlib, pathlib, zipfile
+          tmp=pathlib.Path(os.environ["RUNNER_TEMP"])
+          with zipfile.ZipFile(tmp/"receipt/source-collection.zip") as z:
+              manifest=json.loads(z.read("MANIFEST.json"))
+          assert not manifest["errors"], manifest["errors"]
+          root=manifest["sources"][0]
+          restored=tmp/"restored"/root["archive_sha256"]
+          exact=0
+          for entry in root["entries"]:
+              if entry["state"]=="exact_source":
+                  assert hashlib.sha256((restored/entry["name"]).read_bytes()).hexdigest()==entry["sha256"]
+                  exact+=1
+          paths=[x["name"] for x in root["entries"] if x["state"]!="exact_source"]
+          result={"exact_restored":exact,"unique_source_objects":manifest["unique_source_objects"],"skipped":paths,"raw_archive_preserved":True}
+          (tmp/"receipt/recovery.json").write_text(json.dumps(result,indent=2))
+          print(json.dumps(result))
+          for rel in ["packages/nostr/src/spec.ts","packages/nostr/src/corpus.ts","packages/nostr/src/relay.ts"]:
+              assert (restored/rel).read_bytes()==(pathlib.Path(os.environ["GITHUB_WORKSPACE"])/"donor"/rel).read_bytes()
+          PY
+          cp "$RUNNER_TEMP/source-input/openspecs.zip" "$RUNNER_TEMP/receipt/"
+          cp "$GITHUB_WORKSPACE/donor/LICENSE" "$RUNNER_TEMP/receipt/Open-Specs-LICENSE"
+          cd "$RUNNER_TEMP/loopy"
           npm test
-      - name: Query public relays and verify exact specification
+          python3 -m unittest discover -s tests -p 'test_*.py'
+      - name: Install exact donor lockfile dependencies
+        working-directory: donor
         run: |
-          cd "$RUNNER_TEMP/loopy"
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          import {Nostr,Moderation,Archive,createNsiteSDK} from './src/index.js';
-          assert.equal(typeof WebSocket,'function');
-          const author=Moderation.normalizePubkey('npub1ye5ptcxfyyxl5vjvdjar2ua3f0hynkjzpx552mu5snj3qmx5pzjscpknpr');
-          const slug='napplet-handler-preferences';
-          const candidates=['wss://relay.damus.io','wss://relay.primal.net','wss://nos.lol','wss://relay.nostr.band','wss://relay.nostrhub.io','wss://purplepag.es','wss://relay.nostr.net'];
-          const query=async(relay,filter,match)=>{
-            try{
-              const raw=await createNsiteSDK({relays:[relay]}).query(filter,{timeoutMs:12000,maxEvents:60});
-              const matching=raw.filter(e=>Nostr.verifyEvent(e)&&match(e));
-              console.log(JSON.stringify({relay,filter,received:raw.length,matched:matching.length,rejected:raw.length-matching.length}));
-              return matching;
-            }catch(e){console.log(JSON.stringify({relay,filter,error:e.message}));return [];}
-          };
-          // Read public kind 10002 lists, but only use public seed relay candidates in this bounded experiment.
-          const lists=(await Promise.all(candidates.map(r=>query(r,{kinds:[10002],authors:[author],limit:1},e=>e.kind===10002&&e.pubkey===author)))).flat();
-          const latest=lists.sort((a,b)=>b.created_at-a.created_at||a.id.localeCompare(b.id))[0];
-          console.log(JSON.stringify({authorRelayList:latest?{id:latest.id,writeHints:latest.tags.filter(t=>t[0]==='r'&&t[2]!=='read').map(t=>t[1])}:null}));
-          const filter={kinds:[30817],authors:[author],'#d':[slug],limit:1};
-          const targetRelays=[...new Set([...candidates,'wss://nostr.wine','wss://pyramid.fiatjaf.com','wss://relay.ditto.pub'])];
-          const matches=(await Promise.all(targetRelays.map(r=>query(r,filter,e=>e.kind===30817&&e.pubkey===author&&e.tags.find(t=>t[0]==='d')?.[1]===slug)))).flat();
-          const store=Archive.contentStore();
-          const unique=[...new Map(matches.map(e=>[e.id,e])).values()];
-          for(const event of unique){
-            const blob=await store.put(JSON.stringify(event));
-            assert(await store.verify(blob.hash));
-            assert.deepEqual(JSON.parse(new TextDecoder().decode(await store.get(blob.hash))),event);
-            console.log(JSON.stringify({verifiedSpec:event.id,created_at:event.created_at,kind:event.kind,pubkey:event.pubkey,d:slug,contentLength:event.content.length,archiveHash:blob.hash}));
-          }
-          if(!unique.length){console.error('No matching live specification event recovered; not a successful retrieval.');process.exitCode=1;}
-          {
-            const specs=(await Promise.all(targetRelays.map(r=>query(r,{kinds:[30817],limit:20},e=>e.kind===30817&&typeof e.tags.find(t=>t[0]==='d')?.[1]==='string')))).flat();
-            const distinct=[...new Map(specs.map(e=>[e.id,e])).values()];
-            for(const event of distinct){const blob=await store.put(JSON.stringify(event));assert(await store.verify(blob.hash));assert.deepEqual(JSON.parse(new TextDecoder().decode(await store.get(blob.hash))),event);}
-            console.log(JSON.stringify({liveSpecVersions:unique.length,collectionVerifiedAndArchived:distinct.length,collectionBounded:true,publication:false}));
-          }
-          JS
+          npm exec --yes --package=pnpm@11.18.0 -- pnpm install --frozen-lockfile --ignore-scripts
+      - name: Verify original recovered code in a fresh Loopy consumer
+        working-directory: donor/packages/nostr
+        shell: bash
+        env:
+          LOOPY_SDK: ${{ runner.temp }}/loopy/src/index.js
+        run: |
+          set -euo pipefail
+          digest=$(sha256sum "$RUNNER_TEMP/source-input/openspecs.zip" | cut -d' ' -f1)
+          cp -R "$RUNNER_TEMP/restored/$digest/packages/nostr/src" recovered-src
+          cat > test/loopy-consumer.test.ts <<'TS'
+          import { describe, expect, it } from "vitest";
+          import { pathToFileURL } from "node:url";
+          import { parseSpec, specDraftOf, editSpec } from "../recovered-src/spec";
+          import { latestByCoordinate } from "../recovered-src/relay";
+          import { events, caseEvents } from "./fixtures";
+          const {Nostr, Archive} = await import(/* @vite-ignore */ pathToFileURL(process.env.LOOPY_SDK!).href);
+          describe("Open Specs recovered source + Loopy consumer", () => {
+            it("authenticates real upstream relay fixtures before parsing and archives the original bytes", async () => {
+              const store=Archive.contentStore();
+              const accepted=[];
+              let count=0;
+              for(const e of events){
+                expect(Nostr.verifyEvent(e)).toBe(true);
+                const spec=parseSpec(e);
+                if(!spec) continue;
+                const blob=await store.put(JSON.stringify(e));
+                expect(await store.verify(blob.hash)).toBe(true);
+                expect(JSON.parse(new TextDecoder().decode(await store.get(blob.hash)))).toEqual(e);
+                accepted.push(spec); count++;
+              }
+              expect(count).toBeGreaterThan(0);
+              expect(latestByCoordinate(accepted).length).toBeGreaterThan(0);
+              console.log(JSON.stringify({upstreamFixtureEvents:events.length,acceptedSpecs:count,latestCoordinates:latestByCoordinate(accepted).length}));
+            });
+            it("rejects kind collisions and independently rejects tampered signatures", () => {
+              for(const e of caseEvents("kind-collision")) expect(parseSpec(e)).toBeNull();
+              const event=events.find(e=>parseSpec(e))!;
+              expect(Nostr.verifyEvent({...event,content:event.content+"tampered"})).toBe(false);
+            });
+            it("preserves an existing specification identifier and unknown tags when preparing an unsigned edit", () => {
+              const event=events.find(e=>parseSpec(e))!;
+              const original={...event,tags:[...event.tags,["custom-test-tag","retain"]]};
+              const draft=specDraftOf(original);
+              const edit=editSpec(original,{...draft,content:draft.content+"\n"});
+              expect(edit.tags.find(t=>t[0]==="d")?.[1]).toBe(draft.identifier);
+              expect(edit.tags).toContainEqual(["custom-test-tag","retain"]);
+              expect(edit.kind).toBe(30817);
+            });
+          });
+          TS
+          npm exec --yes --package=pnpm@11.18.0 -- pnpm exec vitest run test/spec.test.ts test/corpus.test.ts test/loopy-consumer.test.ts --reporter=verbose | tee "$RUNNER_TEMP/receipt/consumer-tests.txt"
+      - name: Preserve source and test receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: loopy-openspecs-source-recovery
+          path: ${{ runner.temp }}/receipt/
+          if-no-files-found: error
+          retention-days: 30
