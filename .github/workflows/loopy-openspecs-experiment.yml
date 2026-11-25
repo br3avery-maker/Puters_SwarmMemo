@@ -14,11 +14,11 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           repository: br3avery-maker/openspecs
-          ref: 6630283400663783a6027011276e959fdaf698e8
+          ref: 92a5f233b964d5dec745d472156e1bcfaf4f2b5c
           persist-credentials: false
       - name: Install pinned dependencies
         run: |
-          test "$(git rev-parse HEAD)" = 6630283400663783a6027011276e959fdaf698e8
+          test "$(git rev-parse HEAD)" = 92a5f233b964d5dec745d472156e1bcfaf4f2b5c
           npm exec --yes --package=pnpm@11.18.0 -- pnpm install --frozen-lockfile --ignore-scripts
       - name: Reproduce regressions on upstream source
         shell: bash
