@@ -1,0 +1,66 @@
+name: Loopy Open Specs live experiment
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/loopy-openspecs-experiment.yml'
+permissions:
+  contents: read
+jobs:
+  read-only:
+    if: github.head_ref == 'experiment/loopy-openspecs-live' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Verify and extract unchanged SDK
+        run: |
+          set -eu
+          archive=storybook/loopy-library-v3/downloads/Nsite-Loopy-Unified-SDK-1.1.0.zip
+          echo "35dd53708d4b981c34d2e6987a9c4426c9061b1fb4660d475690a548cf6824fd  $archive" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/loopy"
+          unzip -q "$archive" -d "$RUNNER_TEMP/loopy"
+          cd "$RUNNER_TEMP/loopy"
+          node --version
+          npm test
+      - name: Query public relays and verify exact specification
+        run: |
+          cd "$RUNNER_TEMP/loopy"
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import {Nostr,Moderation,Archive,createNsiteSDK} from './src/index.js';
+          assert.equal(typeof WebSocket,'function');
+          const author=Moderation.normalizePubkey('npub1ye5ptcxfyyxl5vjvdjar2ua3f0hynkjzpx552mu5snj3qmx5pzjscpknpr');
+          const slug='napplet-handler-preferences';
+          const candidates=['wss://relay.damus.io','wss://relay.primal.net','wss://nos.lol','wss://relay.nostr.band','wss://relay.nostrhub.io','wss://purplepag.es','wss://relay.nostr.net'];
+          const query=async(relay,filter,match)=>{
+            try{
+              const raw=await createNsiteSDK({relays:[relay]}).query(filter,{timeoutMs:12000,maxEvents:60});
+              const matching=raw.filter(e=>Nostr.verifyEvent(e)&&match(e));
+              console.log(JSON.stringify({relay,filter,received:raw.length,matched:matching.length,rejected:raw.length-matching.length}));
+              return matching;
+            }catch(e){console.log(JSON.stringify({relay,filter,error:e.message}));return [];}
+          };
+          // Read public kind 10002 lists, but only use public seed relay candidates in this bounded experiment.
+          const lists=(await Promise.all(candidates.map(r=>query(r,{kinds:[10002],authors:[author],limit:1},e=>e.kind===10002&&e.pubkey===author)))).flat();
+          const latest=lists.sort((a,b)=>b.created_at-a.created_at||a.id.localeCompare(b.id))[0];
+          console.log(JSON.stringify({authorRelayList:latest?{id:latest.id,writeHints:latest.tags.filter(t=>t[0]==='r'&&t[2]!=='read').map(t=>t[1])}:null}));
+          const filter={kinds:[30817],authors:[author],'#d':[slug],limit:1};
+          const matches=(await Promise.all(candidates.map(r=>query(r,filter,e=>e.kind===30817&&e.pubkey===author&&e.tags.find(t=>t[0]==='d')?.[1]===slug)))).flat();
+          const store=Archive.contentStore();
+          const unique=[...new Map(matches.map(e=>[e.id,e])).values()];
+          for(const event of unique){
+            const blob=await store.put(JSON.stringify(event));
+            assert(await store.verify(blob.hash));
+            assert.deepEqual(JSON.parse(new TextDecoder().decode(await store.get(blob.hash))),event);
+            console.log(JSON.stringify({verifiedSpec:event.id,created_at:event.created_at,kind:event.kind,pubkey:event.pubkey,d:slug,contentLength:event.content.length,archiveHash:blob.hash}));
+          }
+          if(!unique.length){console.error('No matching live specification event recovered; not a successful retrieval.');process.exitCode=1;}
+          else {
+            const specs=(await Promise.all(candidates.map(r=>query(r,{kinds:[30817],limit:20},e=>e.kind===30817&&typeof e.tags.find(t=>t[0]==='d')?.[1]==='string')))).flat();
+            const distinct=[...new Map(specs.map(e=>[e.id,e])).values()];
+            for(const event of distinct){const blob=await store.put(JSON.stringify(event));assert(await store.verify(blob.hash));assert.deepEqual(JSON.parse(new TextDecoder().decode(await store.get(blob.hash))),event);}
+            console.log(JSON.stringify({liveSpecVersions:unique.length,collectionVerifiedAndArchived:distinct.length,collectionBounded:true,publication:false}));
+          }
+          JS
